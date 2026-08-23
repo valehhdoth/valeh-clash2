@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="<%= typeof currentLang !== 'undefined' ? currentLang : 'tr' %>" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof title !== 'undefined' ? title : (typeof t !== 'undefined' ? t('meta.siteTitle') : 'Clash of Clans Portal') %></title>
+  <meta name="referrer" content="no-referrer">
+  <meta name="description" content="<%= typeof t !== 'undefined' ? t('meta.siteDescription') : 'Clash of Clans portal' %>">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="<%= typeof title !== 'undefined' ? title : 'Clash of Clans Portal' %>">
+  <meta property="og:description" content="<%= typeof t !== 'undefined' ? t('meta.ogDescription') : 'Clash of Clans Live Tracker' %>">
+  <meta property="og:image" content="/images/assets/town_hall_18.png">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="<%= typeof title !== 'undefined' ? title : 'Clash of Clans Portal' %>">
+  <meta name="twitter:description" content="<%= typeof t !== 'undefined' ? t('meta.ogDescription') : 'Clash of Clans Live Tracker' %>">
+  <meta name="twitter:image" content="/images/assets/town_hall_18.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏰</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            cocDark: '#070a12',
+            cocCard: '#0f172a',
+            cocGold: '#f59e0b',
+            cocElixir: '#d946ef',
+            cocDarkElixir: '#06b6d4'
+          },
+          fontFamily: {
+            rajdhani: ['Rajdhani', 'sans-serif'],
+            jakarta: ['"Plus Jakarta Sans"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="/css/custom.css">
+</head>
+<body class="flex flex-col min-h-screen text-slate-100 antialiased selection:bg-amber-500 selection:text-slate-950">

@@ -1,0 +1,5179 @@
+[
+  {
+    "id": "usr_mt5m7qalc0a98864",
+    "username": "ChiefClash_mt5m7qak",
+    "email": "chiefclash_mt5m7qak@example.com",
+    "salt": "5109af1b3ceab573b4353716cb7a4385",
+    "passwordHash": "71abd39a4867fa89f777c4b7862501f4435d51c536db3db64265aea3061b70f8af990ef3ddfd118ed4db9349b4e0f725bfa6b3aef17c91df6700c17f793d5eb4",
+    "createdAt": "2026-08-23T09:39:00.957Z",
+    "linkedVillages": [
+      {
+        "tag": "#9PRQL200",
+        "name": "Chief Hero",
+        "townHallLevel": 17,
+        "trophies": 5000,
+        "clanName": "Anatolia Warriors",
+        "linkedAt": "23.08.2026"
+      }
+    ],
+    "snapshots": {
+      "#9PRQL200": [
+        {
+          "id": "snp_mt5m7qbo",
+          "timestamp": 1787477940996,
+          "dateFormatted": "23.08.2026 13:39",
+          "townHallLevel": 18,
+          "townHallWeaponLevel": 0,
+          "trophies": 5350,
+          "bestTrophies": 5350,
+          "warStars": 1245,
+          "attackWins": 80,
+          "defenseWins": 20,
+          "clanCapitalContributions": 185000,
+          "builderHallLevel": 0,
+          "builderBaseTrophies": 0,
+          "heroes": {
+            "Barbarian King": {
+              "level": 90,
+              "maxLevel": 95
+            },
+            "Archer Queen": {
+              "level": 88,
+              "maxLevel": 95
+            }
+          },
+          "heroEquipment": {
+            "Giant Gauntlet": {
+              "level": 24,
+              "maxLevel": 27
+            }
+          },
+          "clan": {
+            "name": "Anatolia Warriors",
+            "tag": "#2PP8RGLV"
+          }
+        },
+        {
+          "id": "snp_mt5m7qbb",
+          "timestamp": 1787477940983,
+          "dateFormatted": "23.08.2026 13:39",
+          "townHallLevel": 17,
+          "townHallWeaponLevel": 0,
+          "trophies": 5000,
+          "bestTrophies": 5200,
+          "warStars": 1200,
+          "attackWins": 45,
+          "defenseWins": 12,
+          "clanCapitalContributions": 150000,
+          "builderHallLevel": 0,
+          "builderBaseTrophies": 0,
+          "heroes": {
+            "Barbarian King": {
+              "level": 85,
+              "maxLevel": 95
+            },
+            "Archer Queen": {
+              "level": 85,
+              "maxLevel": 95
+            }
+          },
+          "heroEquipment": {
+            "Giant Gauntlet": {
+              "level": 20,
+              "maxLevel": 27
+            }
+          },
+          "clan": {
+            "name": "Anatolia Warriors",
+            "tag": "#2PP8RGLV"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "usr_mt5mauy872b6bd35",
+    "username": "valeh",
+    "email": "valeh.mammedov121@gmail.com",
+    "salt": "69b7613052902f22506c028e3546a276",
+    "passwordHash": "dd1c0c08f37e40b66d38bd2e33b98726f7ef60aa7f8352ce96b49ffd8ffdddbe802e7a6e48a94262865f9b24990bcc01b2eb08b2d34493c4114f63b1fe47c7b7",
+    "createdAt": "2026-08-23T09:41:26.960Z",
+    "linkedVillages": [
+      {
+        "tag": "#YL0QJ9VGJ",
+        "name": "VALEH2008",
+        "townHallLevel": 18,
+        "trophies": 439,
+        "clanName": "⚔️ Achilles ⚔️",
+        "linkedAt": "23.08.2026"
+      }
+    ],
+    "snapshots": {
+      "#YL0QJ9VGJ": [
+        {
+          "id": "snp_mt5mxrtz",
+          "timestamp": 1787479156007,
+          "dateFormatted": "23.08.2026 13:59",
+          "townHallLevel": 18,
+          "townHallWeaponLevel": 0,
+          "trophies": 439,
+          "bestTrophies": 5083,
+          "warStars": 347,
+          "attackWins": 0,
+          "defenseWins": 0,
+          "clanCapitalContributions": 128136,
+          "builderHallLevel": 10,
+          "builderBaseTrophies": 3358,
+          "warPreference": "in",
+          "league": {
+            "name": "Lig Yok"
+          },
+          "builderBaseLeague": {
+            "name": "Steel League III"
+          },
+          "heroes": {
+            "Barbarian King": {
+              "level": 94,
+              "maxLevel": 110,
+              "village": "home"
+            },
+            "Archer Queen": {
+              "level": 81,
+              "maxLevel": 110,
+              "village": "home"
+            },
+            "Grand Warden": {
+              "level": 74,
+              "maxLevel": 85,
+              "village": "home"
+            },
+            "Battle Machine": {
+              "level": 35,
+              "maxLevel": 35,
+              "village": "builderBase"
+            },
+            "Royal Champion": {
+              "level": 39,
+              "maxLevel": 55,
+              "village": "home"
+            },
+            "Battle Copter": {
+              "level": 22,
+              "maxLevel": 35,
+              "village": "builderBase"
+            },
+            "Minion Prince": {
+              "level": 63,
+              "maxLevel": 95,
+              "village": "home"
+            },
+            "Dragon Duke": {
+              "level": 8,
+              "maxLevel": 25,
+              "village": "home"
+            }
+          },
+          "heroEquipment": {
+            "Giant Gauntlet": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Rocket Spear": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Frozen Arrow": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Fireball": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Snake Bracelet": {
+              "level": 1,
+              "maxLevel": 27
+            },
+            "Dark Crown": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Magic Mirror": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Action Figure": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Rocket Backpack": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Revenge Deck": {
+              "level": 18,
+              "maxLevel": 27
+            },
+            "Barbarian Puppet": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Rage Vial": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Archer Puppet": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Invisibility Vial": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Eternal Tome": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Life Gem": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Seeking Shield": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Royal Gem": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Earthquake Boots": {
+              "level": 8,
+              "maxLevel": 18
+            },
+            "Giant Arrow": {
+              "level": 9,
+              "maxLevel": 18
+            },
+            "Healing Tome": {
+              "level": 11,
+              "maxLevel": 18
+            },
+            "Henchmen Puppet": {
+              "level": 10,
+              "maxLevel": 18
+            },
+            "Dark Orb": {
+              "level": 10,
+              "maxLevel": 18
+            },
+            "Flame Blower": {
+              "level": 12,
+              "maxLevel": 18
+            },
+            "Hog Rider Puppet": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Vampstache": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Haste Vial": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Healer Puppet": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Rage Gem": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Metal Pants": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Noble Iron": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Fire Heart": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Stun Blaster": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Electro Fangs": {
+              "level": 1,
+              "maxLevel": 18
+            }
+          },
+          "troops": {
+            "Barbarian": {
+              "level": 7,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "Archer": {
+              "level": 10,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Goblin": {
+              "level": 2,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Giant": {
+              "level": 6,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Wall Breaker": {
+              "level": 2,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Balloon": {
+              "level": 7,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "Wizard": {
+              "level": 7,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Healer": {
+              "level": 8,
+              "maxLevel": 11,
+              "village": "home"
+            },
+            "Dragon": {
+              "level": 11,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "P.E.K.K.A": {
+              "level": 9,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "Minion": {
+              "level": 4,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Hog Rider": {
+              "level": 3,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Valkyrie": {
+              "level": 3,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Golem": {
+              "level": 1,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Witch": {
+              "level": 6,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Lava Hound": {
+              "level": 5,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Bowler": {
+              "level": 2,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Baby Dragon": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Miner": {
+              "level": 2,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Super Barbarian": {
+              "level": 1,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Super Archer": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Wall Breaker": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Giant": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Raged Barbarian": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Sneaky Archer": {
+              "level": 19,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Beta Minion": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Boxer Giant": {
+              "level": 19,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Bomber": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Power P.E.K.K.A": {
+              "level": 20,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Cannon Cart": {
+              "level": 19,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Drop Ship": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Night Witch": {
+              "level": 20,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Wall Wrecker": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Battle Blimp": {
+              "level": 4,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Yeti": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Sneaky Goblin": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Super Miner": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Rocket Balloon": {
+              "level": 1,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Ice Golem": {
+              "level": 2,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Electro Dragon": {
+              "level": 8,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Stone Slammer": {
+              "level": 2,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Inferno Dragon": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Super Valkyrie": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Dragon Rider": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Super Witch": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Hog Glider": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Siege Barracks": {
+              "level": 5,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Ice Hound": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Super Bowler": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Dragon": {
+              "level": 1,
+              "maxLevel": 11,
+              "village": "home"
+            },
+            "Headhunter": {
+              "level": 2,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Super Wizard": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Minion": {
+              "level": 1,
+              "maxLevel": 11,
+              "village": "home"
+            },
+            "Log Launcher": {
+              "level": 3,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Flame Flinger": {
+              "level": 5,
+              "maxLevel": 5,
+              "village": "home"
+            },
+            "Battle Drill": {
+              "level": 4,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Electro Titan": {
+              "level": 4,
+              "maxLevel": 5,
+              "village": "home"
+            },
+            "Apprentice Warden": {
+              "level": 2,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Super Hog Rider": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Electrofire Wizard": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Root Rider": {
+              "level": 2,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Druid": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Thrower": {
+              "level": 1,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Troop Launcher": {
+              "level": 1,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Super Yeti": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Furnace": {
+              "level": 1,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "L.A.S.S.I": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Mighty Yak": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Electro Owl": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Unicorn": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Phoenix": {
+              "level": 10,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Poison Lizard": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Diggy": {
+              "level": 10,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Frosty": {
+              "level": 3,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Spirit Fox": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Angry Jelly": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Sneezy": {
+              "level": 2,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Greedy Raven": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            }
+          },
+          "spells": {
+            "Lightning Spell": {
+              "level": 9,
+              "maxLevel": 13
+            },
+            "Healing Spell": {
+              "level": 4,
+              "maxLevel": 12
+            },
+            "Rage Spell": {
+              "level": 6,
+              "maxLevel": 7
+            },
+            "Jump Spell": {
+              "level": 2,
+              "maxLevel": 5
+            },
+            "Freeze Spell": {
+              "level": 7,
+              "maxLevel": 8
+            },
+            "Poison Spell": {
+              "level": 9,
+              "maxLevel": 12
+            },
+            "Earthquake Spell": {
+              "level": 2,
+              "maxLevel": 8
+            },
+            "Haste Spell": {
+              "level": 2,
+              "maxLevel": 7
+            },
+            "Clone Spell": {
+              "level": 2,
+              "maxLevel": 9
+            },
+            "Skeleton Spell": {
+              "level": 4,
+              "maxLevel": 8
+            },
+            "Bat Spell": {
+              "level": 6,
+              "maxLevel": 8
+            },
+            "Invisibility Spell": {
+              "level": 2,
+              "maxLevel": 4
+            },
+            "Recall Spell": {
+              "level": 1,
+              "maxLevel": 7
+            },
+            "Overgrowth Spell": {
+              "level": 4,
+              "maxLevel": 5
+            },
+            "Revive Spell": {
+              "level": 4,
+              "maxLevel": 5
+            },
+            "Ice Block Spell": {
+              "level": 2,
+              "maxLevel": 6
+            }
+          },
+          "completionPercentage": 71,
+          "clan": {
+            "name": "⚔️ Achilles ⚔️",
+            "tag": "#2CLLYYCUP",
+            "role": "coLeader"
+          }
+        },
+        {
+          "id": "snp_mt5mwkc7",
+          "timestamp": 1787479099639,
+          "dateFormatted": "23.08.2026 13:58",
+          "townHallLevel": 18,
+          "townHallWeaponLevel": 0,
+          "trophies": 439,
+          "bestTrophies": 5083,
+          "warStars": 347,
+          "attackWins": 0,
+          "defenseWins": 0,
+          "clanCapitalContributions": 128136,
+          "builderHallLevel": 10,
+          "builderBaseTrophies": 3358,
+          "warPreference": "in",
+          "league": {
+            "name": "Lig Yok"
+          },
+          "builderBaseLeague": {
+            "name": "Steel League III"
+          },
+          "heroes": {
+            "Barbarian King": {
+              "level": 94,
+              "maxLevel": 110,
+              "village": "home"
+            },
+            "Archer Queen": {
+              "level": 81,
+              "maxLevel": 110,
+              "village": "home"
+            },
+            "Grand Warden": {
+              "level": 74,
+              "maxLevel": 85,
+              "village": "home"
+            },
+            "Battle Machine": {
+              "level": 35,
+              "maxLevel": 35,
+              "village": "builderBase"
+            },
+            "Royal Champion": {
+              "level": 39,
+              "maxLevel": 55,
+              "village": "home"
+            },
+            "Battle Copter": {
+              "level": 22,
+              "maxLevel": 35,
+              "village": "builderBase"
+            },
+            "Minion Prince": {
+              "level": 63,
+              "maxLevel": 95,
+              "village": "home"
+            },
+            "Dragon Duke": {
+              "level": 8,
+              "maxLevel": 25,
+              "village": "home"
+            }
+          },
+          "heroEquipment": {
+            "Giant Gauntlet": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Rocket Spear": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Frozen Arrow": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Fireball": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Snake Bracelet": {
+              "level": 1,
+              "maxLevel": 27
+            },
+            "Dark Crown": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Magic Mirror": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Action Figure": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Rocket Backpack": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Revenge Deck": {
+              "level": 18,
+              "maxLevel": 27
+            },
+            "Barbarian Puppet": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Rage Vial": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Archer Puppet": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Invisibility Vial": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Eternal Tome": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Life Gem": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Seeking Shield": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Royal Gem": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Earthquake Boots": {
+              "level": 8,
+              "maxLevel": 18
+            },
+            "Giant Arrow": {
+              "level": 9,
+              "maxLevel": 18
+            },
+            "Healing Tome": {
+              "level": 11,
+              "maxLevel": 18
+            },
+            "Henchmen Puppet": {
+              "level": 10,
+              "maxLevel": 18
+            },
+            "Dark Orb": {
+              "level": 10,
+              "maxLevel": 18
+            },
+            "Flame Blower": {
+              "level": 12,
+              "maxLevel": 18
+            },
+            "Hog Rider Puppet": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Vampstache": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Haste Vial": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Healer Puppet": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Rage Gem": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Metal Pants": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Noble Iron": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Fire Heart": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Stun Blaster": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Electro Fangs": {
+              "level": 1,
+              "maxLevel": 18
+            }
+          },
+          "troops": {
+            "Barbarian": {
+              "level": 7,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "Archer": {
+              "level": 10,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Goblin": {
+              "level": 2,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Giant": {
+              "level": 6,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Wall Breaker": {
+              "level": 2,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Balloon": {
+              "level": 7,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "Wizard": {
+              "level": 7,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Healer": {
+              "level": 8,
+              "maxLevel": 11,
+              "village": "home"
+            },
+            "Dragon": {
+              "level": 11,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "P.E.K.K.A": {
+              "level": 9,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "Minion": {
+              "level": 4,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Hog Rider": {
+              "level": 3,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Valkyrie": {
+              "level": 3,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Golem": {
+              "level": 1,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Witch": {
+              "level": 6,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Lava Hound": {
+              "level": 5,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Bowler": {
+              "level": 2,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Baby Dragon": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Miner": {
+              "level": 2,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Super Barbarian": {
+              "level": 1,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Super Archer": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Wall Breaker": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Giant": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Raged Barbarian": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Sneaky Archer": {
+              "level": 19,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Beta Minion": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Boxer Giant": {
+              "level": 19,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Bomber": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Power P.E.K.K.A": {
+              "level": 20,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Cannon Cart": {
+              "level": 19,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Drop Ship": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Night Witch": {
+              "level": 20,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Wall Wrecker": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Battle Blimp": {
+              "level": 4,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Yeti": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Sneaky Goblin": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Super Miner": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Rocket Balloon": {
+              "level": 1,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Ice Golem": {
+              "level": 2,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Electro Dragon": {
+              "level": 8,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Stone Slammer": {
+              "level": 2,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Inferno Dragon": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Super Valkyrie": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Dragon Rider": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Super Witch": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Hog Glider": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Siege Barracks": {
+              "level": 5,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Ice Hound": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Super Bowler": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Dragon": {
+              "level": 1,
+              "maxLevel": 11,
+              "village": "home"
+            },
+            "Headhunter": {
+              "level": 2,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Super Wizard": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Minion": {
+              "level": 1,
+              "maxLevel": 11,
+              "village": "home"
+            },
+            "Log Launcher": {
+              "level": 3,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Flame Flinger": {
+              "level": 5,
+              "maxLevel": 5,
+              "village": "home"
+            },
+            "Battle Drill": {
+              "level": 4,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Electro Titan": {
+              "level": 4,
+              "maxLevel": 5,
+              "village": "home"
+            },
+            "Apprentice Warden": {
+              "level": 2,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Super Hog Rider": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Electrofire Wizard": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Root Rider": {
+              "level": 2,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Druid": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Thrower": {
+              "level": 1,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Troop Launcher": {
+              "level": 1,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Super Yeti": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Furnace": {
+              "level": 1,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "L.A.S.S.I": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Mighty Yak": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Electro Owl": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Unicorn": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Phoenix": {
+              "level": 10,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Poison Lizard": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Diggy": {
+              "level": 10,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Frosty": {
+              "level": 3,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Spirit Fox": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Angry Jelly": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Sneezy": {
+              "level": 2,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Greedy Raven": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            }
+          },
+          "spells": {
+            "Lightning Spell": {
+              "level": 9,
+              "maxLevel": 13
+            },
+            "Healing Spell": {
+              "level": 4,
+              "maxLevel": 12
+            },
+            "Rage Spell": {
+              "level": 6,
+              "maxLevel": 7
+            },
+            "Jump Spell": {
+              "level": 2,
+              "maxLevel": 5
+            },
+            "Freeze Spell": {
+              "level": 7,
+              "maxLevel": 8
+            },
+            "Poison Spell": {
+              "level": 9,
+              "maxLevel": 12
+            },
+            "Earthquake Spell": {
+              "level": 2,
+              "maxLevel": 8
+            },
+            "Haste Spell": {
+              "level": 2,
+              "maxLevel": 7
+            },
+            "Clone Spell": {
+              "level": 2,
+              "maxLevel": 9
+            },
+            "Skeleton Spell": {
+              "level": 4,
+              "maxLevel": 8
+            },
+            "Bat Spell": {
+              "level": 6,
+              "maxLevel": 8
+            },
+            "Invisibility Spell": {
+              "level": 2,
+              "maxLevel": 4
+            },
+            "Recall Spell": {
+              "level": 1,
+              "maxLevel": 7
+            },
+            "Overgrowth Spell": {
+              "level": 4,
+              "maxLevel": 5
+            },
+            "Revive Spell": {
+              "level": 4,
+              "maxLevel": 5
+            },
+            "Ice Block Spell": {
+              "level": 2,
+              "maxLevel": 6
+            }
+          },
+          "completionPercentage": 71,
+          "clan": {
+            "name": "⚔️ Achilles ⚔️",
+            "tag": "#2CLLYYCUP",
+            "role": "coLeader"
+          }
+        },
+        {
+          "id": "snp_mt5mu59w",
+          "timestamp": 1787478986804,
+          "dateFormatted": "23.08.2026 13:56",
+          "townHallLevel": 18,
+          "townHallWeaponLevel": 0,
+          "trophies": 439,
+          "bestTrophies": 5083,
+          "warStars": 347,
+          "attackWins": 0,
+          "defenseWins": 0,
+          "clanCapitalContributions": 128136,
+          "builderHallLevel": 10,
+          "builderBaseTrophies": 3358,
+          "warPreference": "in",
+          "league": {
+            "name": "Lig Yok"
+          },
+          "builderBaseLeague": {
+            "name": "Steel League III"
+          },
+          "heroes": {
+            "Barbarian King": {
+              "level": 94,
+              "maxLevel": 110,
+              "village": "home"
+            },
+            "Archer Queen": {
+              "level": 81,
+              "maxLevel": 110,
+              "village": "home"
+            },
+            "Grand Warden": {
+              "level": 74,
+              "maxLevel": 85,
+              "village": "home"
+            },
+            "Battle Machine": {
+              "level": 35,
+              "maxLevel": 35,
+              "village": "builderBase"
+            },
+            "Royal Champion": {
+              "level": 39,
+              "maxLevel": 55,
+              "village": "home"
+            },
+            "Battle Copter": {
+              "level": 22,
+              "maxLevel": 35,
+              "village": "builderBase"
+            },
+            "Minion Prince": {
+              "level": 63,
+              "maxLevel": 95,
+              "village": "home"
+            },
+            "Dragon Duke": {
+              "level": 8,
+              "maxLevel": 25,
+              "village": "home"
+            }
+          },
+          "heroEquipment": {
+            "Giant Gauntlet": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Rocket Spear": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Frozen Arrow": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Fireball": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Snake Bracelet": {
+              "level": 1,
+              "maxLevel": 27
+            },
+            "Dark Crown": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Magic Mirror": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Action Figure": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Rocket Backpack": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Revenge Deck": {
+              "level": 18,
+              "maxLevel": 27
+            },
+            "Barbarian Puppet": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Rage Vial": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Archer Puppet": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Invisibility Vial": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Eternal Tome": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Life Gem": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Seeking Shield": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Royal Gem": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Earthquake Boots": {
+              "level": 8,
+              "maxLevel": 18
+            },
+            "Giant Arrow": {
+              "level": 9,
+              "maxLevel": 18
+            },
+            "Healing Tome": {
+              "level": 11,
+              "maxLevel": 18
+            },
+            "Henchmen Puppet": {
+              "level": 10,
+              "maxLevel": 18
+            },
+            "Dark Orb": {
+              "level": 10,
+              "maxLevel": 18
+            },
+            "Flame Blower": {
+              "level": 12,
+              "maxLevel": 18
+            },
+            "Hog Rider Puppet": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Vampstache": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Haste Vial": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Healer Puppet": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Rage Gem": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Metal Pants": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Noble Iron": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Fire Heart": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Stun Blaster": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Electro Fangs": {
+              "level": 1,
+              "maxLevel": 18
+            }
+          },
+          "troops": {
+            "Barbarian": {
+              "level": 7,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "Archer": {
+              "level": 10,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Goblin": {
+              "level": 2,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Giant": {
+              "level": 6,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Wall Breaker": {
+              "level": 2,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Balloon": {
+              "level": 7,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "Wizard": {
+              "level": 7,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Healer": {
+              "level": 8,
+              "maxLevel": 11,
+              "village": "home"
+            },
+            "Dragon": {
+              "level": 11,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "P.E.K.K.A": {
+              "level": 9,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "Minion": {
+              "level": 4,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Hog Rider": {
+              "level": 3,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Valkyrie": {
+              "level": 3,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Golem": {
+              "level": 1,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Witch": {
+              "level": 6,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Lava Hound": {
+              "level": 5,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Bowler": {
+              "level": 2,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Baby Dragon": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Miner": {
+              "level": 2,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Super Barbarian": {
+              "level": 1,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Super Archer": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Wall Breaker": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Giant": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Raged Barbarian": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Sneaky Archer": {
+              "level": 19,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Beta Minion": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Boxer Giant": {
+              "level": 19,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Bomber": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Power P.E.K.K.A": {
+              "level": 20,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Cannon Cart": {
+              "level": 19,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Drop Ship": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Night Witch": {
+              "level": 20,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Wall Wrecker": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Battle Blimp": {
+              "level": 4,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Yeti": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Sneaky Goblin": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Super Miner": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Rocket Balloon": {
+              "level": 1,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Ice Golem": {
+              "level": 2,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Electro Dragon": {
+              "level": 8,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Stone Slammer": {
+              "level": 2,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Inferno Dragon": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Super Valkyrie": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Dragon Rider": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Super Witch": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Hog Glider": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Siege Barracks": {
+              "level": 5,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Ice Hound": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Super Bowler": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Dragon": {
+              "level": 1,
+              "maxLevel": 11,
+              "village": "home"
+            },
+            "Headhunter": {
+              "level": 2,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Super Wizard": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Minion": {
+              "level": 1,
+              "maxLevel": 11,
+              "village": "home"
+            },
+            "Log Launcher": {
+              "level": 3,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Flame Flinger": {
+              "level": 5,
+              "maxLevel": 5,
+              "village": "home"
+            },
+            "Battle Drill": {
+              "level": 4,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Electro Titan": {
+              "level": 4,
+              "maxLevel": 5,
+              "village": "home"
+            },
+            "Apprentice Warden": {
+              "level": 2,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Super Hog Rider": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Electrofire Wizard": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Root Rider": {
+              "level": 2,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Druid": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Thrower": {
+              "level": 1,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Troop Launcher": {
+              "level": 1,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Super Yeti": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Furnace": {
+              "level": 1,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "L.A.S.S.I": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Mighty Yak": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Electro Owl": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Unicorn": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Phoenix": {
+              "level": 10,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Poison Lizard": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Diggy": {
+              "level": 10,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Frosty": {
+              "level": 3,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Spirit Fox": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Angry Jelly": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Sneezy": {
+              "level": 2,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Greedy Raven": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            }
+          },
+          "spells": {
+            "Lightning Spell": {
+              "level": 9,
+              "maxLevel": 13
+            },
+            "Healing Spell": {
+              "level": 4,
+              "maxLevel": 12
+            },
+            "Rage Spell": {
+              "level": 6,
+              "maxLevel": 7
+            },
+            "Jump Spell": {
+              "level": 2,
+              "maxLevel": 5
+            },
+            "Freeze Spell": {
+              "level": 7,
+              "maxLevel": 8
+            },
+            "Poison Spell": {
+              "level": 9,
+              "maxLevel": 12
+            },
+            "Earthquake Spell": {
+              "level": 2,
+              "maxLevel": 8
+            },
+            "Haste Spell": {
+              "level": 2,
+              "maxLevel": 7
+            },
+            "Clone Spell": {
+              "level": 2,
+              "maxLevel": 9
+            },
+            "Skeleton Spell": {
+              "level": 4,
+              "maxLevel": 8
+            },
+            "Bat Spell": {
+              "level": 6,
+              "maxLevel": 8
+            },
+            "Invisibility Spell": {
+              "level": 2,
+              "maxLevel": 4
+            },
+            "Recall Spell": {
+              "level": 1,
+              "maxLevel": 7
+            },
+            "Overgrowth Spell": {
+              "level": 4,
+              "maxLevel": 5
+            },
+            "Revive Spell": {
+              "level": 4,
+              "maxLevel": 5
+            },
+            "Ice Block Spell": {
+              "level": 2,
+              "maxLevel": 6
+            }
+          },
+          "completionPercentage": 71,
+          "clan": {
+            "name": "⚔️ Achilles ⚔️",
+            "tag": "#2CLLYYCUP",
+            "role": "coLeader"
+          }
+        },
+        {
+          "id": "snp_mt5mtg9d",
+          "timestamp": 1787478954385,
+          "dateFormatted": "23.08.2026 13:55",
+          "townHallLevel": 18,
+          "townHallWeaponLevel": 0,
+          "trophies": 439,
+          "bestTrophies": 5083,
+          "warStars": 347,
+          "attackWins": 0,
+          "defenseWins": 0,
+          "clanCapitalContributions": 128136,
+          "builderHallLevel": 10,
+          "builderBaseTrophies": 3358,
+          "warPreference": "in",
+          "league": {
+            "name": "Lig Yok"
+          },
+          "builderBaseLeague": {
+            "name": "Steel League III"
+          },
+          "heroes": {
+            "Barbarian King": {
+              "level": 94,
+              "maxLevel": 110,
+              "village": "home"
+            },
+            "Archer Queen": {
+              "level": 81,
+              "maxLevel": 110,
+              "village": "home"
+            },
+            "Grand Warden": {
+              "level": 74,
+              "maxLevel": 85,
+              "village": "home"
+            },
+            "Battle Machine": {
+              "level": 35,
+              "maxLevel": 35,
+              "village": "builderBase"
+            },
+            "Royal Champion": {
+              "level": 39,
+              "maxLevel": 55,
+              "village": "home"
+            },
+            "Battle Copter": {
+              "level": 22,
+              "maxLevel": 35,
+              "village": "builderBase"
+            },
+            "Minion Prince": {
+              "level": 63,
+              "maxLevel": 95,
+              "village": "home"
+            },
+            "Dragon Duke": {
+              "level": 8,
+              "maxLevel": 25,
+              "village": "home"
+            }
+          },
+          "heroEquipment": {
+            "Giant Gauntlet": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Rocket Spear": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Frozen Arrow": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Fireball": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Snake Bracelet": {
+              "level": 1,
+              "maxLevel": 27
+            },
+            "Dark Crown": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Magic Mirror": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Action Figure": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Rocket Backpack": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Revenge Deck": {
+              "level": 18,
+              "maxLevel": 27
+            },
+            "Barbarian Puppet": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Rage Vial": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Archer Puppet": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Invisibility Vial": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Eternal Tome": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Life Gem": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Seeking Shield": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Royal Gem": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Earthquake Boots": {
+              "level": 8,
+              "maxLevel": 18
+            },
+            "Giant Arrow": {
+              "level": 9,
+              "maxLevel": 18
+            },
+            "Healing Tome": {
+              "level": 11,
+              "maxLevel": 18
+            },
+            "Henchmen Puppet": {
+              "level": 10,
+              "maxLevel": 18
+            },
+            "Dark Orb": {
+              "level": 10,
+              "maxLevel": 18
+            },
+            "Flame Blower": {
+              "level": 12,
+              "maxLevel": 18
+            },
+            "Hog Rider Puppet": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Vampstache": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Haste Vial": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Healer Puppet": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Rage Gem": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Metal Pants": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Noble Iron": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Fire Heart": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Stun Blaster": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Electro Fangs": {
+              "level": 1,
+              "maxLevel": 18
+            }
+          },
+          "troops": {
+            "Barbarian": {
+              "level": 7,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "Archer": {
+              "level": 10,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Goblin": {
+              "level": 2,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Giant": {
+              "level": 6,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Wall Breaker": {
+              "level": 2,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Balloon": {
+              "level": 7,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "Wizard": {
+              "level": 7,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Healer": {
+              "level": 8,
+              "maxLevel": 11,
+              "village": "home"
+            },
+            "Dragon": {
+              "level": 11,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "P.E.K.K.A": {
+              "level": 9,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "Minion": {
+              "level": 4,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Hog Rider": {
+              "level": 3,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Valkyrie": {
+              "level": 3,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Golem": {
+              "level": 1,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Witch": {
+              "level": 6,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Lava Hound": {
+              "level": 5,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Bowler": {
+              "level": 2,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Baby Dragon": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Miner": {
+              "level": 2,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Super Barbarian": {
+              "level": 1,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Super Archer": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Wall Breaker": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Giant": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Raged Barbarian": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Sneaky Archer": {
+              "level": 19,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Beta Minion": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Boxer Giant": {
+              "level": 19,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Bomber": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Power P.E.K.K.A": {
+              "level": 20,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Cannon Cart": {
+              "level": 19,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Drop Ship": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Night Witch": {
+              "level": 20,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Wall Wrecker": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Battle Blimp": {
+              "level": 4,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Yeti": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Sneaky Goblin": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Super Miner": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Rocket Balloon": {
+              "level": 1,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Ice Golem": {
+              "level": 2,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Electro Dragon": {
+              "level": 8,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Stone Slammer": {
+              "level": 2,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Inferno Dragon": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Super Valkyrie": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Dragon Rider": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Super Witch": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Hog Glider": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Siege Barracks": {
+              "level": 5,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Ice Hound": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Super Bowler": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Dragon": {
+              "level": 1,
+              "maxLevel": 11,
+              "village": "home"
+            },
+            "Headhunter": {
+              "level": 2,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Super Wizard": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Minion": {
+              "level": 1,
+              "maxLevel": 11,
+              "village": "home"
+            },
+            "Log Launcher": {
+              "level": 3,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Flame Flinger": {
+              "level": 5,
+              "maxLevel": 5,
+              "village": "home"
+            },
+            "Battle Drill": {
+              "level": 4,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Electro Titan": {
+              "level": 4,
+              "maxLevel": 5,
+              "village": "home"
+            },
+            "Apprentice Warden": {
+              "level": 2,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Super Hog Rider": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Electrofire Wizard": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Root Rider": {
+              "level": 2,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Druid": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Thrower": {
+              "level": 1,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Troop Launcher": {
+              "level": 1,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Super Yeti": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Furnace": {
+              "level": 1,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "L.A.S.S.I": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Mighty Yak": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Electro Owl": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Unicorn": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Phoenix": {
+              "level": 10,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Poison Lizard": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Diggy": {
+              "level": 10,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Frosty": {
+              "level": 3,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Spirit Fox": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Angry Jelly": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Sneezy": {
+              "level": 2,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Greedy Raven": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            }
+          },
+          "spells": {
+            "Lightning Spell": {
+              "level": 9,
+              "maxLevel": 13
+            },
+            "Healing Spell": {
+              "level": 4,
+              "maxLevel": 12
+            },
+            "Rage Spell": {
+              "level": 6,
+              "maxLevel": 7
+            },
+            "Jump Spell": {
+              "level": 2,
+              "maxLevel": 5
+            },
+            "Freeze Spell": {
+              "level": 7,
+              "maxLevel": 8
+            },
+            "Poison Spell": {
+              "level": 9,
+              "maxLevel": 12
+            },
+            "Earthquake Spell": {
+              "level": 2,
+              "maxLevel": 8
+            },
+            "Haste Spell": {
+              "level": 2,
+              "maxLevel": 7
+            },
+            "Clone Spell": {
+              "level": 2,
+              "maxLevel": 9
+            },
+            "Skeleton Spell": {
+              "level": 4,
+              "maxLevel": 8
+            },
+            "Bat Spell": {
+              "level": 6,
+              "maxLevel": 8
+            },
+            "Invisibility Spell": {
+              "level": 2,
+              "maxLevel": 4
+            },
+            "Recall Spell": {
+              "level": 1,
+              "maxLevel": 7
+            },
+            "Overgrowth Spell": {
+              "level": 4,
+              "maxLevel": 5
+            },
+            "Revive Spell": {
+              "level": 4,
+              "maxLevel": 5
+            },
+            "Ice Block Spell": {
+              "level": 2,
+              "maxLevel": 6
+            }
+          },
+          "completionPercentage": 71,
+          "clan": {
+            "name": "⚔️ Achilles ⚔️",
+            "tag": "#2CLLYYCUP",
+            "role": "coLeader"
+          }
+        },
+        {
+          "id": "snp_mt5mt2m3",
+          "timestamp": 1787478936699,
+          "dateFormatted": "23.08.2026 13:55",
+          "townHallLevel": 18,
+          "townHallWeaponLevel": 0,
+          "trophies": 439,
+          "bestTrophies": 5083,
+          "warStars": 347,
+          "attackWins": 0,
+          "defenseWins": 0,
+          "clanCapitalContributions": 128136,
+          "builderHallLevel": 10,
+          "builderBaseTrophies": 3358,
+          "warPreference": "in",
+          "league": {
+            "name": "Lig Yok"
+          },
+          "builderBaseLeague": {
+            "name": "Steel League III"
+          },
+          "heroes": {
+            "Barbarian King": {
+              "level": 94,
+              "maxLevel": 110,
+              "village": "home"
+            },
+            "Archer Queen": {
+              "level": 81,
+              "maxLevel": 110,
+              "village": "home"
+            },
+            "Grand Warden": {
+              "level": 74,
+              "maxLevel": 85,
+              "village": "home"
+            },
+            "Battle Machine": {
+              "level": 35,
+              "maxLevel": 35,
+              "village": "builderBase"
+            },
+            "Royal Champion": {
+              "level": 39,
+              "maxLevel": 55,
+              "village": "home"
+            },
+            "Battle Copter": {
+              "level": 22,
+              "maxLevel": 35,
+              "village": "builderBase"
+            },
+            "Minion Prince": {
+              "level": 63,
+              "maxLevel": 95,
+              "village": "home"
+            },
+            "Dragon Duke": {
+              "level": 8,
+              "maxLevel": 25,
+              "village": "home"
+            }
+          },
+          "heroEquipment": {
+            "Giant Gauntlet": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Rocket Spear": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Frozen Arrow": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Fireball": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Snake Bracelet": {
+              "level": 1,
+              "maxLevel": 27
+            },
+            "Dark Crown": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Magic Mirror": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Action Figure": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Rocket Backpack": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Revenge Deck": {
+              "level": 18,
+              "maxLevel": 27
+            },
+            "Barbarian Puppet": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Rage Vial": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Archer Puppet": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Invisibility Vial": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Eternal Tome": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Life Gem": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Seeking Shield": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Royal Gem": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Earthquake Boots": {
+              "level": 8,
+              "maxLevel": 18
+            },
+            "Giant Arrow": {
+              "level": 9,
+              "maxLevel": 18
+            },
+            "Healing Tome": {
+              "level": 11,
+              "maxLevel": 18
+            },
+            "Henchmen Puppet": {
+              "level": 10,
+              "maxLevel": 18
+            },
+            "Dark Orb": {
+              "level": 10,
+              "maxLevel": 18
+            },
+            "Flame Blower": {
+              "level": 12,
+              "maxLevel": 18
+            },
+            "Hog Rider Puppet": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Vampstache": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Haste Vial": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Healer Puppet": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Rage Gem": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Metal Pants": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Noble Iron": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Fire Heart": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Stun Blaster": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Electro Fangs": {
+              "level": 1,
+              "maxLevel": 18
+            }
+          },
+          "troops": {
+            "Barbarian": {
+              "level": 7,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "Archer": {
+              "level": 10,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Goblin": {
+              "level": 2,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Giant": {
+              "level": 6,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Wall Breaker": {
+              "level": 2,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Balloon": {
+              "level": 7,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "Wizard": {
+              "level": 7,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Healer": {
+              "level": 8,
+              "maxLevel": 11,
+              "village": "home"
+            },
+            "Dragon": {
+              "level": 11,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "P.E.K.K.A": {
+              "level": 9,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "Minion": {
+              "level": 4,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Hog Rider": {
+              "level": 3,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Valkyrie": {
+              "level": 3,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Golem": {
+              "level": 1,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Witch": {
+              "level": 6,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Lava Hound": {
+              "level": 5,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Bowler": {
+              "level": 2,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Baby Dragon": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Miner": {
+              "level": 2,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Super Barbarian": {
+              "level": 1,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Super Archer": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Wall Breaker": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Giant": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Raged Barbarian": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Sneaky Archer": {
+              "level": 19,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Beta Minion": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Boxer Giant": {
+              "level": 19,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Bomber": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Power P.E.K.K.A": {
+              "level": 20,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Cannon Cart": {
+              "level": 19,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Drop Ship": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Night Witch": {
+              "level": 20,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Wall Wrecker": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Battle Blimp": {
+              "level": 4,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Yeti": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Sneaky Goblin": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Super Miner": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Rocket Balloon": {
+              "level": 1,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Ice Golem": {
+              "level": 2,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Electro Dragon": {
+              "level": 8,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Stone Slammer": {
+              "level": 2,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Inferno Dragon": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Super Valkyrie": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Dragon Rider": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Super Witch": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Hog Glider": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Siege Barracks": {
+              "level": 5,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Ice Hound": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Super Bowler": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Dragon": {
+              "level": 1,
+              "maxLevel": 11,
+              "village": "home"
+            },
+            "Headhunter": {
+              "level": 2,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Super Wizard": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Minion": {
+              "level": 1,
+              "maxLevel": 11,
+              "village": "home"
+            },
+            "Log Launcher": {
+              "level": 3,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Flame Flinger": {
+              "level": 5,
+              "maxLevel": 5,
+              "village": "home"
+            },
+            "Battle Drill": {
+              "level": 4,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Electro Titan": {
+              "level": 4,
+              "maxLevel": 5,
+              "village": "home"
+            },
+            "Apprentice Warden": {
+              "level": 2,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Super Hog Rider": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Electrofire Wizard": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Root Rider": {
+              "level": 2,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Druid": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Thrower": {
+              "level": 1,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Troop Launcher": {
+              "level": 1,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Super Yeti": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Furnace": {
+              "level": 1,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "L.A.S.S.I": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Mighty Yak": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Electro Owl": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Unicorn": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Phoenix": {
+              "level": 10,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Poison Lizard": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Diggy": {
+              "level": 10,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Frosty": {
+              "level": 3,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Spirit Fox": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Angry Jelly": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Sneezy": {
+              "level": 2,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Greedy Raven": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            }
+          },
+          "spells": {
+            "Lightning Spell": {
+              "level": 9,
+              "maxLevel": 13
+            },
+            "Healing Spell": {
+              "level": 4,
+              "maxLevel": 12
+            },
+            "Rage Spell": {
+              "level": 6,
+              "maxLevel": 7
+            },
+            "Jump Spell": {
+              "level": 2,
+              "maxLevel": 5
+            },
+            "Freeze Spell": {
+              "level": 7,
+              "maxLevel": 8
+            },
+            "Poison Spell": {
+              "level": 9,
+              "maxLevel": 12
+            },
+            "Earthquake Spell": {
+              "level": 2,
+              "maxLevel": 8
+            },
+            "Haste Spell": {
+              "level": 2,
+              "maxLevel": 7
+            },
+            "Clone Spell": {
+              "level": 2,
+              "maxLevel": 9
+            },
+            "Skeleton Spell": {
+              "level": 4,
+              "maxLevel": 8
+            },
+            "Bat Spell": {
+              "level": 6,
+              "maxLevel": 8
+            },
+            "Invisibility Spell": {
+              "level": 2,
+              "maxLevel": 4
+            },
+            "Recall Spell": {
+              "level": 1,
+              "maxLevel": 7
+            },
+            "Overgrowth Spell": {
+              "level": 4,
+              "maxLevel": 5
+            },
+            "Revive Spell": {
+              "level": 4,
+              "maxLevel": 5
+            },
+            "Ice Block Spell": {
+              "level": 2,
+              "maxLevel": 6
+            }
+          },
+          "completionPercentage": 71,
+          "clan": {
+            "name": "⚔️ Achilles ⚔️",
+            "tag": "#2CLLYYCUP",
+            "role": "coLeader"
+          }
+        },
+        {
+          "id": "snp_mt5msn2h",
+          "timestamp": 1787478916553,
+          "dateFormatted": "23.08.2026 13:55",
+          "townHallLevel": 18,
+          "townHallWeaponLevel": 0,
+          "trophies": 439,
+          "bestTrophies": 5083,
+          "warStars": 347,
+          "attackWins": 0,
+          "defenseWins": 0,
+          "clanCapitalContributions": 128136,
+          "builderHallLevel": 10,
+          "builderBaseTrophies": 3358,
+          "warPreference": "in",
+          "league": {
+            "name": "Lig Yok"
+          },
+          "builderBaseLeague": {
+            "name": "Steel League III"
+          },
+          "heroes": {
+            "Barbarian King": {
+              "level": 94,
+              "maxLevel": 110,
+              "village": "home"
+            },
+            "Archer Queen": {
+              "level": 81,
+              "maxLevel": 110,
+              "village": "home"
+            },
+            "Grand Warden": {
+              "level": 74,
+              "maxLevel": 85,
+              "village": "home"
+            },
+            "Battle Machine": {
+              "level": 35,
+              "maxLevel": 35,
+              "village": "builderBase"
+            },
+            "Royal Champion": {
+              "level": 39,
+              "maxLevel": 55,
+              "village": "home"
+            },
+            "Battle Copter": {
+              "level": 22,
+              "maxLevel": 35,
+              "village": "builderBase"
+            },
+            "Minion Prince": {
+              "level": 63,
+              "maxLevel": 95,
+              "village": "home"
+            },
+            "Dragon Duke": {
+              "level": 8,
+              "maxLevel": 25,
+              "village": "home"
+            }
+          },
+          "heroEquipment": {
+            "Giant Gauntlet": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Rocket Spear": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Frozen Arrow": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Fireball": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Snake Bracelet": {
+              "level": 1,
+              "maxLevel": 27
+            },
+            "Dark Crown": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Magic Mirror": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Action Figure": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Rocket Backpack": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Revenge Deck": {
+              "level": 18,
+              "maxLevel": 27
+            },
+            "Barbarian Puppet": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Rage Vial": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Archer Puppet": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Invisibility Vial": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Eternal Tome": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Life Gem": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Seeking Shield": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Royal Gem": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Earthquake Boots": {
+              "level": 8,
+              "maxLevel": 18
+            },
+            "Giant Arrow": {
+              "level": 9,
+              "maxLevel": 18
+            },
+            "Healing Tome": {
+              "level": 11,
+              "maxLevel": 18
+            },
+            "Henchmen Puppet": {
+              "level": 10,
+              "maxLevel": 18
+            },
+            "Dark Orb": {
+              "level": 10,
+              "maxLevel": 18
+            },
+            "Flame Blower": {
+              "level": 12,
+              "maxLevel": 18
+            },
+            "Hog Rider Puppet": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Vampstache": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Haste Vial": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Healer Puppet": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Rage Gem": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Metal Pants": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Noble Iron": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Fire Heart": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Stun Blaster": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Electro Fangs": {
+              "level": 1,
+              "maxLevel": 18
+            }
+          },
+          "troops": {
+            "Barbarian": {
+              "level": 7,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "Archer": {
+              "level": 10,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Goblin": {
+              "level": 2,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Giant": {
+              "level": 6,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Wall Breaker": {
+              "level": 2,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Balloon": {
+              "level": 7,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "Wizard": {
+              "level": 7,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Healer": {
+              "level": 8,
+              "maxLevel": 11,
+              "village": "home"
+            },
+            "Dragon": {
+              "level": 11,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "P.E.K.K.A": {
+              "level": 9,
+              "maxLevel": 13,
+              "village": "home"
+            },
+            "Minion": {
+              "level": 4,
+              "maxLevel": 14,
+              "village": "home"
+            },
+            "Hog Rider": {
+              "level": 3,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Valkyrie": {
+              "level": 3,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Golem": {
+              "level": 1,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Witch": {
+              "level": 6,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Lava Hound": {
+              "level": 5,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Bowler": {
+              "level": 2,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Baby Dragon": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Miner": {
+              "level": 2,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Super Barbarian": {
+              "level": 1,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Super Archer": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Wall Breaker": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Giant": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Raged Barbarian": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Sneaky Archer": {
+              "level": 19,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Beta Minion": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Boxer Giant": {
+              "level": 19,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Bomber": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Power P.E.K.K.A": {
+              "level": 20,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Cannon Cart": {
+              "level": 19,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Drop Ship": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Night Witch": {
+              "level": 20,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Wall Wrecker": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Battle Blimp": {
+              "level": 4,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Yeti": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Sneaky Goblin": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Super Miner": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Rocket Balloon": {
+              "level": 1,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Ice Golem": {
+              "level": 2,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Electro Dragon": {
+              "level": 8,
+              "maxLevel": 9,
+              "village": "home"
+            },
+            "Stone Slammer": {
+              "level": 2,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Inferno Dragon": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Super Valkyrie": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Dragon Rider": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Super Witch": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Hog Glider": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Siege Barracks": {
+              "level": 5,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Ice Hound": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Super Bowler": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Dragon": {
+              "level": 1,
+              "maxLevel": 11,
+              "village": "home"
+            },
+            "Headhunter": {
+              "level": 2,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Super Wizard": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Super Minion": {
+              "level": 1,
+              "maxLevel": 11,
+              "village": "home"
+            },
+            "Log Launcher": {
+              "level": 3,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Flame Flinger": {
+              "level": 5,
+              "maxLevel": 5,
+              "village": "home"
+            },
+            "Battle Drill": {
+              "level": 4,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Electro Titan": {
+              "level": 4,
+              "maxLevel": 5,
+              "village": "home"
+            },
+            "Apprentice Warden": {
+              "level": 2,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Super Hog Rider": {
+              "level": 1,
+              "maxLevel": 12,
+              "village": "home"
+            },
+            "Electrofire Wizard": {
+              "level": 18,
+              "maxLevel": 20,
+              "village": "builderBase"
+            },
+            "Root Rider": {
+              "level": 2,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Druid": {
+              "level": 1,
+              "maxLevel": 6,
+              "village": "home"
+            },
+            "Thrower": {
+              "level": 1,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Troop Launcher": {
+              "level": 1,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "Super Yeti": {
+              "level": 1,
+              "maxLevel": 8,
+              "village": "home"
+            },
+            "Furnace": {
+              "level": 1,
+              "maxLevel": 4,
+              "village": "home"
+            },
+            "L.A.S.S.I": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Mighty Yak": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Electro Owl": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Unicorn": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Phoenix": {
+              "level": 10,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Poison Lizard": {
+              "level": 10,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Diggy": {
+              "level": 10,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Frosty": {
+              "level": 3,
+              "maxLevel": 15,
+              "village": "home"
+            },
+            "Spirit Fox": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Angry Jelly": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Sneezy": {
+              "level": 2,
+              "maxLevel": 10,
+              "village": "home"
+            },
+            "Greedy Raven": {
+              "level": 1,
+              "maxLevel": 10,
+              "village": "home"
+            }
+          },
+          "spells": {
+            "Lightning Spell": {
+              "level": 9,
+              "maxLevel": 13
+            },
+            "Healing Spell": {
+              "level": 4,
+              "maxLevel": 12
+            },
+            "Rage Spell": {
+              "level": 6,
+              "maxLevel": 7
+            },
+            "Jump Spell": {
+              "level": 2,
+              "maxLevel": 5
+            },
+            "Freeze Spell": {
+              "level": 7,
+              "maxLevel": 8
+            },
+            "Poison Spell": {
+              "level": 9,
+              "maxLevel": 12
+            },
+            "Earthquake Spell": {
+              "level": 2,
+              "maxLevel": 8
+            },
+            "Haste Spell": {
+              "level": 2,
+              "maxLevel": 7
+            },
+            "Clone Spell": {
+              "level": 2,
+              "maxLevel": 9
+            },
+            "Skeleton Spell": {
+              "level": 4,
+              "maxLevel": 8
+            },
+            "Bat Spell": {
+              "level": 6,
+              "maxLevel": 8
+            },
+            "Invisibility Spell": {
+              "level": 2,
+              "maxLevel": 4
+            },
+            "Recall Spell": {
+              "level": 1,
+              "maxLevel": 7
+            },
+            "Overgrowth Spell": {
+              "level": 4,
+              "maxLevel": 5
+            },
+            "Revive Spell": {
+              "level": 4,
+              "maxLevel": 5
+            },
+            "Ice Block Spell": {
+              "level": 2,
+              "maxLevel": 6
+            }
+          },
+          "completionPercentage": 71,
+          "clan": {
+            "name": "⚔️ Achilles ⚔️",
+            "tag": "#2CLLYYCUP",
+            "role": "coLeader"
+          }
+        },
+        {
+          "id": "snp_mt5mcwax",
+          "timestamp": 1787478182025,
+          "dateFormatted": "23.08.2026 13:43",
+          "townHallLevel": 18,
+          "townHallWeaponLevel": 0,
+          "trophies": 439,
+          "bestTrophies": 5083,
+          "warStars": 347,
+          "attackWins": 0,
+          "defenseWins": 0,
+          "clanCapitalContributions": 128136,
+          "builderHallLevel": 10,
+          "builderBaseTrophies": 3358,
+          "heroes": {
+            "Barbarian King": {
+              "level": 94,
+              "maxLevel": 110
+            },
+            "Archer Queen": {
+              "level": 81,
+              "maxLevel": 110
+            },
+            "Grand Warden": {
+              "level": 74,
+              "maxLevel": 85
+            },
+            "Battle Machine": {
+              "level": 35,
+              "maxLevel": 35
+            },
+            "Royal Champion": {
+              "level": 39,
+              "maxLevel": 55
+            },
+            "Battle Copter": {
+              "level": 22,
+              "maxLevel": 35
+            },
+            "Minion Prince": {
+              "level": 63,
+              "maxLevel": 95
+            },
+            "Dragon Duke": {
+              "level": 8,
+              "maxLevel": 25
+            }
+          },
+          "heroEquipment": {
+            "Giant Gauntlet": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Rocket Spear": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Frozen Arrow": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Fireball": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Snake Bracelet": {
+              "level": 1,
+              "maxLevel": 27
+            },
+            "Dark Crown": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Magic Mirror": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Action Figure": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Rocket Backpack": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Revenge Deck": {
+              "level": 18,
+              "maxLevel": 27
+            },
+            "Barbarian Puppet": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Rage Vial": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Archer Puppet": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Invisibility Vial": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Eternal Tome": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Life Gem": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Seeking Shield": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Royal Gem": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Earthquake Boots": {
+              "level": 8,
+              "maxLevel": 18
+            },
+            "Giant Arrow": {
+              "level": 9,
+              "maxLevel": 18
+            },
+            "Healing Tome": {
+              "level": 11,
+              "maxLevel": 18
+            },
+            "Henchmen Puppet": {
+              "level": 10,
+              "maxLevel": 18
+            },
+            "Dark Orb": {
+              "level": 10,
+              "maxLevel": 18
+            },
+            "Flame Blower": {
+              "level": 12,
+              "maxLevel": 18
+            },
+            "Hog Rider Puppet": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Vampstache": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Haste Vial": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Healer Puppet": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Rage Gem": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Metal Pants": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Noble Iron": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Fire Heart": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Stun Blaster": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Electro Fangs": {
+              "level": 1,
+              "maxLevel": 18
+            }
+          },
+          "clan": {
+            "name": "⚔️ Achilles ⚔️",
+            "tag": "#2CLLYYCUP"
+          }
+        },
+        {
+          "id": "snp_mt5mbfxi",
+          "timestamp": 1787478114150,
+          "dateFormatted": "23.08.2026 13:41",
+          "townHallLevel": 18,
+          "townHallWeaponLevel": 0,
+          "trophies": 439,
+          "bestTrophies": 5083,
+          "warStars": 347,
+          "attackWins": 0,
+          "defenseWins": 0,
+          "clanCapitalContributions": 128136,
+          "builderHallLevel": 10,
+          "builderBaseTrophies": 3358,
+          "heroes": {
+            "Barbarian King": {
+              "level": 94,
+              "maxLevel": 110
+            },
+            "Archer Queen": {
+              "level": 81,
+              "maxLevel": 110
+            },
+            "Grand Warden": {
+              "level": 74,
+              "maxLevel": 85
+            },
+            "Battle Machine": {
+              "level": 35,
+              "maxLevel": 35
+            },
+            "Royal Champion": {
+              "level": 39,
+              "maxLevel": 55
+            },
+            "Battle Copter": {
+              "level": 22,
+              "maxLevel": 35
+            },
+            "Minion Prince": {
+              "level": 63,
+              "maxLevel": 95
+            },
+            "Dragon Duke": {
+              "level": 8,
+              "maxLevel": 25
+            }
+          },
+          "heroEquipment": {
+            "Giant Gauntlet": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Rocket Spear": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Frozen Arrow": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Fireball": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Snake Bracelet": {
+              "level": 1,
+              "maxLevel": 27
+            },
+            "Dark Crown": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Magic Mirror": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Action Figure": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Rocket Backpack": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Revenge Deck": {
+              "level": 18,
+              "maxLevel": 27
+            },
+            "Barbarian Puppet": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Rage Vial": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Archer Puppet": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Invisibility Vial": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Eternal Tome": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Life Gem": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Seeking Shield": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Royal Gem": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Earthquake Boots": {
+              "level": 8,
+              "maxLevel": 18
+            },
+            "Giant Arrow": {
+              "level": 9,
+              "maxLevel": 18
+            },
+            "Healing Tome": {
+              "level": 11,
+              "maxLevel": 18
+            },
+            "Henchmen Puppet": {
+              "level": 10,
+              "maxLevel": 18
+            },
+            "Dark Orb": {
+              "level": 10,
+              "maxLevel": 18
+            },
+            "Flame Blower": {
+              "level": 12,
+              "maxLevel": 18
+            },
+            "Hog Rider Puppet": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Vampstache": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Haste Vial": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Healer Puppet": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Rage Gem": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Metal Pants": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Noble Iron": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Fire Heart": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Stun Blaster": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Electro Fangs": {
+              "level": 1,
+              "maxLevel": 18
+            }
+          },
+          "clan": {
+            "name": "⚔️ Achilles ⚔️",
+            "tag": "#2CLLYYCUP"
+          }
+        },
+        {
+          "id": "snp_mt5mbdj1",
+          "timestamp": 1787478111037,
+          "dateFormatted": "23.08.2026 13:41",
+          "townHallLevel": 18,
+          "townHallWeaponLevel": 0,
+          "trophies": 439,
+          "bestTrophies": 5083,
+          "warStars": 347,
+          "attackWins": 0,
+          "defenseWins": 0,
+          "clanCapitalContributions": 128136,
+          "builderHallLevel": 10,
+          "builderBaseTrophies": 3358,
+          "heroes": {
+            "Barbarian King": {
+              "level": 94,
+              "maxLevel": 110
+            },
+            "Archer Queen": {
+              "level": 81,
+              "maxLevel": 110
+            },
+            "Grand Warden": {
+              "level": 74,
+              "maxLevel": 85
+            },
+            "Battle Machine": {
+              "level": 35,
+              "maxLevel": 35
+            },
+            "Royal Champion": {
+              "level": 39,
+              "maxLevel": 55
+            },
+            "Battle Copter": {
+              "level": 22,
+              "maxLevel": 35
+            },
+            "Minion Prince": {
+              "level": 63,
+              "maxLevel": 95
+            },
+            "Dragon Duke": {
+              "level": 8,
+              "maxLevel": 25
+            }
+          },
+          "heroEquipment": {
+            "Giant Gauntlet": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Rocket Spear": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Frozen Arrow": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Fireball": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Snake Bracelet": {
+              "level": 1,
+              "maxLevel": 27
+            },
+            "Dark Crown": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Magic Mirror": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Action Figure": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Rocket Backpack": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Revenge Deck": {
+              "level": 18,
+              "maxLevel": 27
+            },
+            "Barbarian Puppet": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Rage Vial": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Archer Puppet": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Invisibility Vial": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Eternal Tome": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Life Gem": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Seeking Shield": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Royal Gem": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Earthquake Boots": {
+              "level": 8,
+              "maxLevel": 18
+            },
+            "Giant Arrow": {
+              "level": 9,
+              "maxLevel": 18
+            },
+            "Healing Tome": {
+              "level": 11,
+              "maxLevel": 18
+            },
+            "Henchmen Puppet": {
+              "level": 10,
+              "maxLevel": 18
+            },
+            "Dark Orb": {
+              "level": 10,
+              "maxLevel": 18
+            },
+            "Flame Blower": {
+              "level": 12,
+              "maxLevel": 18
+            },
+            "Hog Rider Puppet": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Vampstache": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Haste Vial": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Healer Puppet": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Rage Gem": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Metal Pants": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Noble Iron": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Fire Heart": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Stun Blaster": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Electro Fangs": {
+              "level": 1,
+              "maxLevel": 18
+            }
+          },
+          "clan": {
+            "name": "⚔️ Achilles ⚔️",
+            "tag": "#2CLLYYCUP"
+          }
+        },
+        {
+          "id": "snp_mt5mb98h",
+          "timestamp": 1787478105473,
+          "dateFormatted": "23.08.2026 13:41",
+          "townHallLevel": 18,
+          "townHallWeaponLevel": 0,
+          "trophies": 439,
+          "bestTrophies": 5083,
+          "warStars": 347,
+          "attackWins": 0,
+          "defenseWins": 0,
+          "clanCapitalContributions": 128136,
+          "builderHallLevel": 10,
+          "builderBaseTrophies": 3358,
+          "heroes": {
+            "Barbarian King": {
+              "level": 94,
+              "maxLevel": 110
+            },
+            "Archer Queen": {
+              "level": 81,
+              "maxLevel": 110
+            },
+            "Grand Warden": {
+              "level": 74,
+              "maxLevel": 85
+            },
+            "Battle Machine": {
+              "level": 35,
+              "maxLevel": 35
+            },
+            "Royal Champion": {
+              "level": 39,
+              "maxLevel": 55
+            },
+            "Battle Copter": {
+              "level": 22,
+              "maxLevel": 35
+            },
+            "Minion Prince": {
+              "level": 63,
+              "maxLevel": 95
+            },
+            "Dragon Duke": {
+              "level": 8,
+              "maxLevel": 25
+            }
+          },
+          "heroEquipment": {
+            "Giant Gauntlet": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Rocket Spear": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Frozen Arrow": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Fireball": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Snake Bracelet": {
+              "level": 1,
+              "maxLevel": 27
+            },
+            "Dark Crown": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Magic Mirror": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Action Figure": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Rocket Backpack": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Revenge Deck": {
+              "level": 18,
+              "maxLevel": 27
+            },
+            "Barbarian Puppet": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Rage Vial": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Archer Puppet": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Invisibility Vial": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Eternal Tome": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Life Gem": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Seeking Shield": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Royal Gem": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Earthquake Boots": {
+              "level": 8,
+              "maxLevel": 18
+            },
+            "Giant Arrow": {
+              "level": 9,
+              "maxLevel": 18
+            },
+            "Healing Tome": {
+              "level": 11,
+              "maxLevel": 18
+            },
+            "Henchmen Puppet": {
+              "level": 10,
+              "maxLevel": 18
+            },
+            "Dark Orb": {
+              "level": 10,
+              "maxLevel": 18
+            },
+            "Flame Blower": {
+              "level": 12,
+              "maxLevel": 18
+            },
+            "Hog Rider Puppet": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Vampstache": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Haste Vial": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Healer Puppet": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Rage Gem": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Metal Pants": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Noble Iron": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Fire Heart": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Stun Blaster": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Electro Fangs": {
+              "level": 1,
+              "maxLevel": 18
+            }
+          },
+          "clan": {
+            "name": "⚔️ Achilles ⚔️",
+            "tag": "#2CLLYYCUP"
+          }
+        },
+        {
+          "id": "snp_mt5mb723",
+          "timestamp": 1787478102651,
+          "dateFormatted": "23.08.2026 13:41",
+          "townHallLevel": 18,
+          "townHallWeaponLevel": 0,
+          "trophies": 439,
+          "bestTrophies": 5083,
+          "warStars": 347,
+          "attackWins": 0,
+          "defenseWins": 0,
+          "clanCapitalContributions": 128136,
+          "builderHallLevel": 10,
+          "builderBaseTrophies": 3358,
+          "heroes": {
+            "Barbarian King": {
+              "level": 94,
+              "maxLevel": 110
+            },
+            "Archer Queen": {
+              "level": 81,
+              "maxLevel": 110
+            },
+            "Grand Warden": {
+              "level": 74,
+              "maxLevel": 85
+            },
+            "Battle Machine": {
+              "level": 35,
+              "maxLevel": 35
+            },
+            "Royal Champion": {
+              "level": 39,
+              "maxLevel": 55
+            },
+            "Battle Copter": {
+              "level": 22,
+              "maxLevel": 35
+            },
+            "Minion Prince": {
+              "level": 63,
+              "maxLevel": 95
+            },
+            "Dragon Duke": {
+              "level": 8,
+              "maxLevel": 25
+            }
+          },
+          "heroEquipment": {
+            "Giant Gauntlet": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Rocket Spear": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Frozen Arrow": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Fireball": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Snake Bracelet": {
+              "level": 1,
+              "maxLevel": 27
+            },
+            "Dark Crown": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Magic Mirror": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Action Figure": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Rocket Backpack": {
+              "level": 15,
+              "maxLevel": 27
+            },
+            "Revenge Deck": {
+              "level": 18,
+              "maxLevel": 27
+            },
+            "Barbarian Puppet": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Rage Vial": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Archer Puppet": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Invisibility Vial": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Eternal Tome": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Life Gem": {
+              "level": 15,
+              "maxLevel": 18
+            },
+            "Seeking Shield": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Royal Gem": {
+              "level": 14,
+              "maxLevel": 18
+            },
+            "Earthquake Boots": {
+              "level": 8,
+              "maxLevel": 18
+            },
+            "Giant Arrow": {
+              "level": 9,
+              "maxLevel": 18
+            },
+            "Healing Tome": {
+              "level": 11,
+              "maxLevel": 18
+            },
+            "Henchmen Puppet": {
+              "level": 10,
+              "maxLevel": 18
+            },
+            "Dark Orb": {
+              "level": 10,
+              "maxLevel": 18
+            },
+            "Flame Blower": {
+              "level": 12,
+              "maxLevel": 18
+            },
+            "Hog Rider Puppet": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Vampstache": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Haste Vial": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Healer Puppet": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Rage Gem": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Metal Pants": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Noble Iron": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Fire Heart": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Stun Blaster": {
+              "level": 1,
+              "maxLevel": 18
+            },
+            "Electro Fangs": {
+              "level": 1,
+              "maxLevel": 18
+            }
+          },
+          "clan": {
+            "name": "⚔️ Achilles ⚔️",
+            "tag": "#2CLLYYCUP"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "usr_mt5mppl33e9e9fa7",
+    "username": "ChiefClash_mt5mppko",
+    "email": "chiefclash_mt5mppko@example.com",
+    "salt": "356d3a4e90cf8022183e418f1142c000",
+    "passwordHash": "6eb71786276f7eac7ce9e2fd8b4a34896bbbeb638b349eb5de054693fae5f87da6962a700f36ced87560156a0f939132b65b4b9716e4426eb274aef6d8066f95",
+    "createdAt": "2026-08-23T09:52:59.847Z",
+    "linkedVillages": [
+      {
+        "tag": "#9PRQL200",
+        "name": "Chief Hero",
+        "townHallLevel": 17,
+        "trophies": 5000,
+        "clanName": "Anatolia Warriors",
+        "linkedAt": "23.08.2026"
+      }
+    ],
+    "snapshots": {
+      "#9PRQL200": [
+        {
+          "id": "snp_mt5mppm7",
+          "timestamp": 1787478779887,
+          "dateFormatted": "23.08.2026 13:52",
+          "townHallLevel": 18,
+          "townHallWeaponLevel": 0,
+          "trophies": 5350,
+          "bestTrophies": 5350,
+          "warStars": 1245,
+          "attackWins": 80,
+          "defenseWins": 20,
+          "clanCapitalContributions": 185000,
+          "builderHallLevel": 0,
+          "builderBaseTrophies": 0,
+          "warPreference": "in",
+          "league": {
+            "name": "Lig Yok"
+          },
+          "builderBaseLeague": null,
+          "heroes": {
+            "Barbarian King": {
+              "level": 90,
+              "maxLevel": 95,
+              "village": "home"
+            },
+            "Archer Queen": {
+              "level": 88,
+              "maxLevel": 95,
+              "village": "home"
+            }
+          },
+          "heroEquipment": {
+            "Giant Gauntlet": {
+              "level": 24,
+              "maxLevel": 27
+            }
+          },
+          "troops": {},
+          "spells": {},
+          "completionPercentage": 67,
+          "clan": {
+            "name": "Anatolia Warriors",
+            "tag": "#2PP8RGLV"
+          }
+        },
+        {
+          "id": "snp_mt5mpplv",
+          "timestamp": 1787478779875,
+          "dateFormatted": "23.08.2026 13:52",
+          "townHallLevel": 17,
+          "townHallWeaponLevel": 0,
+          "trophies": 5000,
+          "bestTrophies": 5200,
+          "warStars": 1200,
+          "attackWins": 45,
+          "defenseWins": 12,
+          "clanCapitalContributions": 150000,
+          "builderHallLevel": 0,
+          "builderBaseTrophies": 0,
+          "warPreference": "in",
+          "league": {
+            "name": "Lig Yok"
+          },
+          "builderBaseLeague": null,
+          "heroes": {
+            "Barbarian King": {
+              "level": 85,
+              "maxLevel": 95,
+              "village": "home"
+            },
+            "Archer Queen": {
+              "level": 85,
+              "maxLevel": 95,
+              "village": "home"
+            }
+          },
+          "heroEquipment": {
+            "Giant Gauntlet": {
+              "level": 20,
+              "maxLevel": 27
+            }
+          },
+          "troops": {},
+          "spells": {},
+          "completionPercentage": 64,
+          "clan": {
+            "name": "Anatolia Warriors",
+            "tag": "#2PP8RGLV"
+          }
+        }
+      ]
+    }
+  }
+]

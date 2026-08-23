@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="<%= typeof currentLang !== 'undefined' ? currentLang : 'tr' %>" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof title !== 'undefined' ? title : 'Bakım Modu - Clash of Clans Portal' %></title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="/css/custom.css">
+</head>
+<body class="flex flex-col min-h-screen items-center justify-center p-4 bg-slate-950 text-slate-100 selection:bg-amber-500 selection:text-slate-950">
+
+  <div class="glass-card rounded-3xl p-8 sm:p-12 text-center max-w-lg w-full border border-amber-500/30 shadow-2xl relative overflow-hidden">
+    <div class="absolute -top-24 -right-24 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="w-24 h-24 rounded-3xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 mx-auto mb-6 relative">
+      <i data-lucide="wrench" class="w-12 h-12 animate-bounce"></i>
+    </div>
+
+    <h1 class="heading-font text-3xl font-black text-white mb-2">
+      <%= typeof t !== 'undefined' ? t('error.maintenanceTitle') : 'Bakım Modu' %>
+    </h1>
+    
+    <p class="text-sm text-slate-300 leading-relaxed mb-6">
+      <%= typeof t !== 'undefined' ? t('error.maintenanceDesc') : 'Platform şu anda sistem güncellemeleri ve bakım nedeniyle geçici olarak kapalıdır.' %>
+    </p>
+
+    <!-- Language Selector on Maintenance Page -->
+    <div class="flex items-center justify-center gap-2 pt-4 border-t border-slate-800">
+      <a href="/set-language/az" class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-bold text-slate-300 hover:text-white transition">🇦🇿 AZ</a>
+      <a href="/set-language/tr" class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-bold text-slate-300 hover:text-white transition">🇹🇷 TR</a>
+      <a href="/set-language/en" class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-bold text-slate-300 hover:text-white transition">🇬🇧 EN</a>
+    </div>
+
+    <div class="mt-6 pt-4 border-t border-slate-800/80 text-[11px] text-slate-500">
+      Yönetici Girişi: <a href="/admin/login" class="text-amber-400 hover:underline font-bold">Giriş Yap</a>
+    </div>
+  </div>
+
+  <script>
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  </script>
+</body>
+</html>

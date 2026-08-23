@@ -1,0 +1,1009 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+
+<main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+
+  <!-- Maintenance Mode Warning for Admin -->
+  <% if (settings && settings.maintenanceMode) { %>
+    <div class="mb-6 p-4 rounded-2xl bg-rose-500/20 border-2 border-rose-500 text-rose-200 flex items-center justify-between shadow-2xl animate-pulse">
+      <div class="flex items-center space-x-3">
+        <i data-lucide="alert-octagon" class="w-6 h-6 text-rose-400 flex-shrink-0"></i>
+        <div>
+          <h4 class="font-bold text-sm text-white">DİKKAT: BAKIM MODU ŞU ANDA AKTİFTİR!</h4>
+          <p class="text-xs text-rose-300 mt-0.5">Normal ziyaretçiler siteye erişememekte ve bakım ekranını görmektedir. Sadece siz (yönetici) oturum açtığınız için sayfaları görebiliyorsunuz.</p>
+        </div>
+      </div>
+      <form action="/admin/settings/general" method="POST">
+        <input type="hidden" name="siteTitle" value="<%= settings.siteTitle %>">
+        <input type="hidden" name="featuredClanTag" value="<%= settings.featuredClanTag %>">
+        <input type="hidden" name="allowMockFallback" value="<%= settings.allowMockFallback ? 'on' : 'off' %>">
+        <input type="hidden" name="maintenanceMode" value="off">
+        <button type="submit" class="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-black text-xs shadow-lg transition">
+          Bakım Modunu Kapat
+        </button>
+      </form>
+    </div>
+  <% } %>
+
+  <!-- Admin Top Bar -->
+  <div class="glass-card rounded-3xl p-6 sm:p-8 mb-8 border border-amber-500/20 shadow-2xl relative overflow-hidden">
+    <div class="absolute -top-24 -right-24 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative z-10">
+      <div class="flex items-center space-x-4">
+        <div class="w-14 h-14 rounded-2xl bg-slate-900 border border-amber-500/30 p-2 flex items-center justify-center text-amber-400 shadow-xl">
+          <i data-lucide="sliders" class="w-8 h-8"></i>
+        </div>
+        <div>
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/10 text-[10px] font-bold text-amber-400 border border-amber-500/30 uppercase tracking-widest mb-1">
+            Supercell Kontrol Merkezi
+          </div>
+          <h1 class="heading-font text-3xl font-extrabold text-white">Yönetim & Sistem Paneli</h1>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <div class="px-3.5 py-2 rounded-2xl bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">
+          Uptime: <span class="text-amber-400 font-bold"><%= telemetry.uptimeFormatted %></span>
+        </div>
+        <a href="/admin/logout" class="px-4 py-2 rounded-2xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs font-bold transition flex items-center gap-1.5 shadow">
+          <i data-lucide="log-out" class="w-4 h-4"></i> Çıkış
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success / Alert Notifications -->
+  <% if (msg) { %>
+    <div class="mb-6 p-4 rounded-2xl <%= msg.includes('missing') || msg.includes('mismatch') ? 'bg-rose-500/10 border-rose-500/30 text-rose-300' : 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300' %> border text-xs font-bold flex items-center justify-between shadow-lg">
+      <div class="flex items-center space-x-2.5">
+        <i data-lucide="<%= msg.includes('missing') || msg.includes('mismatch') ? 'alert-circle' : 'check-circle' %>" class="w-5 h-5 <%= msg.includes('missing') || msg.includes('mismatch') ? 'text-rose-400' : 'text-emerald-400' %>"></i>
+        <span>
+          <% if (msg === 'token_saved') { %>Supercell API Token başarıyla güncellendi ve aktif edildi!<% } %>
+          <% if (msg === 'general_saved') { %>Genel site ve savaş ayarları başarıyla kaydedildi!<% } %>
+          <% if (msg === 'announcement_saved') { %>Duyuru bandı ayarları güncellendi!<% } %>
+          <% if (msg === 'announcement_added') { %>Yeni duyuru başarıyla eklendi ve yayına alındı!<% } %>
+          <% if (msg === 'announcement_deleted') { %>Duyuru başarıyla silindi!<% } %>
+          <% if (msg === 'announcement_toggled') { %>Duyuru yayın durumu güncellendi!<% } %>
+          <% if (msg === 'announcement_missing') { %>Duyuru başlığı ve içeriği zorunludur!<% } %>
+          <% if (msg === 'images_saved') { %>Karakter ve görsel adresleri başarıyla kaydedildi!<% } %>
+          <% if (msg === 'images_reset') { %>Tüm görseller varsayılan haline sıfırlandı!<% } %>
+          <% if (msg === 'texts_saved') { %>Site başlık ve metinleri başarıyla güncellendi!<% } %>
+          <% if (msg === 'security_saved') { %>Yönetici bilgileri başarıyla güncellendi!<% } %>
+          <% if (msg === 'tag_added') { %>Yeni etiket takip listesine eklendi!<% } %>
+          <% if (msg === 'tag_deleted') { %>Etiket takip listesinden kaldırıldı!<% } %>
+          <% if (msg === 'password_mismatch') { %>Girilen yeni şifreler birbiriyle uyuşmuyor!<% } %>
+        </span>
+      </div>
+      <button onclick="this.parentElement.remove()" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
+    </div>
+  <% } %>
+
+  <!-- System KPI Stat Widgets -->
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+    <div class="glass-card p-5 rounded-2xl border border-slate-800">
+      <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+        <span>API Durumu</span>
+        <i data-lucide="radio" class="w-4 h-4 text-emerald-400"></i>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full <%= isApiLive ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400' %>"></span>
+        <span class="heading-font text-2xl font-bold <%= isApiLive ? 'text-emerald-400' : 'text-amber-400' %>"><%= isApiLive ? 'Canlı API (200 OK)' : 'Demo / Mock' %></span>
+      </div>
+      <p class="text-[11px] text-slate-500 mt-1">Supercell Developers Gateway</p>
+    </div>
+
+    <div class="glass-card p-5 rounded-2xl border border-slate-800">
+      <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+        <span>Toplam İstek</span>
+        <i data-lucide="activity" class="w-4 h-4 text-cyan-400"></i>
+      </div>
+      <div class="heading-font text-3xl font-bold text-white font-mono"><%= telemetry.totalRequests %></div>
+      <p class="text-[11px] text-slate-500 mt-1">Oturum başından beri</p>
+    </div>
+
+    <div class="glass-card p-5 rounded-2xl border border-slate-800">
+      <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+        <span>Başarılı İstekler</span>
+        <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>
+      </div>
+      <div class="heading-font text-3xl font-bold text-emerald-400 font-mono"><%= telemetry.apiSuccessCount %></div>
+      <p class="text-[11px] text-slate-500 mt-1">HTTP 200 - 399</p>
+    </div>
+
+    <div class="glass-card p-5 rounded-2xl border border-slate-800">
+      <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+        <span>Bakım Durumu</span>
+        <i data-lucide="hammer" class="w-4 h-4 text-amber-400"></i>
+      </div>
+      <div class="heading-font text-2xl font-bold <%= settings.maintenanceMode ? 'text-rose-400' : 'text-emerald-400' %>">
+        <%= settings.maintenanceMode ? 'Bakım Açık 🔴' : 'Site Yayında 🟢' %>
+      </div>
+      <p class="text-[11px] text-slate-500 mt-1"><%= settings.maintenanceMode ? 'Ziyaretçiler engelli' : 'Tüm sayfalar açık' %></p>
+    </div>
+  </div>
+
+  <!-- Admin Controls Tabs Navigation -->
+  <div class="tab-container">
+    <div class="flex flex-wrap items-center space-x-2 border-b border-slate-800 mb-8 pb-2 text-sm font-semibold gap-y-2">
+      <button onclick="switchAdminTab('overview')" id="btn-tab-overview" class="admin-tab-btn px-4 py-2.5 rounded-xl font-bold transition flex items-center gap-2">
+        <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Genel Bakış & Test
+      </button>
+      <button onclick="switchAdminTab('users')" id="btn-tab-users" class="admin-tab-btn px-4 py-2.5 rounded-xl font-bold transition flex items-center gap-2">
+        <i data-lucide="users" class="w-4 h-4 text-emerald-400"></i> Kayıtlı Hesaplar (<%= (typeof users !== 'undefined' && users) ? users.length : 0 %>)
+      </button>
+      <button onclick="switchAdminTab('announcements')" id="btn-tab-announcements" class="admin-tab-btn px-4 py-2.5 rounded-xl font-bold transition flex items-center gap-2">
+        <i data-lucide="megaphone" class="w-4 h-4 text-amber-400"></i> Duyurular & Haberler
+      </button>
+      <button onclick="switchAdminTab('images')" id="btn-tab-images" class="admin-tab-btn px-4 py-2.5 rounded-xl font-bold transition flex items-center gap-2">
+        <i data-lucide="image" class="w-4 h-4 text-cyan-400"></i> Karakter & Görseller
+      </button>
+      <button onclick="switchAdminTab('texts')" id="btn-tab-texts" class="admin-tab-btn px-4 py-2.5 rounded-xl font-bold transition flex items-center gap-2">
+        <i data-lucide="type" class="w-4 h-4 text-fuchsia-400"></i> Site Başlık & Yazıları
+      </button>
+      <button onclick="switchAdminTab('general')" id="btn-tab-general" class="admin-tab-btn px-4 py-2.5 rounded-xl font-bold transition flex items-center gap-2">
+        <i data-lucide="settings" class="w-4 h-4"></i> Site & Bakım
+      </button>
+      <button onclick="switchAdminTab('api')" id="btn-tab-api" class="admin-tab-btn px-4 py-2.5 rounded-xl font-bold transition flex items-center gap-2">
+        <i data-lucide="key" class="w-4 h-4"></i> Supercell API Token
+      </button>
+      <button onclick="switchAdminTab('tags')" id="btn-tab-tags" class="admin-tab-btn px-4 py-2.5 rounded-xl font-bold transition flex items-center gap-2">
+        <i data-lucide="bookmark" class="w-4 h-4"></i> Kayıtlı Etiketler
+      </button>
+      <button onclick="switchAdminTab('security')" id="btn-tab-security" class="admin-tab-btn px-4 py-2.5 rounded-xl font-bold transition flex items-center gap-2">
+        <i data-lucide="lock" class="w-4 h-4"></i> Güvenlik
+      </button>
+    </div>
+
+    <!-- TAB 1: OVERVIEW & LIVE API PROBE -->
+    <div id="tab-overview" class="admin-tab-pane space-y-8">
+      
+      <!-- Interactive Probe -->
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-6">
+          <div>
+            <h3 class="heading-font text-xl font-bold text-white flex items-center gap-2">
+              <i data-lucide="search-code" class="w-5 h-5 text-amber-400"></i> Canlı API Test & JSON İnceleyici (Probe)
+            </h3>
+            <p class="text-xs text-slate-400 mt-1">İstediğiniz bir Oyuncu veya Klan etiketini sorgulayıp ham API yanıtını ve gecikme süresini test edin.</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 mb-6">
+          <input 
+            type="text" 
+            id="probeTagInput" 
+            placeholder="#9PRQL200 veya #2PP8RGLV" 
+            value="#9PRQL200" 
+            class="tag-input flex-grow px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 font-mono"
+          >
+          <select id="probeTypeSelect" class="px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white text-sm font-semibold">
+            <option value="player">Oyuncu (Player)</option>
+            <option value="clan">Klan (Clan)</option>
+          </select>
+          <button onclick="runProbe()" id="probeBtn" class="px-6 py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 font-extrabold text-slate-950 text-sm shadow transition flex items-center justify-center gap-2">
+            <i data-lucide="play" class="w-4 h-4"></i> Test Et
+          </button>
+        </div>
+
+        <!-- Probe Output Box -->
+        <div id="probeResultBox" class="hidden">
+          <div class="flex items-center justify-between bg-slate-900 p-3 rounded-t-2xl border border-slate-800 text-xs font-mono">
+            <div class="flex items-center space-x-3">
+              <span id="probeStatusBadge" class="px-2 py-0.5 rounded font-bold uppercase bg-emerald-500/20 text-emerald-400">OK</span>
+              <span class="text-slate-400">Gecikme: <strong id="probeLatencyText" class="text-amber-400">-</strong></span>
+              <span class="text-slate-400">Kaynak: <strong id="probeSourceText" class="text-cyan-400">-</strong></span>
+            </div>
+            <button onclick="copyProbeJson()" class="text-slate-400 hover:text-white flex items-center gap-1"><i data-lucide="copy" class="w-3.5 h-3.5"></i> JSON Kopyala</button>
+          </div>
+          <pre id="probeJsonPre" class="p-4 rounded-b-2xl bg-slate-950 border-x border-b border-slate-800 text-xs font-mono text-emerald-400 overflow-x-auto max-h-96"></pre>
+        </div>
+      </div>
+
+      <!-- Recent Traffic Logs -->
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-6">
+          <h3 class="heading-font text-xl font-bold text-white flex items-center gap-2">
+            <i data-lucide="list" class="w-5 h-5 text-cyan-400"></i> Son İstek Günlüğü (Traffic Log)
+          </h3>
+          <span class="text-xs text-slate-500">Son 50 işlem listelenir</span>
+        </div>
+
+        <% if (telemetry.recentLogs && telemetry.recentLogs.length > 0) { %>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs font-mono text-slate-300">
+              <thead class="text-slate-500 uppercase bg-slate-900/80 border-b border-slate-800">
+                <tr>
+                  <th class="px-4 py-2.5">Zaman</th>
+                  <th class="px-4 py-2.5">Endpoint</th>
+                  <th class="px-4 py-2.5">Durum</th>
+                  <th class="px-4 py-2.5 text-right">Gecikme</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800/60">
+                <% telemetry.recentLogs.slice(0, 15).forEach(function(log) { %>
+                  <tr class="hover:bg-slate-800/30">
+                    <td class="px-4 py-2 text-slate-400"><%= log.timestamp %></td>
+                    <td class="px-4 py-2 text-white"><%= log.endpoint %></td>
+                    <td class="px-4 py-2">
+                      <span class="px-2 py-0.5 rounded font-bold <%= log.status === 200 ? 'bg-emerald-500/20 text-emerald-400' : 'bg-rose-500/20 text-rose-400' %>">
+                        <%= log.status %>
+                      </span>
+                    </td>
+                    <td class="px-4 py-2 text-right text-amber-400"><%= log.latencyMs %>ms</td>
+                  </tr>
+                <% }); %>
+              </tbody>
+            </table>
+          </div>
+        <% } else { %>
+          <div class="text-center py-6 text-xs text-slate-500">Henüz kaydedilmiş bir istek kaydı yok.</div>
+        <% } %>
+      </div>
+
+    </div>
+
+    <!-- TAB: REGISTERED USERS MANAGEMENT (KAYITLI HESAPLAR) -->
+    <div id="tab-users" class="admin-tab-pane hidden space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+          <div>
+            <h3 class="heading-font text-2xl font-black text-white flex items-center gap-2.5">
+              <i data-lucide="users" class="w-6 h-6 text-emerald-400"></i> Kayıtlı Kullanıcı Hesapları & Bağlı Köyler
+            </h3>
+            <p class="text-xs text-slate-400 mt-1">Sitenize kayıt olan tüm kullanıcıları, bağladıkları köyleri ve gelişim kayıt sayılarını buradan inceleyebilirsiniz.</p>
+          </div>
+          <div class="px-4 py-2 rounded-2xl bg-slate-900 border border-slate-700 text-xs font-bold text-slate-300">
+            Toplam Kullanıcı: <span class="text-emerald-400 font-mono font-black text-sm"><%= (typeof users !== 'undefined' && users) ? users.length : 0 %></span>
+          </div>
+        </div>
+
+        <% if (typeof users !== 'undefined' && users && users.length > 0) { %>
+          <div class="overflow-x-auto pt-2">
+            <table class="w-full text-left text-xs text-slate-300">
+              <thead class="text-slate-500 uppercase font-mono bg-slate-900/80 border-b border-slate-800">
+                <tr>
+                  <th class="px-4 py-3.5">Kullanıcı</th>
+                  <th class="px-4 py-3.5">E-Posta</th>
+                  <th class="px-4 py-3.5">Kayıt Tarihi</th>
+                  <th class="px-4 py-3.5">Bağlı Köyler</th>
+                  <th class="px-4 py-3.5 text-center">Gelişim Kayıtları</th>
+                  <th class="px-4 py-3.5 text-right">İşlem</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800/60 font-mono">
+                <% users.forEach(function(u) { %>
+                  <tr class="hover:bg-slate-800/30 transition">
+                    <td class="px-4 py-4">
+                      <div class="flex items-center space-x-3">
+                        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-slate-950 font-black text-sm shadow">
+                          <%= (u.username || 'U').charAt(0).toUpperCase() %>
+                        </div>
+                        <div>
+                          <div class="font-bold text-white text-sm"><%= u.username %></div>
+                          <div class="text-[10px] text-slate-500"><%= u.id %></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-4 py-4 text-slate-400">
+                      <%= u.email %>
+                    </td>
+                    <td class="px-4 py-4 text-slate-400">
+                      <%= u.createdAt ? new Date(u.createdAt).toLocaleDateString('tr-TR') : '-' %>
+                    </td>
+                    <td class="px-4 py-4">
+                      <% if (u.linkedVillages && u.linkedVillages.length > 0) { %>
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                          <% u.linkedVillages.forEach(function(v) { %>
+                            <a href="/player/<%= encodeURIComponent(v.tag) %>" target="_blank" class="px-2.5 py-1 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-[11px] text-amber-300 font-bold transition flex items-center gap-1.5 shadow" title="<%= v.name %>">
+                              <span>🏛️ TH<%= v.townHallLevel || 18 %></span>
+                              <span class="text-white"><%= v.name %></span>
+                              <span class="text-[10px] text-amber-400/80"><%= v.tag %></span>
+                            </a>
+                          <% }); %>
+                        </div>
+                      <% } else { %>
+                        <span class="text-[11px] text-slate-500 italic">Köy bağlanmamış</span>
+                      <% } %>
+                    </td>
+                    <td class="px-4 py-4 text-center">
+                      <span class="px-2.5 py-1 rounded-full text-xs font-bold font-mono <%= u.totalSnapshots > 0 ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-slate-800 text-slate-400' %>">
+                        <%= u.totalSnapshots %> Kayıt
+                      </span>
+                    </td>
+                    <td class="px-4 py-4 text-right">
+                      <form action="/admin/users/delete" method="POST" onsubmit="return confirm('<%= u.username %> adlı kullanıcıyı ve tüm verilerini silmek istediğinizden emin misiniz?')">
+                        <input type="hidden" name="userId" value="<%= u.id %>">
+                        <button type="submit" class="p-2 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 transition shadow" title="Kullanıcıyı Sil">
+                          <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                <% }); %>
+              </tbody>
+            </table>
+          </div>
+        <% } else { %>
+          <div class="text-center py-12 text-slate-500 text-xs space-y-2">
+            <i data-lucide="user-x" class="w-8 h-8 mx-auto text-slate-600"></i>
+            <div>Henüz sitede kayıtlı bir kullanıcı hesabı bulunmamaktadır.</div>
+          </div>
+        <% } %>
+
+      </div>
+    </div>
+
+    <!-- TAB 2: GENERAL SETTINGS & MAINTENANCE MODE -->
+    <div id="tab-general" class="admin-tab-pane hidden space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl max-w-3xl">
+        <h3 class="heading-font text-xl font-bold text-white mb-2 flex items-center gap-2">
+          <i data-lucide="sliders" class="w-5 h-5 text-amber-400"></i> Site & Bakım Modu Ayarları
+        </h3>
+        <p class="text-xs text-slate-400 mb-6">Site başlığını, ana sayfadaki canlı savaşı ve bakım modunu buradan yönetebilirsiniz.</p>
+
+        <form action="/admin/settings/general" method="POST" class="space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Site Başlığı (Title)</label>
+              <input type="text" name="siteTitle" value="<%= settings.siteTitle %>" class="w-full px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Öne Çıkan Canlı Savaş Klanı (#Tag)</label>
+              <input type="text" name="featuredClanTag" value="<%= settings.featuredClanTag %>" class="tag-input w-full px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white text-sm font-mono focus:outline-none focus:ring-2 focus:ring-amber-500">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Site Açıklaması (Meta Description)</label>
+            <input type="text" name="siteDescription" value="<%= settings.siteDescription %>" class="w-full px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+          </div>
+
+          <!-- Maintenance Mode Toggle Box -->
+          <div class="p-5 rounded-2xl border <%= settings.maintenanceMode ? 'bg-rose-500/10 border-rose-500/40' : 'bg-slate-900/80 border-slate-800' %> space-y-3">
+            <div class="flex items-center justify-between">
+              <div>
+                <h4 class="font-bold text-sm text-white flex items-center gap-2">
+                  <i data-lucide="hammer" class="w-4 h-4 <%= settings.maintenanceMode ? 'text-rose-400' : 'text-slate-400' %>"></i>
+                  <span>Bakım Modu (Maintenance Mode)</span>
+                </h4>
+                <p class="text-xs text-slate-400 mt-0.5">Aktif edildiğinde normal kullanıcılar bakım sayfasını görür, yalnızca adminler siteyi gezebilir.</p>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" name="maintenanceMode" <%= settings.maintenanceMode ? 'checked' : '' %> class="sr-only peer">
+                <div class="w-11 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-rose-500"></div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Mock Fallback Toggle Box -->
+          <div class="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
+            <div class="flex items-center justify-between">
+              <div>
+                <h4 class="font-bold text-sm text-white">Otomatik Demo (Mock) Geçişi</h4>
+                <p class="text-xs text-slate-400 mt-0.5">Supercell API kota sınırı veya geçersiz token durumunda sitenin çökmesini önler.</p>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" name="allowMockFallback" <%= settings.allowMockFallback ? 'checked' : '' %> class="sr-only peer">
+                <div class="w-11 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-500"></div>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 font-extrabold text-slate-950 text-sm shadow-lg transition">
+            Ayarları Kaydet
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- TAB 3: API TOKEN MANAGEMENT -->
+    <div id="tab-api" class="admin-tab-pane hidden">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl max-w-3xl">
+        <h3 class="heading-font text-xl font-bold text-white mb-2 flex items-center gap-2">
+          <i data-lucide="key" class="w-5 h-5 text-amber-400"></i> Supercell API Token Yönetimi
+        </h3>
+        <p class="text-xs text-slate-400 mb-6">
+          Supercell Developer Portal'dan aldığınız JWT Token'ı buraya girerek sistemi yeniden başlatmadan canlıya alabilirsiniz.
+        </p>
+
+        <form action="/admin/settings/token" method="POST" class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Canlı Supercell API Token</label>
+            <textarea 
+              name="customApiToken" 
+              rows="5" 
+              placeholder="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIs..." 
+              class="w-full p-4 rounded-2xl bg-slate-900 border border-slate-700 text-white font-mono text-xs focus:outline-none focus:ring-2 focus:ring-amber-500"
+            ><%= settings.customApiToken || '' %></textarea>
+            <p class="text-[11px] text-slate-500 mt-1.5">Boş bırakılırsa <code>.env</code> dosyasındaki varsayılan anahtar kullanılır.</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-2 text-xs text-slate-400">
+            <div class="font-bold text-slate-300">💡 Supercell IP Güvenlik Uyarısı:</div>
+            <p>Supercell API, token oluştururken izin verdiğiniz IP adresiyle sunucunun giden IP adresinin eşleşmesini zorunlu kılar. Token hatası alırsanız <a href="https://developer.clashofclans.com" target="_blank" class="text-amber-400 underline">developer.clashofclans.com</a> adresinden IP adresinizi güncelleyin.</p>
+          </div>
+
+          <button type="submit" class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 font-extrabold text-slate-950 text-sm shadow transition">
+            Token'ı Kaydet ve Uygula
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- TAB: ANNOUNCEMENTS MANAGEMENT (DUYURULAR & HABERLER) -->
+    <div id="tab-announcements" class="admin-tab-pane hidden space-y-6">
+      <!-- Create Announcement Card -->
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl max-w-4xl">
+        <h3 class="heading-font text-xl font-bold text-white mb-2 flex items-center gap-2">
+          <i data-lucide="plus-circle" class="w-5 h-5 text-amber-400"></i> Yeni Duyuru / Haber Ekle
+        </h3>
+        <p class="text-xs text-slate-400 mb-6">Site ana sayfasında ve duyuru alanlarında ziyaretçilerin göreceği yeni bir bildiri yayınlayın.</p>
+
+        <form action="/admin/announcements/add" method="POST" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Duyuru Başlığı</label>
+              <input type="text" name="title" placeholder="Örn: Yeni Belediye Binası 18 Güncellemesi" required class="w-full px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Etiket / Rozet (Badge)</label>
+              <input type="text" name="badge" placeholder="Örn: YENİ GÜNCELLEME, ETKİNLİK, BAKIM" value="YENİ" class="w-full px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Duyuru Açıklaması / İçerik</label>
+            <textarea name="content" rows="3" placeholder="Duyuru detaylarını buraya yazın..." required class="w-full px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Kategori / Renk Türü</label>
+              <select name="type" class="w-full px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white text-sm font-semibold">
+                <option value="success">🟢 Yeşil / Başarı & Yenilik</option>
+                <option value="info">🔵 Mavi / Bilgilendirme</option>
+                <option value="warning">🟡 Sarı / Önemli Uyarı</option>
+                <option value="event">🟣 Mor / Özel Etkinlik</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Hedef Bağlantı URL (Opsiyonel)</label>
+              <input type="text" name="link" placeholder="Örn: /leagues veya https://..." class="w-full px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+            </div>
+
+            <div class="flex items-center justify-between p-3 rounded-2xl bg-slate-900 border border-slate-800 mt-5">
+              <span class="text-xs font-bold text-slate-300">Hemen Yayına Al</span>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" name="active" checked class="sr-only peer">
+                <div class="w-11 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 font-extrabold text-slate-950 text-sm shadow-lg transition flex items-center gap-2">
+            <i data-lucide="send" class="w-4 h-4"></i> Duyuruyu Yayınla
+          </button>
+        </form>
+      </div>
+
+      <!-- Announcements List Card -->
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-6">
+          <h3 class="heading-font text-xl font-bold text-white flex items-center gap-2">
+            <i data-lucide="list-collapse" class="w-5 h-5 text-amber-400"></i> Yayınlanan Duyurular Listesi (<%= (settings.announcements || []).length %>)
+          </h3>
+          <span class="text-xs text-slate-400">Site ana sayfasında otomatik listelenir</span>
+        </div>
+
+        <% if (settings.announcements && settings.announcements.length > 0) { %>
+          <div class="space-y-3">
+            <% settings.announcements.forEach(function(ann) { %>
+              <div class="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-4 transition hover:border-slate-700">
+                <div class="space-y-1.5 flex-grow">
+                  <div class="flex items-center gap-2.5 flex-wrap">
+                    <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider
+                      <%= ann.type === 'success' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 
+                         (ann.type === 'warning' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' : 
+                         (ann.type === 'event' ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30' : 'bg-blue-500/20 text-blue-300 border border-blue-500/30')) %>">
+                      <%= ann.badge || 'DUYURU' %>
+                    </span>
+                    <h4 class="font-bold text-white text-base"><%= ann.title %></h4>
+                    <span class="text-[11px] text-slate-500 font-mono"><%= ann.createdAt %></span>
+                    <% if (ann.active) { %>
+                      <span class="inline-flex items-center gap-1 text-[10px] text-emerald-400 font-bold px-2 py-0.5 rounded bg-emerald-500/10">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Yayında
+                      </span>
+                    <% } else { %>
+                      <span class="text-[10px] text-slate-500 font-bold px-2 py-0.5 rounded bg-slate-800">Pasif</span>
+                    <% } %>
+                  </div>
+                  <p class="text-xs text-slate-300 leading-relaxed"><%= ann.content %></p>
+                  <% if (ann.link) { %>
+                    <a href="<%= ann.link %>" target="_blank" class="inline-flex items-center gap-1 text-xs text-amber-400 hover:underline">
+                      <i data-lucide="link" class="w-3 h-3"></i> <%= ann.link %>
+                    </a>
+                  <% } %>
+                </div>
+
+                <div class="flex items-center space-x-2 flex-shrink-0">
+                  <form action="/admin/announcements/toggle" method="POST">
+                    <input type="hidden" name="id" value="<%= ann.id %>">
+                    <button type="submit" class="px-3 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 <%= ann.active ? 'bg-slate-800 text-slate-300 hover:bg-slate-700' : 'bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30' %>">
+                      <i data-lucide="<%= ann.active ? 'eye-off' : 'eye' %>" class="w-3.5 h-3.5"></i>
+                      <%= ann.active ? 'Gizle' : 'Yayınla' %>
+                    </button>
+                  </form>
+                  <form action="/admin/announcements/delete" method="POST" onsubmit="return confirm('Bu duyuruyu silmek istediğinizden emin misiniz?')">
+                    <input type="hidden" name="id" value="<%= ann.id %>">
+                    <button type="submit" class="p-2 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 transition" title="Duyuruyu Sil">
+                      <i data-lucide="trash-2" class="w-4 h-4"></i>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            <% }); %>
+          </div>
+        <% } else { %>
+          <div class="text-center py-8 text-slate-500 text-xs">Henüz yayınlanmış bir duyuru bulunmuyor.</div>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- TAB: ALL ENTITIES CUSTOMIZER (BİRLİKLER, BÜYÜLER, KAHRAMANLAR & EKİPMANLAR) -->
+    <div id="tab-images" class="admin-tab-pane hidden space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl">
+        
+        <!-- Header & Global Actions -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+          <div>
+            <h3 class="heading-font text-2xl font-black text-white flex items-center gap-2.5">
+              <i data-lucide="sparkles" class="w-6 h-6 text-amber-400"></i> Karakter, Birlik, Büyü & Ekipman Özelleştirici
+            </h3>
+            <p class="text-xs text-slate-400 mt-1">Sitedeki tüm kahramanların, askerlerin, büyülerin ve ekipmanların isimlerini ve fotoğraflarını buradan kolayca değiştirebilirsiniz.</p>
+          </div>
+
+          <div class="flex items-center gap-2.5 flex-wrap">
+            <form action="/admin/settings/entities/reset" method="POST" onsubmit="return confirm('Tüm karakter ve büyü isimleri ile görsellerini orijinal oyun haline sıfırlamak istiyor musunuz?')">
+              <button type="submit" class="px-4 py-2.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-bold transition flex items-center gap-1.5 shadow">
+                <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Tümünü Sıfırla
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Filter & Search Toolbar -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
+          
+          <!-- Category Filter Buttons -->
+          <div class="flex items-center gap-1.5 flex-wrap w-full sm:w-auto">
+            <button type="button" onclick="filterEntities('all')" class="entity-filter-btn active-cat px-3 py-1.5 rounded-xl text-xs font-bold transition bg-amber-500/20 text-amber-400 border border-amber-500/40" data-cat="all">
+              🌟 Tümü
+            </button>
+            <button type="button" onclick="filterEntities('heroes')" class="entity-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold transition text-slate-400 hover:text-white border border-transparent" data-cat="heroes">
+              👑 Kahramanlar
+            </button>
+            <button type="button" onclick="filterEntities('troops')" class="entity-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold transition text-slate-400 hover:text-white border border-transparent" data-cat="troops">
+              ⚔️ Askerler
+            </button>
+            <button type="button" onclick="filterEntities('spells')" class="entity-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold transition text-slate-400 hover:text-white border border-transparent" data-cat="spells">
+              🔮 Büyüler
+            </button>
+            <button type="button" onclick="filterEntities('equipment')" class="entity-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold transition text-slate-400 hover:text-white border border-transparent" data-cat="equipment">
+              🛡️ Ekipmanlar
+            </button>
+            <button type="button" onclick="filterEntities('siege')" class="entity-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold transition text-slate-400 hover:text-white border border-transparent" data-cat="siege">
+              🚀 Kuşatma
+            </button>
+          </div>
+
+          <!-- Instant Live Search Bar -->
+          <div class="relative w-full sm:w-72 flex-shrink-0">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+              <i data-lucide="search" class="w-4 h-4"></i>
+            </div>
+            <input 
+              type="text" 
+              id="entitySearchInput" 
+              oninput="searchEntities(this.value)" 
+              placeholder="Birlik, büyü veya kahraman ara..." 
+              class="w-full pl-9 pr-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500"
+            >
+          </div>
+
+        </div>
+
+        <!-- Town Hall 18 Quick Feature Box -->
+        <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <img src="<%= getTownHallImage(18) %>" class="w-12 h-12 object-contain bg-slate-950 p-1 rounded-xl border border-amber-500/40 flex-shrink-0" alt="TH18">
+            <div>
+              <h4 class="font-bold text-sm text-white flex items-center gap-1.5">
+                <span>🏛️ Belediye Binası 18 (Town Hall 18) Görseli</span>
+              </h4>
+              <p class="text-[11px] text-slate-300">Ana sayfadaki ve profillerdeki TH18 görselini özel bir URL ile güncelleyin.</p>
+            </div>
+          </div>
+          <form action="/admin/settings/entities/single" method="POST" class="flex items-center gap-2 w-full sm:w-auto">
+            <input type="hidden" name="entityId" value="Town Hall 18">
+            <input type="hidden" name="customName" value="">
+            <input 
+              type="text" 
+              name="customImage" 
+              value="<%= (settings.customEntities && settings.customEntities['Town Hall 18'] && settings.customEntities['Town Hall 18'].customImage) || (settings.customImages && settings.customImages['Town Hall 18']) || '' %>" 
+              placeholder="Özel TH18 Görsel URL..." 
+              class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white flex-grow sm:w-64 font-mono focus:outline-none focus:ring-1 focus:ring-amber-500"
+            >
+            <button type="submit" class="px-3.5 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-600 font-bold text-slate-950 text-xs shadow transition">
+              Kaydet
+            </button>
+          </form>
+        </div>
+
+        <!-- Entity Catalog Cards Grid -->
+        <div id="entityCardsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
+          <% 
+            const catalogList = entityCatalog.getAllCatalogItems();
+            catalogList.forEach(function(item) { 
+              const saved = (settings.customEntities && settings.customEntities[item.id]) || {};
+              const currentCustomName = saved.customName || '';
+              const currentCustomImage = saved.customImage || (settings.customImages && settings.customImages[item.id]) || '';
+              const currentDisplayImage = currentCustomImage || getEntityImage(item.name, item.categoryId);
+              const currentDisplayName = currentCustomName || item.defaultNameTr;
+          %>
+            <div class="entity-card p-4 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between gap-3 shadow-lg"
+                 data-category="<%= item.categoryId %>" 
+                 data-name="<%= (item.name + ' ' + item.defaultNameTr + ' ' + currentCustomName).toLowerCase() %>">
+              
+              <!-- Card Top Header -->
+              <div class="flex items-start gap-3">
+                <div class="relative flex-shrink-0">
+                  <img src="<%= currentDisplayImage %>" 
+                       onerror="this.src='<%= item.defaultImage %>'" 
+                       class="w-14 h-14 object-contain rounded-xl bg-slate-950 p-1 border border-slate-700 shadow" 
+                       alt="<%= item.name %>">
+                  <% if (currentCustomImage || currentCustomName) { %>
+                    <span class="absolute -top-1 -right-1 w-3 h-3 bg-amber-400 rounded-full border-2 border-slate-900" title="Özelleştirildi"></span>
+                  <% } %>
+                </div>
+
+                <div class="flex-grow min-w-0">
+                  <div class="flex items-center justify-between gap-1">
+                    <span class="text-[10px] font-black uppercase px-2 py-0.5 rounded bg-slate-800 text-slate-300">
+                      <%= item.categoryBadge %>
+                    </span>
+                    <span class="text-[10px] text-slate-500 font-mono truncate"><%= item.name %></span>
+                  </div>
+                  <h4 class="font-bold text-white text-sm truncate mt-1">
+                    <%= currentDisplayName %>
+                  </h4>
+                  <% if (currentCustomName) { %>
+                    <span class="text-[10px] text-amber-400/90 font-semibold block -mt-0.5">Orijinal: <%= item.defaultNameTr %></span>
+                  <% } %>
+                </div>
+              </div>
+
+              <!-- Form Inputs for Single Entity -->
+              <form action="/admin/settings/entities/single" method="POST" class="space-y-2 pt-2 border-t border-slate-800/80">
+                <input type="hidden" name="entityId" value="<%= item.id %>">
+                <input type="hidden" name="returnTab" value="images">
+
+                <div>
+                  <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Özel İsim (İsteğe Bağlı)</label>
+                  <input 
+                    type="text" 
+                    name="customName" 
+                    value="<%= currentCustomName %>" 
+                    placeholder="Varsayılan: <%= item.defaultNameTr %>" 
+                    class="w-full px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:outline-none focus:ring-1 focus:ring-amber-500"
+                  >
+                </div>
+
+                <div>
+                  <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Özel Görsel URL (Link)</label>
+                  <input 
+                    type="text" 
+                    name="customImage" 
+                    value="<%= currentCustomImage %>" 
+                    placeholder="https://... (boşsa orijinal)" 
+                    class="w-full px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white font-mono focus:outline-none focus:ring-1 focus:ring-cyan-500"
+                  >
+                </div>
+
+                <div class="flex items-center justify-between pt-1">
+                  <% if (currentCustomName || currentCustomImage) { %>
+                    <span class="text-[10px] text-emerald-400 font-bold flex items-center gap-1">
+                      <i data-lucide="check" class="w-3 h-3"></i> Özel Aktif
+                    </span>
+                  <% } else { %>
+                    <span class="text-[10px] text-slate-500">Orijinal Oyun Verisi</span>
+                  <% } %>
+
+                  <button type="submit" class="px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 font-bold text-slate-950 text-xs shadow transition flex items-center gap-1">
+                    <i data-lucide="save" class="w-3 h-3"></i> Kaydet
+                  </button>
+                </div>
+              </form>
+
+            </div>
+          <% }); %>
+        </div>
+
+        <!-- No Results Found Box -->
+        <div id="noEntityResults" class="hidden text-center py-12 text-slate-500 text-xs space-y-2">
+          <i data-lucide="search-x" class="w-8 h-8 mx-auto text-slate-600"></i>
+          <div>Aradığınız kriterlere uygun karakter veya büyü bulunamadı.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB: SITE TEXTS & CONTENT CUSTOMIZER (YAZILAR & BAŞLIKLAR) -->
+    <div id="tab-texts" class="admin-tab-pane hidden space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl max-w-3xl">
+        <h3 class="heading-font text-xl font-bold text-white mb-2 flex items-center gap-2">
+          <i data-lucide="type" class="w-5 h-5 text-fuchsia-400"></i> Ana Sayfa Başlık & Yazılarını Özelleştir
+        </h3>
+        <p class="text-xs text-slate-400 mb-6">Ana sayfadaki ana manşeti, alt açıklamayı ve karşılama mesajlarını buradan kolayca değiştirebilirsiniz. Boş bırakırsanız dil sözlüğündeki varsayılan metin görünür.</p>
+
+        <form action="/admin/settings/texts" method="POST" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Başlık Ön Ek (Beyaz)</label>
+              <input type="text" name="heroTitlePrefix" value="<%= settings.customTexts && settings.customTexts.heroTitlePrefix || '' %>" placeholder="Örn: CLASH OF CLANS" class="w-full px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Vurgulu Başlık (Altın)</label>
+              <input type="text" name="heroTitleGradient" value="<%= settings.customTexts && settings.customTexts.heroTitleGradient || '' %>" placeholder="Örn: CANLI ANALİZ" class="w-full px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Başlık Son Ek</label>
+              <input type="text" name="heroTitleSuffix" value="<%= settings.customTexts && settings.customTexts.heroTitleSuffix || '' %>" placeholder="Örn: MERKEZİ" class="w-full px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Ana Sayfa Alt Açıklama Yazısı</label>
+            <textarea name="heroSubtitle" rows="3" placeholder="Site ana sayfasında arama kutusunun üstündeki açıklama metni..." class="w-full px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500"><%= settings.customTexts && settings.customTexts.heroSubtitle || '' %></textarea>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Canlı Sistem Rozet Yazısı (HUD Badge)</label>
+            <input type="text" name="heroBadge" value="<%= settings.customTexts && settings.customTexts.heroBadge || '' %>" placeholder="Örn: CANLI SAVAŞ & EKİPMAN MERKEZİ" class="w-full px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Altbilgi (Footer) Özel Not / Slogan</label>
+            <input type="text" name="footerText" value="<%= settings.customTexts && settings.customTexts.footerText || '' %>" placeholder="Örn: En gelişmiş Clash of Clans takip ve istatistik portalı." class="w-full px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+          </div>
+
+          <button type="submit" class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-fuchsia-500 to-fuchsia-600 hover:from-fuchsia-600 hover:to-fuchsia-700 font-extrabold text-white text-sm shadow-lg transition flex items-center gap-2">
+            <i data-lucide="save" class="w-4 h-4"></i> Yazıları Kaydet
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- TAB 5: SAVED TAGS -->
+    <div id="tab-tags" class="admin-tab-pane hidden space-y-6">
+      <!-- Add Tag Form -->
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl max-w-3xl">
+        <h3 class="heading-font text-xl font-bold text-white mb-4 flex items-center gap-2">
+          <i data-lucide="plus-circle" class="w-5 h-5 text-amber-400"></i> Yeni Takip Etiketi Ekle
+        </h3>
+
+        <form action="/admin/tags/add" method="POST" class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+          <input type="text" name="tag" placeholder="#Tag (örn: #9PRQL200)" required class="tag-input px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white text-sm font-mono focus:outline-none focus:ring-2 focus:ring-amber-500">
+          <select name="type" class="px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white text-sm font-semibold">
+            <option value="player">Oyuncu</option>
+            <option value="clan">Klan</option>
+          </select>
+          <input type="text" name="name" placeholder="İsim / Başlık" class="px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+          <button type="submit" class="px-4 py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 font-extrabold text-slate-950 text-sm shadow transition">
+            Listeye Ekle
+          </button>
+        </form>
+      </div>
+
+      <!-- Saved Tags List -->
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl">
+        <h3 class="heading-font text-xl font-bold text-white mb-4">Takip Edilen Etiketler Listesi</h3>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <% (settings.savedTags || []).forEach(function(item) { %>
+            <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 flex items-center justify-between group">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase <%= item.type === 'clan' ? 'bg-indigo-500/20 text-indigo-300' : 'bg-amber-500/20 text-amber-300' %>"><%= item.type %></span>
+                  <span class="font-bold text-white text-sm"><%= item.name %></span>
+                </div>
+                <div class="text-xs font-mono text-amber-400/90 mt-1"><%= item.tag %></div>
+              </div>
+
+              <div class="flex items-center space-x-2">
+                <a href="/<%= item.type === 'clan' ? 'clan' : 'player' %>/<%= encodeURIComponent(item.tag) %>" target="_blank" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition" title="Görüntüle">
+                  <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+                <form action="/admin/tags/delete" method="POST" onsubmit="return confirm('Bu etiketi silmek istediğinizden emin misiniz?')">
+                  <input type="hidden" name="tag" value="<%= item.tag %>">
+                  <button type="submit" class="p-2 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 transition" title="Sil">
+                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                  </button>
+                </form>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 6: SECURITY & PASSWORD -->
+    <div id="tab-security" class="admin-tab-pane hidden">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl max-w-xl">
+        <h3 class="heading-font text-xl font-bold text-white mb-2 flex items-center gap-2">
+          <i data-lucide="shield-check" class="w-5 h-5 text-amber-400"></i> Yönetici Giriş Bilgilerini Güncelle
+        </h3>
+        <p class="text-xs text-slate-400 mb-6">Admin kullanıcı adını ve şifresini bu bölümden güvenle değiştirebilirsiniz.</p>
+
+        <form action="/admin/settings/security" method="POST" class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Admin Kullanıcı Adı</label>
+            <input type="text" name="adminUsername" value="<%= settings.adminUsername %>" required class="w-full px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Yeni Şifre (Değiştirmek istemiyorsanız boş bırakın)</label>
+            <input type="password" name="newPassword" placeholder="••••••••" class="w-full px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Yeni Şifre (Tekrar)</label>
+            <input type="password" name="confirmPassword" placeholder="••••••••" class="w-full px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+          </div>
+
+          <button type="submit" class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 font-extrabold text-slate-950 text-sm shadow transition">
+            Güvenlik Bilgilerini Güncelle
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<script>
+  // Robust Admin Tab Switcher
+  function switchAdminTab(tabName) {
+    // Update tab buttons
+    document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+      btn.classList.remove('bg-amber-500/20', 'text-amber-400', 'border-amber-500');
+      btn.classList.add('text-slate-400', 'border-transparent');
+    });
+
+    const activeBtn = document.getElementById('btn-tab-' + tabName);
+    if (activeBtn) {
+      activeBtn.classList.add('bg-amber-500/20', 'text-amber-400', 'border-amber-500');
+      activeBtn.classList.remove('text-slate-400', 'border-transparent');
+    }
+
+    // Update tab panes
+    document.querySelectorAll('.admin-tab-pane').forEach(pane => {
+      pane.classList.add('hidden');
+    });
+
+    const activePane = document.getElementById('tab-' + tabName);
+    if (activePane) {
+      activePane.classList.remove('hidden');
+    }
+  }
+
+  // Initialize with server-selected tab on load
+  document.addEventListener('DOMContentLoaded', () => {
+    const initialTab = '<%= activeTab || "overview" %>';
+    switchAdminTab(initialTab);
+  });
+
+  async function runProbe() {
+    const tag = document.getElementById('probeTagInput').value.trim();
+    const type = document.getElementById('probeTypeSelect').value;
+    const btn = document.getElementById('probeBtn');
+    const resultBox = document.getElementById('probeResultBox');
+    const pre = document.getElementById('probeJsonPre');
+    const latencyText = document.getElementById('probeLatencyText');
+    const sourceText = document.getElementById('probeSourceText');
+    const badge = document.getElementById('probeStatusBadge');
+
+    btn.disabled = true;
+    btn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Sorgulanıyor...';
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+
+    try {
+      const res = await fetch('/admin/probe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ probeTag: tag, probeType: type })
+      });
+      const data = await res.json();
+
+      resultBox.classList.remove('hidden');
+      latencyText.innerText = data.latency;
+      sourceText.innerText = data.source.toUpperCase();
+      badge.innerText = data.status.toUpperCase();
+      badge.className = data.status === 'ok' ? 'px-2 py-0.5 rounded font-bold uppercase bg-emerald-500/20 text-emerald-400' : 'px-2 py-0.5 rounded font-bold uppercase bg-rose-500/20 text-rose-400';
+      pre.textContent = JSON.stringify(data.data, null, 2);
+    } catch(e) {
+      alert('Sorgulama hatası: ' + e.message);
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<i data-lucide="play" class="w-4 h-4"></i> Test Et';
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+  }
+
+  // Entity Live Filtering & Search
+  let currentEntityCategory = 'all';
+
+  function filterEntities(category) {
+    currentEntityCategory = category;
+    
+    // Update filter buttons UI
+    document.querySelectorAll('.entity-filter-btn').forEach(btn => {
+      if (btn.getAttribute('data-cat') === category) {
+        btn.classList.add('bg-amber-500/20', 'text-amber-400', 'border-amber-500/40');
+        btn.classList.remove('text-slate-400', 'border-transparent');
+      } else {
+        btn.classList.remove('bg-amber-500/20', 'text-amber-400', 'border-amber-500/40');
+        btn.classList.add('text-slate-400', 'border-transparent');
+      }
+    });
+
+    applyEntityFilters();
+  }
+
+  function searchEntities(query) {
+    applyEntityFilters(query);
+  }
+
+  function applyEntityFilters(searchQuery) {
+    const q = (typeof searchQuery === 'string' ? searchQuery : (document.getElementById('entitySearchInput')?.value || '')).trim().toLowerCase();
+    const cards = document.querySelectorAll('.entity-card');
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const cardCat = card.getAttribute('data-category');
+      const cardName = card.getAttribute('data-name') || '';
+
+      const matchCat = currentEntityCategory === 'all' || cardCat === currentEntityCategory;
+      const matchQuery = !q || cardName.includes(q);
+
+      if (matchCat && matchQuery) {
+        card.classList.remove('hidden');
+        visibleCount++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    const noResultsBox = document.getElementById('noEntityResults');
+    if (noResultsBox) {
+      if (visibleCount === 0) {
+        noResultsBox.classList.remove('hidden');
+      } else {
+        noResultsBox.classList.add('hidden');
+      }
+    }
+  }
+
+  function copyProbeJson() {
+    const text = document.getElementById('probeJsonPre').textContent;
+    copyToClipboard(text);
+  }
+</script>
+
+<%- include('../partials/footer') %>

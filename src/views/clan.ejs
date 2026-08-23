@@ -1,0 +1,389 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+
+  <!-- Clan Header Card -->
+  <div class="glass-card rounded-3xl p-6 sm:p-8 mb-8 border border-slate-800 relative overflow-hidden shadow-2xl">
+    <div class="absolute -top-16 -right-16 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative z-10">
+      
+      <!-- Clan Info & Badge -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+        
+        <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-slate-900/90 border-2 border-amber-500/40 p-2 flex items-center justify-center shadow-xl shadow-amber-500/10 flex-shrink-0">
+          <% if (clan.badgeUrls) { %>
+            <img src="<%= clan.badgeUrls.medium || clan.badgeUrls.small %>" alt="<%= clan.name %>" class="w-16 h-16 sm:w-20 sm:h-20 object-contain">
+          <% } else { %>
+            <i data-lucide="shield" class="w-12 h-12 text-amber-400"></i>
+          <% } %>
+        </div>
+
+        <div class="space-y-1.5">
+          <div class="flex flex-wrap items-center gap-3">
+            <h1 class="heading-font text-2xl sm:text-3xl font-extrabold text-white"><%= clan.name %></h1>
+            <button onclick="copyToClipboard('<%= clan.tag %>', this)" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-xs font-mono text-amber-300 border border-slate-700 transition" title="<%= t('player.copyTag') %>">
+              <span><%= clan.tag %></span>
+              <i data-lucide="copy" class="w-3 h-3 text-slate-400"></i>
+            </button>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2 text-xs">
+            <span class="px-2.5 py-1 rounded-md bg-amber-500/20 text-amber-300 font-bold border border-amber-500/40">
+              🛡️ <%= t('clan.level') %> <%= clan.clanLevel %>
+            </span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 border border-slate-700">
+              👥 <%= clan.members || (clan.memberList ? clan.memberList.length : 0) %>/50 <%= t('clan.members') %>
+            </span>
+            <% if (clan.location) { %>
+              <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 border border-slate-700">
+                📍 <%= clan.location.name %>
+              </span>
+            <% } %>
+            <% if (clan.warLeague) { %>
+              <span class="px-2.5 py-1 rounded-md bg-purple-500/20 text-purple-300 border border-purple-500/40 font-bold">
+                ⚔️ CWL: <%= clan.warLeague.name %>
+              </span>
+            <% } %>
+            <% if (clan.capitalLeague) { %>
+              <span class="px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold">
+                🏰 <%= clan.capitalLeague.name %>
+              </span>
+            <% } %>
+          </div>
+
+          <!-- Clan Labels -->
+          <% if (clan.labels && clan.labels.length > 0) { %>
+            <div class="flex flex-wrap items-center gap-2 pt-1">
+              <% clan.labels.forEach(function(l) { %>
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-800/80 text-[10px] text-slate-300 border border-slate-700">
+                  <% if (l.iconUrls) { %><img src="<%= l.iconUrls.small %>" class="w-3.5 h-3.5 object-contain"><% } %>
+                  <span><%= l.name %></span>
+                </span>
+              <% }); %>
+            </div>
+          <% } %>
+
+          <p class="text-xs text-slate-400 max-w-2xl pt-1"><%= clan.description %></p>
+        </div>
+
+      </div>
+
+      <!-- Quick Stats / War Win Streak -->
+      <div class="flex flex-row lg:flex-col items-center lg:items-end justify-between gap-3 border-t lg:border-t-0 pt-4 lg:pt-0 border-slate-800">
+        <div class="text-left lg:text-right">
+          <div class="text-[10px] text-slate-400 uppercase font-semibold"><%= t('clan.winStreak') %></div>
+          <div class="heading-font text-2xl font-black text-emerald-400">🔥 <%= clan.warWinStreak || 0 %> Galibiyet</div>
+        </div>
+        <div class="flex items-center gap-2 text-xs">
+          <span class="px-2 py-1 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono">G: <%= clan.warWins || 0 %></span>
+          <span class="px-2 py-1 rounded bg-slate-800 text-slate-400 border border-slate-700 font-mono">B: <%= clan.warTies || 0 %></span>
+          <span class="px-2 py-1 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20 font-mono">M: <%= clan.warLosses || 0 %></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Clan Stats Highlights Grid -->
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+    <div class="glass-card p-4 rounded-2xl border border-slate-800 text-center">
+      <div class="text-xs text-slate-400 font-medium mb-1"><%= t('clan.clanPoints') %></div>
+      <div class="heading-font text-2xl font-bold text-amber-400">🏆 <%= (clan.clanPoints || 0).toLocaleString() %></div>
+    </div>
+    <div class="glass-card p-4 rounded-2xl border border-slate-800 text-center">
+      <div class="text-xs text-slate-400 font-medium mb-1"><%= t('clan.builderPoints') %></div>
+      <div class="heading-font text-2xl font-bold text-indigo-400">🔨 <%= (clan.clanBuilderBasePoints || 0).toLocaleString() %></div>
+    </div>
+    <div class="glass-card p-4 rounded-2xl border border-slate-800 text-center">
+      <div class="text-xs text-slate-400 font-medium mb-1"><%= t('clan.requiredTrophies') %></div>
+      <div class="heading-font text-2xl font-bold text-slate-200">🎯 <%= (clan.requiredTrophies || 0).toLocaleString() %></div>
+      <div class="text-[10px] text-slate-500 mt-0.5">BB <%= clan.requiredTownhallLevel || 1 %>+</div>
+    </div>
+    <div class="glass-card p-4 rounded-2xl border border-slate-800 text-center">
+      <div class="text-xs text-slate-400 font-medium mb-1"><%= t('clan.warFrequency') %></div>
+      <div class="heading-font text-xl font-bold text-rose-400 capitalize">⚔️ <%= clan.warFrequency === 'always' ? t('clans.always') : clan.warFrequency %></div>
+    </div>
+  </div>
+
+  <!-- Tabbed Sections: Members, Live War, CWL Group, War Log, Clan Capital -->
+  <div class="tab-container glass-card rounded-3xl p-6 sm:p-8 mb-8 border border-slate-800 shadow-xl">
+    
+    <!-- Tab Navigation -->
+    <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-800 mb-6">
+      <div class="flex flex-wrap items-center space-x-1 sm:space-x-2 bg-slate-900 p-1.5 rounded-2xl border border-slate-800">
+        <button data-tab-target="#membersTab" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-amber-500/20 text-amber-400 border border-amber-500 transition">
+          👥 <%= t('clan.tabs.members') %> (<%= clan.memberList ? clan.memberList.length : (clan.members || 0) %>)
+        </button>
+        <button data-tab-target="#liveWarTab" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-400 border border-transparent hover:text-white transition">
+          ⚔️ <%= t('clan.tabs.liveWar') %>
+        </button>
+        <button data-tab-target="#cwlTab" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-400 border border-transparent hover:text-white transition">
+          🛡️ <%= t('clan.tabs.cwl') %>
+        </button>
+        <button data-tab-target="#warLogTab" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-400 border border-transparent hover:text-white transition">
+          📜 <%= t('clan.tabs.warLog') %> (<%= warLog.length %>)
+        </button>
+        <button data-tab-target="#capitalTab" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-400 border border-transparent hover:text-white transition">
+          🏰 <%= t('clan.tabs.capital') %>
+        </button>
+      </div>
+    </div>
+
+    <!-- 1. Members Tab Pane -->
+    <div id="membersTab" class="tab-pane">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm text-slate-300">
+          <thead class="text-xs text-slate-400 uppercase bg-slate-900/80 border-b border-slate-800">
+            <tr>
+              <th class="px-4 py-3"><%= t('leaderboard.rank') %></th>
+              <th class="px-4 py-3"><%= t('leaderboard.player') %></th>
+              <th class="px-4 py-3"><%= t('player.role') %></th>
+              <th class="px-4 py-3">BB</th>
+              <th class="px-4 py-3 text-right"><%= t('leaderboard.trophies') %></th>
+              <th class="px-4 py-3 text-right"><%= t('player.donations') %></th>
+              <th class="px-4 py-3 text-right"><%= t('leaderboard.inspect') %></th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60">
+            <% (clan.memberList || []).forEach(function(member, index) { %>
+              <tr class="hover:bg-slate-800/40 transition">
+                <td class="px-4 py-3.5 font-bold font-mono text-slate-400 text-xs">
+                  #<%= member.clanRank || (index + 1) %>
+                </td>
+                <td class="px-4 py-3.5 font-bold text-white">
+                  <a href="/player/<%= encodeURIComponent(member.tag) %>" class="hover:text-amber-400 transition flex items-center gap-2">
+                    <span><%= member.name %></span>
+                    <span class="text-[10px] text-slate-500 font-mono font-normal"><%= member.tag %></span>
+                  </a>
+                </td>
+                <td class="px-4 py-3.5">
+                  <span class="px-2 py-0.5 rounded text-xs font-semibold 
+                    <%= member.role === 'leader' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' : 
+                       (member.role === 'coLeader' ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30' : 
+                       (member.role === 'admin' ? 'bg-blue-500/20 text-blue-300 border border-blue-500/30' : 'bg-slate-800 text-slate-400')) %>">
+                    <%= member.role === 'leader' ? t('player.roles.leader') : (member.role === 'coLeader' ? t('player.roles.coLeader') : (member.role === 'admin' ? t('player.roles.admin') : t('player.roles.member'))) %>
+                  </span>
+                </td>
+                <td class="px-4 py-3.5">
+                  <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 text-xs font-bold border border-emerald-500/20">
+                    BB <%= member.townHallLevel || 18 %>
+                  </span>
+                </td>
+                <td class="px-4 py-3.5 text-right font-bold text-amber-400 font-mono">
+                  🏆 <%= (member.trophies || 0).toLocaleString() %>
+                </td>
+                <td class="px-4 py-3.5 text-right font-mono text-xs">
+                  <span class="text-emerald-400 font-semibold"><%= (member.donations || 0).toLocaleString() %></span>
+                  <span class="text-slate-600 mx-1">/</span>
+                  <span class="text-slate-400"><%= (member.donationsReceived || 0).toLocaleString() %></span>
+                </td>
+                <td class="px-4 py-3.5 text-right">
+                  <a href="/player/<%= encodeURIComponent(member.tag) %>" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-xs font-semibold text-slate-300 transition">
+                    <%= t('leaderboard.profile') %>
+                  </a>
+                </td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 2. Live War Tab Pane -->
+    <div id="liveWarTab" class="tab-pane hidden space-y-6">
+      <% if (war && war.state !== 'notInWar') { %>
+        <!-- War Scoreboard Card -->
+        <div class="bg-slate-900/90 rounded-2xl p-6 border border-slate-800">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center text-center">
+            
+            <!-- Friendly Clan -->
+            <div class="space-y-3">
+              <div class="w-16 h-16 mx-auto rounded-xl bg-slate-800 p-1 flex items-center justify-center border border-amber-500/30">
+                <img src="<%= war.clan.badgeUrls ? war.clan.badgeUrls.small : '' %>" alt="<%= war.clan.name %>" class="w-12 h-12 object-contain">
+              </div>
+              <h4 class="font-bold text-white text-lg"><%= war.clan.name %></h4>
+              <div class="flex items-center justify-center gap-3">
+                <div class="bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
+                  <span class="text-amber-400 font-bold text-lg"><%= war.clan.stars %> ⭐</span>
+                </div>
+                <div class="bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
+                  <span class="text-emerald-400 font-bold text-lg">%<%= war.clan.destructionPercentage.toFixed(1) %></span>
+                </div>
+              </div>
+              <div class="text-xs text-slate-400"><%= t('war.attacks') %>: <%= war.clan.attacks %> / <%= war.teamSize * war.attacksPerMember %></div>
+            </div>
+
+            <!-- VS & Timer Center -->
+            <div class="flex flex-col items-center justify-center space-y-2 py-4">
+              <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider <%= war.state === 'inWar' ? 'bg-rose-500/20 text-rose-400 border border-rose-500/40' : 'bg-amber-500/20 text-amber-400 border border-amber-500/40' %>">
+                <%= war.state === 'inWar' ? 'Savaş Günü Devam Ediyor' : 'Hazırlık Günü' %>
+              </span>
+              <span class="heading-font text-3xl font-black text-slate-600">VS</span>
+              <div class="text-xs text-slate-400" data-countdown="<%= war.endTime %>"><%= t('war.calculating') %></div>
+            </div>
+
+            <!-- Opponent Clan -->
+            <div class="space-y-3">
+              <div class="w-16 h-16 mx-auto rounded-xl bg-slate-800 p-1 flex items-center justify-center border border-slate-700">
+                <img src="<%= war.opponent.badgeUrls ? war.opponent.badgeUrls.small : '' %>" alt="<%= war.opponent.name %>" class="w-12 h-12 object-contain">
+              </div>
+              <h4 class="font-bold text-white text-lg"><%= war.opponent.name %></h4>
+              <div class="flex items-center justify-center gap-3">
+                <div class="bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
+                  <span class="text-amber-400 font-bold text-lg"><%= war.opponent.stars %> ⭐</span>
+                </div>
+                <div class="bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
+                  <span class="text-emerald-400 font-bold text-lg">%<%= war.opponent.destructionPercentage.toFixed(1) %></span>
+                </div>
+              </div>
+              <div class="text-xs text-slate-400"><%= t('war.attacks') %>: <%= war.opponent.attacks %> / <%= war.teamSize * war.attacksPerMember %></div>
+            </div>
+
+          </div>
+        </div>
+      <% } else { %>
+        <div class="text-center py-12 text-slate-400">
+          <i data-lucide="shield-alert" class="w-12 h-12 mx-auto mb-3 text-slate-600"></i>
+          <p>Klan şu anda aktif bir klan savaşında değil veya savaş günlüğü gizli.</p>
+        </div>
+      <% } %>
+    </div>
+
+    <!-- 3. Clan War League (CWL) Tab Pane -->
+    <div id="cwlTab" class="tab-pane hidden space-y-6">
+      <% if (typeof cwlGroup !== 'undefined' && cwlGroup && cwlGroup.state !== 'notInWar' && cwlGroup.clans) { %>
+        <div class="bg-slate-900/80 p-6 rounded-2xl border border-slate-800 mb-6">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-4">
+            <div>
+              <h3 class="heading-font text-xl font-bold text-white">Klan Savaş Ligi Grubu</h3>
+              <span class="text-xs text-slate-400 font-mono">Sezon: <%= cwlGroup.season %> • Durum: <%= cwlGroup.state %></span>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 font-bold text-xs border border-purple-500/40">
+              8 Klanlı Grup
+            </span>
+          </div>
+
+          <!-- Group Clans List -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <% cwlGroup.clans.forEach(function(c, i) { %>
+              <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                  <span class="text-slate-500 font-mono text-xs">#<%= i + 1 %></span>
+                  <div class="w-10 h-10 rounded-lg bg-slate-900 p-1 flex items-center justify-center border border-slate-800">
+                    <img src="<%= c.badgeUrls.small %>" class="w-8 h-8 object-contain">
+                  </div>
+                  <div>
+                    <h5 class="font-bold text-white text-sm"><a href="/clan/<%= encodeURIComponent(c.tag) %>" class="hover:text-amber-400"><%= c.name %></a></h5>
+                    <span class="text-[10px] text-slate-400 font-mono"><%= c.tag %> • Seviye <%= c.clanLevel %></span>
+                  </div>
+                </div>
+              </div>
+            <% }); %>
+          </div>
+        </div>
+      <% } else { %>
+        <div class="text-center py-12 text-slate-400">
+          <i data-lucide="swords" class="w-12 h-12 mx-auto mb-3 text-slate-600"></i>
+          <p>Klan şu anda aktif bir CWL haftasında değil.</p>
+        </div>
+      <% } %>
+    </div>
+
+    <!-- 4. War Log Tab Pane -->
+    <div id="warLogTab" class="tab-pane hidden space-y-3">
+      <% if (warLog && warLog.length > 0) { %>
+        <% warLog.forEach(function(item) { %>
+          <div class="bg-slate-900/70 p-4 rounded-2xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+            
+            <!-- Result Badge & Date -->
+            <div class="flex items-center space-x-3">
+              <span class="px-3 py-1.5 rounded-xl font-bold text-xs uppercase tracking-wider <%= item.result === 'win' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' : 'bg-rose-500/20 text-rose-300 border border-rose-500/40' %>">
+                <%= item.result === 'win' ? 'Zafer 🏆' : (item.result === 'lose' ? 'Mağlubiyet 💀' : 'Beraberlik ⚖️') %>
+              </span>
+              <span class="text-xs text-slate-400 font-mono"><%= new Date(item.endTime).toLocaleDateString('tr-TR') %></span>
+            </div>
+
+            <!-- Score Summary -->
+            <div class="flex items-center gap-6 text-sm">
+              <div class="text-right">
+                <div class="font-bold text-white"><%= item.clan.name %></div>
+                <div class="text-xs text-amber-400 font-bold"><%= item.clan.stars %> ⭐ (%<%= item.clan.destructionPercentage.toFixed(1) %>)</div>
+              </div>
+              <span class="text-slate-600 font-bold">VS</span>
+              <div class="text-left">
+                <div class="font-bold text-white"><%= item.opponent.name %></div>
+                <div class="text-xs text-slate-400"><%= item.opponent.stars %> ⭐ (%<%= item.opponent.destructionPercentage.toFixed(1) %>)</div>
+              </div>
+            </div>
+
+            <!-- Team Size -->
+            <div class="text-xs font-semibold text-slate-400 px-3 py-1 rounded-lg bg-slate-800">
+              <%= item.teamSize %>v<%= item.teamSize %>
+            </div>
+
+          </div>
+        <% }); %>
+      <% } else { %>
+        <div class="text-center py-8 text-slate-400">Kayıtlı savaş günlüğü bulunamadı veya gizli.</div>
+      <% } %>
+    </div>
+
+    <!-- 5. Clan Capital Tab Pane -->
+    <div id="capitalTab" class="tab-pane hidden space-y-6">
+      <% if (clan.clanCapital) { %>
+        <div class="bg-slate-900/80 p-6 rounded-2xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <h3 class="heading-font text-2xl font-bold text-white">Başkent Zirvesi (Capital Peak)</h3>
+            <p class="text-xs text-slate-400 mt-1">Klan Başkenti Seviyesi: <%= clan.clanCapital.capitalHallLevel %> | Hafta sonu baskınları</p>
+          </div>
+          <div class="px-4 py-2 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-bold">
+            Başkent Ligi: <%= clan.capitalLeague ? clan.capitalLeague.name : 'Legends' %>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          <% (clan.clanCapital.districts || []).forEach(function(district) { %>
+            <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+              <h5 class="font-bold text-white text-xs mb-1"><%= district.name %></h5>
+              <div class="text-xs text-amber-400 font-mono">Bölge Seviyesi: <%= district.districtHallLevel %></div>
+            </div>
+          <% }); %>
+        </div>
+      <% } %>
+
+      <!-- Capital Raid Weekend Seasons -->
+      <% if (typeof capitalRaids !== 'undefined' && capitalRaids.length > 0) { %>
+        <div class="pt-6 border-t border-slate-800">
+          <h4 class="heading-font text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <i data-lucide="shield" class="w-5 h-5 text-amber-400"></i> Hafta Sonu Baskın Geçmişi
+          </h4>
+          <div class="space-y-3">
+            <% capitalRaids.slice(0, 5).forEach(function(raid) { %>
+              <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+                <div>
+                  <span class="font-bold text-white font-mono text-sm block">Baskın: <%= new Date(raid.startTime).toLocaleDateString('tr-TR') %> - <%= new Date(raid.endTime).toLocaleDateString('tr-TR') %></span>
+                  <span class="text-slate-400">Toplam Ganimet: <strong class="text-amber-400"><%= (raid.capitalTotalLoot || 0).toLocaleString() %></strong> Başkent Altını</span>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="text-right">
+                    <span class="text-emerald-400 font-bold block">🎖️ <%= raid.offensiveReward || 0 %> Madalya</span>
+                    <span class="text-blue-400 font-bold block">🛡️ <%= raid.defensiveReward || 0 %> Madalya</span>
+                  </div>
+                  <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-mono">
+                    <%= raid.totalAttacks || 0 %> Saldırı
+                  </span>
+                </div>
+              </div>
+            <% }); %>
+          </div>
+        </div>
+      <% } %>
+    </div>
+
+  </div>
+
+</main>
+
+<%- include('partials/footer') %>

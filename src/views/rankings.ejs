@@ -1,0 +1,183 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+
+  <!-- Header -->
+  <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8">
+    <div>
+      <h1 class="heading-font text-3xl sm:text-4xl font-extrabold text-white flex items-center gap-2.5">
+        <i data-lucide="trophy" class="w-8 h-8 text-amber-400"></i> <%= t('rankings.title') %>
+      </h1>
+      <p class="text-sm text-slate-400 mt-1"><%= t('rankings.subtitle') %></p>
+    </div>
+
+    <!-- Country / Location Selector Dropdown Form -->
+    <form action="/rankings" method="GET" class="flex flex-wrap items-center gap-3">
+      <input type="hidden" name="type" value="<%= type %>">
+      
+      <div class="flex items-center space-x-2 bg-slate-900 px-3 py-2 rounded-xl border border-slate-800 text-xs">
+        <span class="text-slate-400 font-semibold uppercase"><%= t('rankings.location') %></span>
+        <select name="location" onchange="this.form.submit()" class="bg-transparent text-white font-bold focus:outline-none cursor-pointer">
+          <option value="tr" <%= (location === 'tr' || location === '32000239') ? 'selected' : '' %>>🇹🇷 Türkiye</option>
+          <option value="global" <%= (location === 'global' || !location) ? 'selected' : '' %>>🌍 Global (<%= t('clans.allWorld') %>)</option>
+          <% if (typeof locations !== 'undefined' && locations.length > 0) { %>
+            <% locations.forEach(function(loc) { %>
+              <% if (loc.countryCode !== 'TR' && loc.id !== 'global') { %>
+                <option value="<%= loc.id %>" <%= location == loc.id ? 'selected' : '' %>><%= loc.name %></option>
+              <% } %>
+            <% }); %>
+          <% } %>
+        </select>
+      </div>
+    </form>
+  </div>
+
+  <!-- 5 Ranking Modes Switcher Tabs -->
+  <div class="flex flex-wrap items-center gap-2 mb-6">
+    <a href="/rankings?type=players&location=<%= location %>" class="px-4 py-2.5 rounded-xl text-xs font-bold transition <%= type === 'players' ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20' : 'bg-slate-900/80 text-slate-300 hover:text-white border border-slate-800' %>">
+      <%= t('rankings.homePlayers') %>
+    </a>
+    <a href="/rankings?type=clans&location=<%= location %>" class="px-4 py-2.5 rounded-xl text-xs font-bold transition <%= type === 'clans' ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20' : 'bg-slate-900/80 text-slate-300 hover:text-white border border-slate-800' %>">
+      <%= t('rankings.homeClans') %>
+    </a>
+    <a href="/rankings?type=players-builder-base&location=<%= location %>" class="px-4 py-2.5 rounded-xl text-xs font-bold transition <%= type === 'players-builder-base' ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20' : 'bg-slate-900/80 text-slate-300 hover:text-white border border-slate-800' %>">
+      <%= t('rankings.builderPlayers') %>
+    </a>
+    <a href="/rankings?type=clans-builder-base&location=<%= location %>" class="px-4 py-2.5 rounded-xl text-xs font-bold transition <%= type === 'clans-builder-base' ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20' : 'bg-slate-900/80 text-slate-300 hover:text-white border border-slate-800' %>">
+      <%= t('rankings.builderClans') %>
+    </a>
+    <a href="/rankings?type=capitals&location=<%= location %>" class="px-4 py-2.5 rounded-xl text-xs font-bold transition <%= type === 'capitals' ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20' : 'bg-slate-900/80 text-slate-300 hover:text-white border border-slate-800' %>">
+      <%= t('rankings.capitals') %>
+    </a>
+  </div>
+
+  <!-- Rankings Table Card -->
+  <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl">
+    <div class="overflow-x-auto">
+      
+      <% if (type === 'players' || type === 'players-builder-base') { %>
+        <!-- Players Table -->
+        <table class="w-full text-left text-sm text-slate-300">
+          <thead class="text-xs text-slate-400 uppercase bg-slate-900/80 border-b border-slate-800">
+            <tr>
+              <th class="px-4 py-3"><%= t('leaderboard.rank') %></th>
+              <th class="px-4 py-3"><%= t('leaderboard.player') %></th>
+              <th class="px-4 py-3"><%= t('leaderboard.clan') %></th>
+              <th class="px-4 py-3"><%= t('leaderboard.level') %></th>
+              <th class="px-4 py-3 text-right"><%= t('leaderboard.trophies') %></th>
+              <th class="px-4 py-3 text-right"><%= t('leaderboard.inspect') %></th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60">
+            <% (items || []).forEach(function(player, idx) { %>
+              <tr class="hover:bg-slate-800/40 transition">
+                <td class="px-4 py-3.5 font-bold font-mono">
+                  <% const r = player.rank || (idx + 1); %>
+                  <% if (r === 1) { %>
+                    <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-400/20 text-amber-400 text-xs border border-amber-400/40">1</span>
+                  <% } else if (r === 2) { %>
+                    <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-slate-300/20 text-slate-300 text-xs border border-slate-300/40">2</span>
+                  <% } else if (r === 3) { %>
+                    <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-700/20 text-amber-600 text-xs border border-amber-700/40">3</span>
+                  <% } else { %>
+                    <span class="text-slate-400 text-xs px-1.5"><%= r %></span>
+                  <% } %>
+                </td>
+                <td class="px-4 py-3.5 font-bold text-white">
+                  <a href="/player/<%= encodeURIComponent(player.tag) %>" class="hover:text-amber-400 transition flex items-center gap-2">
+                    <span><%= player.name %></span>
+                    <span class="text-[10px] text-slate-500 font-mono font-normal"><%= player.tag %></span>
+                  </a>
+                </td>
+                <td class="px-4 py-3.5 text-slate-400">
+                  <% if (player.clan) { %>
+                    <a href="/clan/<%= encodeURIComponent(player.clan.tag) %>" class="hover:text-slate-200 flex items-center gap-1.5">
+                      <% if (player.clan.badgeUrls) { %><img src="<%= player.clan.badgeUrls.small %>" class="w-4 h-4 object-contain"><% } %>
+                      <span><%= player.clan.name %></span>
+                    </a>
+                  <% } else { %>
+                    <span class="text-slate-600">-</span>
+                  <% } %>
+                </td>
+                <td class="px-4 py-3.5">
+                  <span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 text-xs font-bold border border-blue-500/20">
+                    XP <%= player.expLevel || (player.townHallLevel ? 'BB ' + player.townHallLevel : '-') %>
+                  </span>
+                </td>
+                <td class="px-4 py-3.5 text-right font-bold text-amber-400 font-mono">
+                  <%= type === 'players-builder-base' ? '🔨' : '🏆' %> <%= (player.trophies || player.builderBaseTrophies || 0).toLocaleString() %>
+                </td>
+                <td class="px-4 py-3.5 text-right">
+                  <a href="/player/<%= encodeURIComponent(player.tag) %>" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-xs font-semibold text-slate-300 transition">
+                    <%= t('leaderboard.profile') %>
+                  </a>
+                </td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+
+      <% } else { %>
+        <!-- Clans Table -->
+        <table class="w-full text-left text-sm text-slate-300">
+          <thead class="text-xs text-slate-400 uppercase bg-slate-900/80 border-b border-slate-800">
+            <tr>
+              <th class="px-4 py-3"><%= t('leaderboard.rank') %></th>
+              <th class="px-4 py-3"><%= t('leaderboard.clan') %></th>
+              <th class="px-4 py-3"><%= t('clan.level') %></th>
+              <th class="px-4 py-3"><%= t('clan.members') %></th>
+              <th class="px-4 py-3 text-right"><%= t('clan.clanPoints') %></th>
+              <th class="px-4 py-3 text-right"><%= t('leaderboard.inspect') %></th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60">
+            <% (items || []).forEach(function(clan, idx) { %>
+              <tr class="hover:bg-slate-800/40 transition">
+                <td class="px-4 py-3.5 font-bold font-mono">
+                  <% const r = clan.rank || (idx + 1); %>
+                  <% if (r === 1) { %>
+                    <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-400/20 text-amber-400 text-xs border border-amber-400/40">1</span>
+                  <% } else if (r === 2) { %>
+                    <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-slate-300/20 text-slate-300 text-xs border border-slate-300/40">2</span>
+                  <% } else if (r === 3) { %>
+                    <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-700/20 text-amber-600 text-xs border border-amber-700/40">3</span>
+                  <% } else { %>
+                    <span class="text-slate-400 text-xs px-1.5"><%= r %></span>
+                  <% } %>
+                </td>
+                <td class="px-4 py-3.5 font-bold text-white">
+                  <a href="/clan/<%= encodeURIComponent(clan.tag) %>" class="hover:text-amber-400 transition flex items-center gap-2">
+                    <% if (clan.badgeUrls) { %><img src="<%= clan.badgeUrls.small %>" class="w-5 h-5 object-contain"><% } %>
+                    <span><%= clan.name %></span>
+                    <span class="text-[10px] text-slate-500 font-mono font-normal"><%= clan.tag %></span>
+                  </a>
+                </td>
+                <td class="px-4 py-3.5">
+                  <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 text-xs font-bold border border-amber-500/20">
+                    Seviye <%= clan.clanLevel %>
+                  </span>
+                </td>
+                <td class="px-4 py-3.5 text-slate-300 font-mono text-xs">
+                  👥 <%= clan.members %>/50
+                </td>
+                <td class="px-4 py-3.5 text-right font-bold text-amber-400 font-mono">
+                  <%= (clan.clanPoints || clan.clanBuilderBasePoints || clan.clanCapitalPoints || 0).toLocaleString() %>
+                </td>
+                <td class="px-4 py-3.5 text-right">
+                  <a href="/clan/<%= encodeURIComponent(clan.tag) %>" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-xs font-semibold text-slate-300 transition">
+                    İncele
+                  </a>
+                </td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      <% } %>
+
+    </div>
+  </div>
+
+</main>
+
+<%- include('partials/footer') %>

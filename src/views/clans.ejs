@@ -1,0 +1,170 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+
+  <div class="mb-8">
+    <h1 class="heading-font text-3xl sm:text-4xl font-extrabold text-white"><%= t('clans.title') %></h1>
+    <p class="text-sm text-slate-400 mt-1"><%= t('clans.subtitle') %></p>
+  </div>
+
+  <!-- Advanced Search & Filter Bar -->
+  <form action="/clans" method="GET" class="glass-card rounded-3xl p-6 mb-8 border border-slate-800 space-y-4 shadow-xl">
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div>
+        <label class="block text-xs font-semibold text-slate-300 uppercase mb-1.5"><%= t('clans.clanName') %></label>
+        <input 
+          type="text" 
+          name="name" 
+          value="<%= query.name || '' %>" 
+          placeholder="Örn: Anadolu, Warriors..." 
+          class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500"
+        >
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-slate-300 uppercase mb-1.5"><%= t('clans.minClanLevel') %></label>
+        <input 
+          type="number" 
+          name="minClanLevel" 
+          value="<%= query.minClanLevel || '' %>" 
+          placeholder="Örn: 10" 
+          min="1" 
+          max="35"
+          class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500"
+        >
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-slate-300 uppercase mb-1.5"><%= t('clans.minMembers') %></label>
+        <input 
+          type="number" 
+          name="minMembers" 
+          value="<%= query.minMembers || '' %>" 
+          placeholder="Örn: 20" 
+          min="1" 
+          max="50"
+          class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500"
+        >
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-slate-300 uppercase mb-1.5"><%= t('clans.warFrequency') %></label>
+        <select name="warFrequency" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+          <option value=""><%= t('clans.any') %></option>
+          <option value="always" <%= query.warFrequency === 'always' ? 'selected' : '' %>><%= t('clans.always') %></option>
+          <option value="moreThanOncePerWeek" <%= query.warFrequency === 'moreThanOncePerWeek' ? 'selected' : '' %>><%= t('clans.moreThanOncePerWeek') %></option>
+          <option value="oncePerWeek" <%= query.warFrequency === 'oncePerWeek' ? 'selected' : '' %>><%= t('clans.oncePerWeek') %></option>
+          <option value="lessThanOncePerWeek" <%= query.warFrequency === 'lessThanOncePerWeek' ? 'selected' : '' %>><%= t('clans.lessThanOncePerWeek') %></option>
+          <option value="never" <%= query.warFrequency === 'never' ? 'selected' : '' %>><%= t('clans.never') %></option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Second Row: Location & Labels -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 border-t border-slate-800">
+      <div>
+        <label class="block text-xs font-semibold text-slate-300 uppercase mb-1.5"><%= t('clans.location') %></label>
+        <select name="locationId" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+          <option value=""><%= t('clans.allWorld') %></option>
+          <option value="32000239" <%= query.locationId === '32000239' ? 'selected' : '' %>>🇹🇷 Türkiye</option>
+          <% if (typeof locations !== 'undefined' && locations.length > 0) { %>
+            <% locations.forEach(function(loc) { %>
+              <% if (loc.countryCode !== 'TR') { %>
+                <option value="<%= loc.id %>" <%= query.locationId == loc.id ? 'selected' : '' %>><%= loc.name %></option>
+              <% } %>
+            <% }); %>
+          <% } %>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-slate-300 uppercase mb-1.5"><%= t('clans.labels') %></label>
+        <select name="labelIds" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+          <option value=""><%= t('clans.allLabels') %></option>
+          <% if (typeof labels !== 'undefined' && labels.length > 0) { %>
+            <% labels.forEach(function(l) { %>
+              <option value="<%= l.id %>" <%= query.labelIds == l.id ? 'selected' : '' %>><%= l.name %></option>
+            <% }); %>
+          <% } %>
+        </select>
+      </div>
+
+      <div class="flex items-end">
+        <button type="submit" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 font-bold text-slate-950 text-sm shadow-lg shadow-amber-500/20 transition">
+          <%= t('clans.filterBtn') %>
+        </button>
+      </div>
+    </div>
+
+  </form>
+
+  <!-- Clan Results Grid -->
+  <div>
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="font-bold text-white text-sm">
+        <%= (clans && clans.length) ? clans.length : 0 %> <%= t('clans.resultsFound') %>
+      </h3>
+    </div>
+
+    <% if (clans && clans.length > 0) { %>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <% clans.forEach(function(c) { %>
+          <a href="/clan/<%= encodeURIComponent(c.tag) %>" class="glass-card glass-card-hover rounded-3xl p-5 border border-slate-800 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center space-x-3.5 mb-3">
+                <div class="w-14 h-14 rounded-2xl bg-slate-900 p-1 flex items-center justify-center border border-slate-700 flex-shrink-0">
+                  <% if (c.badgeUrls) { %>
+                    <img src="<%= c.badgeUrls.small || c.badgeUrls.medium %>" alt="<%= c.name %>" class="w-10 h-10 object-contain">
+                  <% } else { %>
+                    <i data-lucide="shield" class="w-8 h-8 text-amber-400"></i>
+                  <% } %>
+                </div>
+                <div class="min-w-0 flex-1">
+                  <h4 class="font-bold text-white text-base group-hover:text-amber-400 transition truncate"><%= c.name %></h4>
+                  <span class="text-xs font-mono text-slate-400"><%= c.tag %></span>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2 text-xs mb-3">
+                <div class="bg-slate-900/80 p-2 rounded-xl border border-slate-800">
+                  <span class="text-slate-500 text-[10px] uppercase font-bold block"><%= t('clan.level') %></span>
+                  <span class="text-white font-mono font-bold text-sm">Seviye <%= c.clanLevel %></span>
+                </div>
+                <div class="bg-slate-900/80 p-2 rounded-xl border border-slate-800">
+                  <span class="text-slate-500 text-[10px] uppercase font-bold block"><%= t('clan.members') %></span>
+                  <span class="text-white font-mono font-bold text-sm">👥 <%= c.members %>/50</span>
+                </div>
+                <div class="bg-slate-900/80 p-2 rounded-xl border border-slate-800">
+                  <span class="text-slate-500 text-[10px] uppercase font-bold block"><%= t('clan.clanPoints') %></span>
+                  <span class="text-amber-400 font-mono font-bold text-sm">🏆 <%= (c.clanPoints || 0).toLocaleString() %></span>
+                </div>
+                <div class="bg-slate-900/80 p-2 rounded-xl border border-slate-800">
+                  <span class="text-slate-500 text-[10px] uppercase font-bold block"><%= t('clan.winStreak') %></span>
+                  <span class="text-emerald-400 font-mono font-bold text-sm">🔥 <%= c.warWinStreak || 0 %></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+              <span><%= c.location ? c.location.name : 'Global' %></span>
+              <span class="text-amber-400 font-bold group-hover:translate-x-1 transition flex items-center gap-1">
+                İncele <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </span>
+            </div>
+          </a>
+        <% }); %>
+      </div>
+    <% } else { %>
+      <div class="glass-card rounded-3xl p-12 text-center border border-slate-800">
+        <i data-lucide="search-x" class="w-12 h-12 text-slate-500 mx-auto mb-3"></i>
+        <h4 class="font-bold text-white text-base"><%= t('clans.noClansFound') %></h4>
+        <p class="text-xs text-slate-400 mt-1">Lütfen filtre kriterlerinizi değiştirerek tekrar deneyin.</p>
+      </div>
+    <% } %>
+  </div>
+
+</main>
+
+<%- include('partials/footer') %>

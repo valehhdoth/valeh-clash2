@@ -1,0 +1,133 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+
+  <!-- Header Banner -->
+  <div class="glass-card rounded-3xl p-8 mb-8 border border-slate-800 relative overflow-hidden shadow-2xl">
+    <div class="absolute -top-20 -right-20 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold mb-3">
+          <i data-lucide="medal" class="w-4 h-4"></i>
+          <span><%= t('leagues.badge') %></span>
+        </div>
+        <h1 class="heading-font text-3xl sm:text-4xl font-extrabold text-white">
+          <%= t('leagues.title') %>
+        </h1>
+        <p class="text-sm text-slate-300 mt-2 max-w-2xl">
+          <%= t('leagues.subtitle') %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabbed League Categories -->
+  <div class="tab-container glass-card rounded-3xl p-6 sm:p-8 mb-8 border border-slate-800 shadow-xl">
+    
+    <!-- Tab Buttons -->
+    <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-800 mb-8">
+      <div class="flex flex-wrap items-center space-x-1 sm:space-x-2 bg-slate-900 p-1.5 rounded-2xl border border-slate-800">
+        <button data-tab-target="#homeLeaguesTab" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-amber-500/20 text-amber-400 border border-amber-500 transition">
+          <%= t('leagues.homeLeagues') %> (<%= homeLeagues.length %>)
+        </button>
+        <button data-tab-target="#warLeaguesTab" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-400 border border-transparent hover:text-white transition">
+          <%= t('leagues.warLeagues') %> (<%= warLeagues.length %>)
+        </button>
+        <button data-tab-target="#capitalLeaguesTab" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-400 border border-transparent hover:text-white transition">
+          <%= t('leagues.capitalLeagues') %> (<%= capitalLeagues.length %>)
+        </button>
+        <button data-tab-target="#builderLeaguesTab" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-400 border border-transparent hover:text-white transition">
+          <%= t('leagues.builderLeagues') %> (<%= builderLeagues.length %>)
+        </button>
+        <button data-tab-target="#seasonsTab" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-400 border border-transparent hover:text-white transition">
+          <%= t('leagues.legendSeasons') %>
+        </button>
+      </div>
+    </div>
+
+    <!-- 1. Home Village Leagues -->
+    <div id="homeLeaguesTab" class="tab-pane grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+      <% homeLeagues.forEach(function(league) { %>
+        <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 text-center flex flex-col items-center justify-between hover:border-amber-500/40 transition">
+          <div class="w-16 h-16 mb-2 flex items-center justify-center">
+            <% if (league.iconUrls) { %>
+              <img src="<%= league.iconUrls.medium || league.iconUrls.small %>" alt="<%= league.name %>" class="w-14 h-14 object-contain">
+            <% } else { %>
+              <i data-lucide="shield" class="w-10 h-10 text-amber-400"></i>
+            <% } %>
+          </div>
+          <div>
+            <h4 class="font-bold text-white text-xs leading-tight mb-1"><%= league.name %></h4>
+            <span class="text-[10px] text-slate-500 font-mono">ID: <%= league.id %></span>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+
+    <!-- 2. War Leagues -->
+    <div id="warLeaguesTab" class="tab-pane hidden grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+      <% warLeagues.forEach(function(league) { %>
+        <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 text-center flex flex-col items-center justify-between hover:border-purple-500/40 transition">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-2">
+            <i data-lucide="swords" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-white text-xs leading-tight mb-1"><%= league.name %></h4>
+            <span class="text-[10px] text-slate-500 font-mono">ID: <%= league.id %></span>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+
+    <!-- 3. Capital Leagues -->
+    <div id="capitalLeaguesTab" class="tab-pane hidden grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+      <% capitalLeagues.forEach(function(league) { %>
+        <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 text-center flex flex-col items-center justify-between hover:border-amber-500/40 transition">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-2">
+            <i data-lucide="castle" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-white text-xs leading-tight mb-1"><%= league.name %></h4>
+            <span class="text-[10px] text-slate-500 font-mono">ID: <%= league.id %></span>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+
+    <!-- 4. Builder Base Leagues -->
+    <div id="builderLeaguesTab" class="tab-pane hidden grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+      <% builderLeagues.forEach(function(league) { %>
+        <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 text-center flex flex-col items-center justify-between hover:border-indigo-500/40 transition">
+          <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400 mb-2">
+            <i data-lucide="hammer" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-white text-xs leading-tight mb-1"><%= league.name %></h4>
+            <span class="text-[10px] text-slate-500 font-mono">ID: <%= league.id %></span>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+
+    <!-- 5. Legend Seasons Archive -->
+    <div id="seasonsTab" class="tab-pane hidden">
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        <% legendSeasons.forEach(function(s) { %>
+          <div class="bg-slate-900/70 p-4 rounded-2xl border border-slate-800 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-slate-400 uppercase font-semibold"><%= t('leagues.season') %></div>
+              <div class="font-bold text-amber-400 font-mono text-base"><%= s.id %></div>
+            </div>
+            <i data-lucide="history" class="w-5 h-5 text-slate-600"></i>
+          </div>
+        <% }); %>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,777 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-12">
+
+  <!-- ========================================================================= -->
+  <!-- ACTIVE ANNOUNCEMENTS BANNER (MANAGED FROM ADMIN PANEL) -->
+  <!-- ========================================================================= -->
+  <% if (typeof siteSettings !== 'undefined' && siteSettings && siteSettings.announcements) { %>
+    <% const activeAnnouncements = siteSettings.announcements.filter(a => a.active); %>
+    <% if (activeAnnouncements.length > 0) { %>
+      <section class="space-y-3">
+        <% activeAnnouncements.forEach(function(ann) { %>
+          <div class="p-4 sm:p-5 rounded-3xl glass-card border flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xl transition hover:scale-[1.005]
+            <%= ann.type === 'success' ? 'border-emerald-500/30 bg-emerald-950/20' : 
+               (ann.type === 'warning' ? 'border-amber-500/30 bg-amber-950/20' : 
+               (ann.type === 'event' ? 'border-purple-500/30 bg-purple-950/20' : 'border-blue-500/30 bg-blue-950/20')) %>">
+            <div class="flex items-start sm:items-center space-x-3.5">
+              <div class="p-2.5 rounded-2xl flex-shrink-0
+                <%= ann.type === 'success' ? 'bg-emerald-500/20 text-emerald-400' : 
+                   (ann.type === 'warning' ? 'bg-amber-500/20 text-amber-400' : 
+                   (ann.type === 'event' ? 'bg-purple-500/20 text-purple-400' : 'bg-blue-500/20 text-blue-400')) %>">
+                <i data-lucide="<%= ann.type === 'warning' ? 'alert-triangle' : (ann.type === 'event' ? 'sparkles' : 'megaphone') %>" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider
+                    <%= ann.type === 'success' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 
+                       (ann.type === 'warning' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' : 
+                       (ann.type === 'event' ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30' : 'bg-blue-500/20 text-blue-300 border border-blue-500/30')) %>">
+                    <%= ann.badge || 'DUYURU' %>
+                  </span>
+                  <h3 class="font-bold text-white text-sm sm:text-base"><%= ann.title %></h3>
+                </div>
+                <p class="text-xs text-slate-300 mt-1 leading-relaxed"><%= ann.content %></p>
+              </div>
+            </div>
+            <% if (ann.link) { %>
+              <a href="<%= ann.link %>" class="px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-xs font-bold text-amber-400 transition flex items-center justify-center gap-1.5 self-start sm:self-auto flex-shrink-0 shadow">
+                <span>İncele</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </a>
+            <% } %>
+          </div>
+        <% }); %>
+      </section>
+    <% } %>
+  <% } %>
+
+  <!-- ========================================================================= -->
+  <!-- 1. HERO: FUTURISTIC CLASH COMMAND CENTER & SEARCH CONSOLE -->
+  <!-- ========================================================================= -->
+  <section class="relative overflow-hidden rounded-3xl glass-card p-6 sm:p-10 md:p-12 border border-amber-500/20 shadow-2xl">
+    
+    <!-- Cyber Grid & Ambient Background FX -->
+    <div class="absolute -top-40 -left-40 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-40 -right-40 w-[500px] h-[500px] bg-fuchsia-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+      <!-- Left Column: Title, Subtitle, Multi-Mode Search Console (7 Cols) -->
+      <div class="lg:col-span-7 space-y-6 text-left">
+        
+        <!-- Live System HUD Badge & Audio Toggle -->
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-900/90 border border-amber-500/30 text-[11px] font-mono font-bold text-amber-400 shadow-md">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <span><%= (typeof siteSettings !== 'undefined' && siteSettings.customTexts && siteSettings.customTexts.heroBadge) || t('hero.liveBadge') %></span>
+          </div>
+
+          <!-- Sound Effects Toggle Button -->
+          <button type="button" onclick="window.clashAudio.toggle()" id="soundToggleBtn" class="px-3 py-1 rounded-full bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-xs font-bold transition flex items-center gap-1.5 shadow">
+            <i data-lucide="volume-2" class="w-3.5 h-3.5 text-amber-400"></i>
+            <span class="text-amber-400" id="soundToggleText"><%= t('hero.soundOn') %></span>
+          </button>
+        </div>
+
+        <!-- Hero Headline -->
+        <% 
+          const customT = (typeof siteSettings !== 'undefined' && siteSettings.customTexts) || {};
+          const titlePrefix = customT.heroTitlePrefix || t('hero.titlePrefix');
+          const titleGradient = customT.heroTitleGradient || t('hero.titleGradient');
+          const titleSuffix = customT.heroTitleSuffix || t('hero.titleSuffix');
+          const subtitle = customT.heroSubtitle || t('hero.subtitle');
+        %>
+        <h1 class="heading-font text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-tight">
+          <%= titlePrefix %> <br>
+          <span class="text-gold-gradient"><%= titleGradient %></span> <span class="text-white"><%= titleSuffix %></span>
+        </h1>
+
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl">
+          <%= subtitle %>
+        </p>
+
+        <!-- Multi-Mode Search Console Box -->
+        <div class="bg-slate-950/80 p-4 sm:p-5 rounded-3xl border border-slate-800 shadow-xl space-y-4">
+          
+          <!-- Mode Tabs (Player / Clan / Advanced) -->
+          <div class="flex items-center space-x-2 border-b border-slate-800 pb-3 text-xs font-bold">
+            <button type="button" onclick="setSearchMode('player')" id="searchModePlayer" class="px-3 py-1.5 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/40 flex items-center gap-1.5 transition">
+              <i data-lucide="user" class="w-3.5 h-3.5"></i> <%= t('hero.searchPlayer') %>
+            </button>
+            <button type="button" onclick="setSearchMode('clan')" id="searchModeClan" class="px-3 py-1.5 rounded-xl text-slate-400 hover:text-white border border-transparent flex items-center gap-1.5 transition">
+              <i data-lucide="swords" class="w-3.5 h-3.5"></i> <%= t('hero.searchClan') %>
+            </button>
+            <a href="/clans" class="px-3 py-1.5 rounded-xl text-slate-400 hover:text-white border border-transparent flex items-center gap-1.5 transition ml-auto">
+              <i data-lucide="filter" class="w-3.5 h-3.5 text-cyan-400"></i> <%= t('hero.advancedSearch') %>
+            </a>
+          </div>
+
+          <!-- Interactive Search Input Form -->
+          <form action="/search-tag" method="GET" class="flex flex-col sm:flex-row gap-2.5">
+            <input type="hidden" name="type" id="searchTypeInput" value="player">
+            <div class="relative flex-grow">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                <i data-lucide="search" class="w-4 h-4 text-amber-400"></i>
+              </div>
+              <input 
+                type="text" 
+                name="tag" 
+                id="mainHeroSearchInput"
+                placeholder="<%= t('hero.playerPlaceholder') %>" 
+                class="tag-input w-full pl-10 pr-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500 font-mono text-sm shadow-inner transition"
+                required
+              >
+            </div>
+
+            <button type="submit" class="px-6 py-3 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 hover:from-amber-600 hover:to-amber-800 font-black text-slate-950 text-sm shadow-lg shadow-amber-500/25 hover:scale-[1.02] active:scale-[0.98] transition whitespace-nowrap flex items-center justify-center gap-1.5">
+              <span><%= t('hero.queryBtn') %></span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+          </form>
+
+          <!-- Instant Sample Chips -->
+          <div class="flex flex-wrap items-center gap-2 pt-1 text-xs">
+            <span class="text-slate-500 text-[11px]"><%= t('hero.quickExamples') %></span>
+            <button type="button" onclick="fillAndSearch('#9PRQL200', 'player')" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-amber-300 font-mono text-[11px] border border-slate-800 hover:border-amber-500/40 transition">
+              #9PRQL200 (Max TH18)
+            </button>
+            <button type="button" onclick="fillAndSearch('#2PP8RGLV', 'clan')" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-indigo-300 font-mono text-[11px] border border-slate-800 hover:border-indigo-500/40 transition">
+              #2PP8RGLV (Anatolia CWL)
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Right Column: Dual 3D Hero Pedestals with Equipped Items (5 Cols) -->
+      <div class="lg:col-span-5 flex items-center justify-center">
+        <div class="grid grid-cols-2 gap-4 w-full max-w-md">
+          
+          <!-- Barbarian King Pedestal Card -->
+          <div class="hero-card p-4 rounded-3xl border border-slate-800 flex flex-col items-center justify-between text-center group relative overflow-hidden">
+            <div class="w-full flex items-center justify-between mb-1">
+              <span class="px-2 py-0.5 rounded-md text-[9px] font-black bg-amber-400/20 text-amber-300 border border-amber-400/40"><%= t('hero.maxBadge') %> 105</span>
+              <span class="text-[10px] text-slate-400 font-mono">👑 <%= t('hero.barbarianKing') %></span>
+            </div>
+
+            <!-- Hero Image -->
+            <div class="relative w-full h-40 flex items-center justify-center my-1">
+              <div class="absolute w-20 h-20 bg-amber-500/20 rounded-full blur-xl group-hover:bg-amber-500/30 transition"></div>
+              <img 
+                src="<%= getHeroImage('Barbarian King') %>" 
+                alt="Barbarian King" 
+                class="relative z-10 max-h-36 max-w-full object-contain drop-shadow-2xl group-hover:scale-105 transition duration-300"
+                onerror="this.src='/images/assets/barbarian_king_info.png'"
+              >
+            </div>
+
+            <h4 class="font-extrabold text-white text-xs mb-2"><%= t('hero.barbarianKing') %></h4>
+
+            <!-- Active Hero Equipment Mini Showcase -->
+            <div class="w-full flex items-center justify-center gap-1.5 pt-2 border-t border-slate-800/80">
+              <div class="w-7 h-7 rounded-lg bg-slate-950 p-0.5 border border-slate-800 flex items-center justify-center" title="Giant Gauntlet">
+                <img src="<%= getEquipmentImage('Giant Gauntlet') %>" class="w-5 h-5 object-contain" onerror="this.src='/images/assets/giant_gauntlet.png'">
+              </div>
+              <div class="w-7 h-7 rounded-lg bg-slate-950 p-0.5 border border-slate-800 flex items-center justify-center" title="Spiky Ball">
+                <img src="<%= getEquipmentImage('Spiky Ball') %>" class="w-5 h-5 object-contain" onerror="this.src='/images/assets/spiky_ball.png'">
+              </div>
+            </div>
+          </div>
+
+          <!-- Archer Queen Pedestal Card -->
+          <div class="hero-card p-4 rounded-3xl border border-slate-800 flex flex-col items-center justify-between text-center group relative overflow-hidden">
+            <div class="w-full flex items-center justify-between mb-1">
+              <span class="px-2 py-0.5 rounded-md text-[9px] font-black bg-fuchsia-400/20 text-fuchsia-300 border border-fuchsia-400/40"><%= t('hero.maxBadge') %> 105</span>
+              <span class="text-[10px] text-slate-400 font-mono">🏹 <%= t('hero.archerQueen') %></span>
+            </div>
+
+            <!-- Hero Image -->
+            <div class="relative w-full h-40 flex items-center justify-center my-1">
+              <div class="absolute w-20 h-20 bg-fuchsia-500/20 rounded-full blur-xl group-hover:bg-fuchsia-500/30 transition"></div>
+              <img 
+                src="<%= getHeroImage('Archer Queen') %>" 
+                alt="Archer Queen" 
+                class="relative z-10 max-h-36 max-w-full object-contain drop-shadow-2xl group-hover:scale-105 transition duration-300"
+                onerror="this.src='/images/assets/archer_queen_info.png'"
+              >
+            </div>
+
+            <h4 class="font-extrabold text-white text-xs mb-2"><%= t('hero.archerQueen') %></h4>
+
+            <!-- Active Hero Equipment Mini Showcase -->
+            <div class="w-full flex items-center justify-center gap-1.5 pt-2 border-t border-slate-800/80">
+              <div class="w-7 h-7 rounded-lg bg-slate-950 p-0.5 border border-slate-800 flex items-center justify-center" title="Frozen Arrow">
+                <img src="<%= getEquipmentImage('Frozen Arrow') %>" class="w-5 h-5 object-contain" onerror="this.src='/images/assets/frozen_arrow.png'">
+              </div>
+              <div class="w-7 h-7 rounded-lg bg-slate-950 p-0.5 border border-slate-800 flex items-center justify-center" title="Magic Mirror">
+                <img src="<%= getEquipmentImage('Magic Mirror') %>" class="w-5 h-5 object-contain" onerror="this.src='/images/assets/magic_mirror.png'">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 2. INTERACTIVE HERO EQUIPMENT SYNERGY LAB -->
+  <!-- ========================================================================= -->
+  <section class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-2xl">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800 mb-6">
+      <div>
+        <div class="inline-flex items-center gap-1.5 text-xs font-bold text-fuchsia-400 uppercase tracking-wider mb-1">
+          <i data-lucide="sparkles" class="w-4 h-4"></i> <%= t('lab.badge') %>
+        </div>
+        <h2 class="heading-font text-2xl font-extrabold text-white"><%= t('lab.title') %></h2>
+      </div>
+      <span class="text-xs text-slate-400"><%= t('lab.subtitle') %></span>
+    </div>
+
+    <!-- Hero Selector Buttons -->
+    <div class="flex flex-wrap items-center gap-2 mb-6">
+      <button type="button" onclick="selectLabHero('bk')" id="labBtn-bk" class="lab-hero-btn px-4 py-2 rounded-2xl font-bold bg-amber-500/20 text-amber-400 border border-amber-500 flex items-center gap-2 transition text-xs">
+        <span>👑 <%= t('hero.barbarianKing') %></span>
+      </button>
+      <button type="button" onclick="selectLabHero('aq')" id="labBtn-aq" class="lab-hero-btn px-4 py-2 rounded-2xl font-bold text-slate-400 hover:text-white border border-transparent flex items-center gap-2 transition text-xs">
+        <span>🏹 <%= t('hero.archerQueen') %></span>
+      </button>
+      <button type="button" onclick="selectLabHero('gw')" id="labBtn-gw" class="lab-hero-btn px-4 py-2 rounded-2xl font-bold text-slate-400 hover:text-white border border-transparent flex items-center gap-2 transition text-xs">
+        <span>📖 <%= t('hero.grandWarden') %></span>
+      </button>
+      <button type="button" onclick="selectLabHero('rc')" id="labBtn-rc" class="lab-hero-btn px-4 py-2 rounded-2xl font-bold text-slate-400 hover:text-white border border-transparent flex items-center gap-2 transition text-xs">
+        <span>🛡️ <%= t('hero.royalChampion') %></span>
+      </button>
+      <button type="button" onclick="selectLabHero('mp')" id="labBtn-mp" class="lab-hero-btn px-4 py-2 rounded-2xl font-bold text-slate-400 hover:text-white border border-transparent flex items-center gap-2 transition text-xs">
+        <span>🦇 <%= t('hero.minionPrince') %></span>
+      </button>
+    </div>
+
+    <!-- Equipment Interactive Grid & Synergy Score -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+      
+      <!-- Available Equipments Selector (8 cols) -->
+      <div class="lg:col-span-8 space-y-3">
+        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider"><%= t('lab.selectEquipment') %></div>
+        <div id="labEquipmentGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          <!-- Dynamically populated by JS -->
+        </div>
+      </div>
+
+      <!-- Synergy Preview Box (4 cols) -->
+      <div class="lg:col-span-4 bg-slate-950 p-6 rounded-3xl border border-slate-800 flex flex-col justify-between space-y-4">
+        <div>
+          <div class="text-[10px] uppercase tracking-wider text-slate-400 font-bold"><%= t('lab.synergyScore') %></div>
+          <div id="labSynergyRating" class="heading-font text-3xl font-extrabold text-amber-400 my-1">⭐⭐⭐⭐⭐ 100/100</div>
+          <h4 id="labSynergyTitle" class="font-bold text-white text-base">Meta Dizilimi</h4>
+          <p id="labSynergyDesc" class="text-xs text-slate-400 mt-1 leading-relaxed">
+            Alan hasarı ve dev boyuta geçerek en zorlu Belediye 18 savunma çekirdeklerini yok eder.
+          </p>
+        </div>
+
+        <div class="space-y-2 pt-2 border-t border-slate-800/80 text-xs">
+          <div class="flex justify-between text-slate-300">
+            <span><%= t('lab.statDps') %></span>
+            <strong id="labStatDps" class="text-emerald-400 font-mono">+185 DPS</strong>
+          </div>
+          <div class="flex justify-between text-slate-300">
+            <span><%= t('lab.statHp') %></span>
+            <strong id="labStatHp" class="text-cyan-400 font-mono">+3,400 HP</strong>
+          </div>
+          <div class="flex justify-between text-slate-300">
+            <span><%= t('lab.statAbility') %></span>
+            <strong id="labStatAbility" class="text-amber-400 font-mono">Devasa Büyüme & Alan Hasarı</strong>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 3. TOWN HALL 1-18 3D EVOLUTION TIMELINE -->
+  <!-- ========================================================================= -->
+  <section class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-2xl">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800 mb-6">
+      <div>
+        <div class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-400 uppercase tracking-wider mb-1">
+          <i data-lucide="history" class="w-4 h-4"></i> <%= t('evolution.badge') %>
+        </div>
+        <h2 class="heading-font text-2xl font-extrabold text-white"><%= t('evolution.title') %></h2>
+      </div>
+      <div class="text-xs font-mono font-bold text-amber-400" id="thLevelDisplay"><%= t('evolution.level') %> 18 (<%= t('evolution.maxLevel') %>)</div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+      <!-- 3D Town Hall Showcase -->
+      <div class="md:col-span-5 flex flex-col items-center justify-center text-center">
+        <div class="w-44 h-44 rounded-3xl bg-slate-950 p-4 border border-slate-800 flex items-center justify-center shadow-2xl relative group">
+          <img 
+            id="thEvolutionImg" 
+            src="<%= getTownHallImage(18) %>" 
+            alt="Town Hall 18"
+            class="w-36 h-36 object-contain drop-shadow-2xl group-hover:scale-110 transition duration-300"
+            onerror="this.src='/images/assets/town_hall_18.png'"
+          >
+        </div>
+        <h4 id="thEvolutionName" class="heading-font text-2xl font-bold text-white mt-3">Belediye Binası 18</h4>
+        <span id="thEvolutionWeapon" class="text-xs text-amber-400 font-semibold">İmza Silahı: Astral Kristal Nova & Kozmik Dalga</span>
+        <p id="thEvolutionDesc" class="text-xs text-slate-400 mt-2 max-w-sm text-center leading-relaxed">
+          Kozmik Clash çağı! En üst seviye Belediye Binası 18; yıkıcı Astral Nova ışınları sunar.
+        </p>
+      </div>
+
+      <!-- Evolution Slider & Details -->
+      <div class="md:col-span-7 space-y-6">
+        <div class="space-y-2">
+          <div class="flex justify-between text-xs font-bold text-slate-400">
+            <span>BB 1</span>
+            <span>BB 9</span>
+            <span>BB 14</span>
+            <span class="text-amber-400">BB 18 (Max)</span>
+          </div>
+          <input 
+            type="range" 
+            min="1" 
+            max="18" 
+            value="18" 
+            id="thRangeSlider" 
+            oninput="updateThEvolution(this.value)"
+            class="w-full h-3 bg-slate-900 rounded-lg appearance-none cursor-pointer accent-amber-500"
+          >
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 text-xs">
+          <div class="bg-slate-950 p-3.5 rounded-2xl border border-slate-800">
+            <span class="text-slate-500 block text-[10px] uppercase font-bold"><%= t('evolution.maxWalls') %></span>
+            <span id="thWallsText" class="text-white font-mono font-bold text-sm">350 Parça</span>
+          </div>
+          <div class="bg-slate-950 p-3.5 rounded-2xl border border-slate-800">
+            <span class="text-slate-500 block text-[10px] uppercase font-bold"><%= t('evolution.maxHeroes') %></span>
+            <span id="thHeroLvlText" class="text-amber-400 font-mono font-bold text-sm">Kral: 105, Kraliçe: 105</span>
+          </div>
+          <div class="bg-slate-950 p-3.5 rounded-2xl border border-slate-800">
+            <span class="text-slate-500 block text-[10px] uppercase font-bold"><%= t('evolution.signatureSpell') %></span>
+            <span id="thSpellText" class="text-fuchsia-400 font-mono font-bold text-sm">Kozmik Çarpıtma & Astral Koruma</span>
+          </div>
+          <div class="bg-slate-950 p-3.5 rounded-2xl border border-slate-800">
+            <span class="text-slate-500 block text-[10px] uppercase font-bold"><%= t('evolution.specialDefense') %></span>
+            <span id="thDefText" class="text-cyan-400 font-mono font-bold text-sm">Astral Taret & Boyutlararası Savunma</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 4. LIVE WAR ARENA & GOLD PASS -->
+  <!-- ========================================================================= -->
+  <% if (featuredClan && featuredWar) { %>
+  <section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    
+    <!-- Live War Status Card (8 Cols) -->
+    <div class="lg:col-span-8 glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 relative shadow-2xl">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-6">
+        <div class="flex items-center space-x-2.5">
+          <span class="w-3 h-3 rounded-full bg-rose-500 animate-pulse"></span>
+          <h2 class="heading-font text-xl font-bold text-white uppercase tracking-wider"><%= t('war.liveArena') %></h2>
+        </div>
+        <div class="text-xs font-bold px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-300">
+          <%= featuredWar.teamSize || 30 %>v<%= featuredWar.teamSize || 30 %> <%= t('war.warType') %>
+        </div>
+      </div>
+
+      <!-- VS Matchup Arena -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center text-center">
+        <!-- Friendly Clan -->
+        <div class="space-y-3">
+          <div class="w-20 h-20 mx-auto rounded-2xl bg-slate-900 p-1.5 flex items-center justify-center border-2 border-amber-500/40 shadow-xl">
+            <img src="<%= featuredWar.clan.badgeUrls ? (featuredWar.clan.badgeUrls.small || featuredWar.clan.badgeUrls.medium) : '' %>" alt="<%= featuredWar.clan.name %>" class="w-14 h-14 object-contain">
+          </div>
+          <div>
+            <h4 class="font-extrabold text-white text-lg"><%= featuredWar.clan.name %></h4>
+            <span class="text-xs text-amber-400 font-mono font-bold"><%= t('war.clanLevel') %> <%= featuredWar.clan.clanLevel %></span>
+          </div>
+          <div class="flex items-center justify-center gap-3 text-sm">
+            <div class="bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800">
+              <span class="text-amber-400 font-bold text-base"><%= featuredWar.clan.stars %> ⭐</span>
+              <div class="text-[10px] text-slate-400 uppercase"><%= t('war.stars') %></div>
+            </div>
+            <div class="bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800">
+              <span class="text-emerald-400 font-bold text-base">%<%= (featuredWar.clan.destructionPercentage || 0).toFixed(1) %></span>
+              <div class="text-[10px] text-slate-400 uppercase"><%= t('war.destruction') %></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Middle VS / Live Timer -->
+        <div class="flex flex-col items-center justify-center space-y-2 py-4">
+          <span class="heading-font text-4xl font-black text-slate-600 tracking-wider"><%= t('war.vs') %></span>
+          <div class="px-4 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-bold" data-countdown="<%= featuredWar.endTime %>">
+            <%= t('war.calculating') %>
+          </div>
+          <a href="/clan/<%= encodeURIComponent(featuredClan.tag) %>" class="mt-2 inline-flex items-center gap-1.5 text-xs font-bold text-amber-400 hover:text-amber-300 transition">
+            <%= t('war.detailedReport') %> <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+
+        <!-- Opponent Clan -->
+        <div class="space-y-3">
+          <div class="w-20 h-20 mx-auto rounded-2xl bg-slate-900 p-1.5 flex items-center justify-center border-2 border-slate-700 shadow-xl">
+            <img src="<%= featuredWar.opponent.badgeUrls ? (featuredWar.opponent.badgeUrls.small || featuredWar.opponent.badgeUrls.medium) : '' %>" alt="<%= featuredWar.opponent.name %>" class="w-14 h-14 object-contain">
+          </div>
+          <div>
+            <h4 class="font-extrabold text-white text-lg"><%= featuredWar.opponent.name %></h4>
+            <span class="text-xs text-slate-400 font-mono font-bold"><%= t('war.clanLevel') %> <%= featuredWar.opponent.clanLevel %></span>
+          </div>
+          <div class="flex items-center justify-center gap-3 text-sm">
+            <div class="bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800">
+              <span class="text-amber-400 font-bold text-base"><%= featuredWar.opponent.stars %> ⭐</span>
+              <div class="text-[10px] text-slate-400 uppercase"><%= t('war.stars') %></div>
+            </div>
+            <div class="bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
+              <span class="text-emerald-400 font-bold text-base">%<%= (featuredWar.opponent.destructionPercentage || 0).toFixed(1) %></span>
+              <div class="text-[10px] text-slate-400 uppercase"><%= t('war.destruction') %></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Featured Gold Pass Tracker (4 Cols) -->
+    <div class="lg:col-span-4 glass-card rounded-3xl p-6 sm:p-8 border border-amber-500/20 flex flex-col justify-between relative overflow-hidden shadow-2xl">
+      <div class="absolute -top-12 -right-12 w-48 h-48 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+      <div>
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+            <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i> <%= t('goldpass.tracker') %>
+          </span>
+          <span class="text-[11px] px-2.5 py-0.5 rounded-lg bg-amber-400/10 text-amber-300 font-mono font-bold"><%= goldPass ? goldPass.season : '2026-08' %></span>
+        </div>
+
+        <h3 class="heading-font text-2xl font-extrabold text-white mb-2"><%= goldPass ? goldPass.skinName : t('goldpass.title') %></h3>
+        <p class="text-xs text-slate-400 mb-4"><%= t('goldpass.description') %></p>
+
+        <div class="space-y-2.5">
+          <% if (goldPass && goldPass.perks) { %>
+            <% goldPass.perks.slice(0, 3).forEach(function(perk) { %>
+              <div class="flex items-center space-x-2.5 text-xs text-slate-300 bg-slate-900/70 p-2.5 rounded-xl border border-slate-800">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+                <span class="font-medium"><%= perk.title %></span>
+              </div>
+            <% }); %>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between">
+        <a href="/goldpass" class="w-full text-center py-3 rounded-2xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 text-xs font-bold border border-amber-500/30 transition shadow">
+          <%= t('goldpass.allRewards') %>
+        </a>
+      </div>
+
+    </div>
+
+  </section>
+  <% } %>
+
+  <!-- ========================================================================= -->
+  <!-- 5. TOP GLOBAL CHAMPIONS LEADERBOARD -->
+  <!-- ========================================================================= -->
+  <% if (topPlayers && topPlayers.length > 0) { %>
+  <section class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-2xl">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800 mb-6">
+      <div>
+        <h3 class="heading-font text-2xl font-extrabold text-white flex items-center gap-2.5">
+          <i data-lucide="trophy" class="w-6 h-6 text-amber-400"></i> <%= t('leaderboard.legendTitle') %>
+        </h3>
+        <p class="text-xs text-slate-400 mt-0.5"><%= t('leaderboard.legendSubtitle') %></p>
+      </div>
+
+      <a href="/rankings" class="inline-flex items-center gap-1 text-xs font-bold text-amber-400 hover:underline">
+        <%= t('leaderboard.viewAll') %> <i data-lucide="chevron-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-sm text-slate-300">
+        <thead class="text-xs text-slate-400 uppercase bg-slate-900/80 border-b border-slate-800">
+          <tr>
+            <th class="px-4 py-3"><%= t('leaderboard.rank') %></th>
+            <th class="px-4 py-3"><%= t('leaderboard.player') %></th>
+            <th class="px-4 py-3"><%= t('leaderboard.clan') %></th>
+            <th class="px-4 py-3"><%= t('leaderboard.level') %></th>
+            <th class="px-4 py-3 text-right"><%= t('leaderboard.trophies') %></th>
+            <th class="px-4 py-3 text-right"><%= t('leaderboard.inspect') %></th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-800/60">
+          <% topPlayers.slice(0, 5).forEach(function(player, idx) { %>
+            <tr class="hover:bg-slate-800/40 transition">
+              <td class="px-4 py-3.5 font-bold font-mono">
+                <% if (idx === 0) { %>
+                  <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-400/20 text-amber-400 text-xs border border-amber-400/40">1</span>
+                <% } else if (idx === 1) { %>
+                  <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-slate-300/20 text-slate-300 text-xs border border-slate-300/40">2</span>
+                <% } else if (idx === 2) { %>
+                  <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-700/20 text-amber-600 text-xs border border-amber-700/40">3</span>
+                <% } else { %>
+                  <span class="text-slate-400 text-xs px-1.5"><%= player.rank || (idx + 1) %></span>
+                <% } %>
+              </td>
+              <td class="px-4 py-3.5 font-bold text-white">
+                <a href="/player/<%= encodeURIComponent(player.tag) %>" class="hover:text-amber-400 transition flex items-center gap-2">
+                  <span><%= player.name %></span>
+                  <span class="text-[10px] text-slate-500 font-mono font-normal"><%= player.tag %></span>
+                </a>
+              </td>
+              <td class="px-4 py-3.5 text-slate-400">
+                <% if (player.clan) { %>
+                  <a href="/clan/<%= encodeURIComponent(player.clan.tag) %>" class="hover:text-slate-200 flex items-center gap-1.5">
+                    <% if (player.clan.badgeUrls) { %><img src="<%= player.clan.badgeUrls.small %>" class="w-4 h-4 object-contain"><% } %>
+                    <span><%= player.clan.name %></span>
+                  </a>
+                <% } else { %>
+                  <span class="text-slate-600">-</span>
+                <% } %>
+              </td>
+              <td class="px-4 py-3.5">
+                <span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 text-xs font-bold border border-blue-500/20">
+                  XP <%= player.expLevel || (player.townHallLevel ? 'BB ' + player.townHallLevel : '-') %>
+                </span>
+              </td>
+              <td class="px-4 py-3.5 text-right font-bold text-amber-400 font-mono">
+                🏆 <%= (player.trophies || 0).toLocaleString() %>
+              </td>
+              <td class="px-4 py-3.5 text-right">
+                <a href="/player/<%= encodeURIComponent(player.tag) %>" class="px-3 py-1 rounded-xl bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-xs font-bold text-slate-300 transition">
+                  <%= t('leaderboard.profile') %>
+                </a>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <% } %>
+
+</main>
+
+<!-- Inlined Safe Town Hall & Lab Data for Client Scripts -->
+<script>
+  const currentLang = '<%= typeof currentLang !== "undefined" ? currentLang : "tr" %>';
+  
+  // 1. Search Mode Handler
+  function setSearchMode(mode) {
+    const inputType = document.getElementById('searchTypeInput');
+    const searchInput = document.getElementById('mainHeroSearchInput');
+    const btnPlayer = document.getElementById('searchModePlayer');
+    const btnClan = document.getElementById('searchModeClan');
+
+    inputType.value = mode;
+
+    if (mode === 'player') {
+      btnPlayer.className = 'px-3 py-1.5 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/40 flex items-center gap-1.5 transition';
+      btnClan.className = 'px-3 py-1.5 rounded-xl text-slate-400 hover:text-white border border-transparent flex items-center gap-1.5 transition';
+      searchInput.placeholder = '<%= t("hero.playerPlaceholder") %>';
+    } else {
+      btnClan.className = 'px-3 py-1.5 rounded-xl bg-indigo-500/20 text-indigo-400 border border-indigo-500/40 flex items-center gap-1.5 transition';
+      btnPlayer.className = 'px-3 py-1.5 rounded-xl text-slate-400 hover:text-white border border-transparent flex items-center gap-1.5 transition';
+      searchInput.placeholder = '<%= t("hero.clanPlaceholder") %>';
+    }
+  }
+
+  function fillAndSearch(tag, type) {
+    setSearchMode(type);
+    const searchInput = document.getElementById('mainHeroSearchInput');
+    searchInput.value = tag;
+    searchInput.form.submit();
+  }
+
+  // 2. Hero Equipment Lab Data
+  const labData = {
+    bk: {
+      name: '<%= t("hero.barbarianKing") %>',
+      items: [
+        { name: 'Giant Gauntlet', file: 'giant_gauntlet.png', bonusDps: '+115', bonusHp: '+2800', note: 'Dev Büyüme' },
+        { name: 'Spiky Ball', file: 'spiky_ball.png', bonusDps: '+70', bonusHp: '+600', note: 'Zincirleme Sekme' },
+        { name: 'Rage Vial', file: 'rage_vial.png', bonusDps: '+150', bonusHp: '+1200', note: 'Öfke Hızı' },
+        { name: 'Earthquake Boots', file: 'earthquake_boots.png', bonusDps: '+40', bonusHp: '+800', note: 'Deprem Dalgası' },
+        { name: 'Vampstache', file: 'vampstache.png', bonusDps: '+55', bonusHp: '+1500', note: 'Can Çalma' },
+        { name: 'Barbarian Puppet', file: 'barbarian_puppet.png', bonusDps: '+30', bonusHp: '+400', note: 'Barbar Çağırma' }
+      ]
+    },
+    aq: {
+      name: '<%= t("hero.archerQueen") %>',
+      items: [
+        { name: 'Frozen Arrow', file: 'frozen_arrow.png', bonusDps: '+135', bonusHp: '+950', note: 'Buz Oku' },
+        { name: 'Magic Mirror', file: 'magic_mirror.png', bonusDps: '+160', bonusHp: '+1400', note: 'Klon Kraliçeler' },
+        { name: 'Invisibility Vial', file: 'invisibility_vial.png', bonusDps: '+120', bonusHp: '+800', note: 'Görünmezlik & Kritik' },
+        { name: 'Giant Arrow', file: 'giant_arrow.png', bonusDps: '+85', bonusHp: '+600', note: 'Haritayı Delen Ok' },
+        { name: 'Healer Puppet', file: 'healer_puppet.png', bonusDps: '+35', bonusHp: '+1100', note: 'Şifacı Çağırma' },
+        { name: 'Archer Puppet', file: 'archer_puppet.png', bonusDps: '+40', bonusHp: '+350', note: 'Okçu Çağırma' }
+      ]
+    },
+    gw: {
+      name: '<%= t("hero.grandWarden") %>',
+      items: [
+        { name: 'Eternal Tome', file: 'eternal_tome.png', bonusDps: '+50', bonusHp: '+700', note: 'Ölümsüzlük Halesi' },
+        { name: 'Healing Tome', file: 'healing_tome.png', bonusDps: '+40', bonusHp: '+950', note: 'Şifa Halesi' },
+        { name: 'Fireball', file: 'fireball.png', bonusDps: '+180', bonusHp: '+500', note: 'Alev Topu' },
+        { name: 'Rage Gem', file: 'rage_gem.png', bonusDps: '+80', bonusHp: '+400', note: 'Ordu Hasar Artışı' },
+        { name: 'Life Gem', file: 'life_gem.png', bonusDps: '+30', bonusHp: '+1200', note: 'Ordu Can Artışı' },
+        { name: 'Lavaloon Puppet', file: 'lavaloon_puppet.png', bonusDps: '+60', bonusHp: '+450', note: 'Lavaloon Çağırma' }
+      ]
+    },
+    rc: {
+      name: '<%= t("hero.royalChampion") %>',
+      items: [
+        { name: 'Rocket Spear', file: 'rocket_spear.png', bonusDps: '+140', bonusHp: '+850', note: 'Uzun Menzilli Roket' },
+        { name: 'Haste Vial', file: 'haste_vial.png', bonusDps: '+160', bonusHp: '+600', note: 'Hızlı Vuruş' },
+        { name: 'Seeking Shield', file: 'seeking_shield.png', bonusDps: '+75', bonusHp: '+900', note: 'Sekmeli Kalkan' },
+        { name: 'Royal Gem', file: 'royal_gem.png', bonusDps: '+45', bonusHp: '+1600', note: 'Tam Can Yenileme' },
+        { name: 'Electro Boots', file: 'electro_boots.png', bonusDps: '+90', bonusHp: '+750', note: 'Şok Dalgası' }
+      ]
+    },
+    mp: {
+      name: '<%= t("hero.minionPrince") %>',
+      items: [
+        { name: 'Dark Orb', file: 'dark_orb.png', bonusDps: '+110', bonusHp: '+650', note: 'Karanlık Bomba' },
+        { name: 'Henchmen Puppet', file: 'henchmen_puppet.png', bonusDps: '+50', bonusHp: '+800', note: 'Süper Minyon Muhafız' }
+      ]
+    }
+  };
+
+  let currentLabHero = 'bk';
+  let selectedItems = ['Giant Gauntlet', 'Spiky Ball'];
+
+  function selectLabHero(heroKey) {
+    currentLabHero = heroKey;
+    document.querySelectorAll('.lab-hero-btn').forEach(b => {
+      b.classList.remove('bg-amber-500/20', 'text-amber-400', 'border-amber-500');
+      b.classList.add('text-slate-400', 'border-transparent');
+    });
+    const btn = document.getElementById('labBtn-' + heroKey);
+    if (btn) {
+      btn.classList.add('bg-amber-500/20', 'text-amber-400', 'border-amber-500');
+      btn.classList.remove('text-slate-400', 'border-transparent');
+    }
+
+    const heroObj = labData[heroKey];
+    selectedItems = [heroObj.items[0].name, heroObj.items[1] ? heroObj.items[1].name : heroObj.items[0].name];
+    renderLabGrid();
+  }
+
+  function toggleLabItem(itemName) {
+    if (selectedItems.includes(itemName)) {
+      if (selectedItems.length > 1) {
+        selectedItems = selectedItems.filter(i => i !== itemName);
+      }
+    } else {
+      if (selectedItems.length >= 2) {
+        selectedItems.shift();
+      }
+      selectedItems.push(itemName);
+    }
+    if (window.clashAudio) window.clashAudio.playLevelUp();
+    renderLabGrid();
+  }
+
+  function renderLabGrid() {
+    const heroObj = labData[currentLabHero];
+    const grid = document.getElementById('labEquipmentGrid');
+    grid.innerHTML = '';
+
+    heroObj.items.forEach(item => {
+      const isSelected = selectedItems.includes(item.name);
+      const card = document.createElement('div');
+      card.className = `p-3 rounded-2xl border cursor-pointer transition flex items-center space-x-3 ${isSelected ? 'bg-amber-500/15 border-amber-500 shadow-lg shadow-amber-500/10 scale-[1.02]' : 'bg-slate-900/80 border-slate-800 hover:border-slate-700'}`;
+      card.onclick = () => toggleLabItem(item.name);
+
+      card.innerHTML = `
+        <div class="w-11 h-11 rounded-xl bg-slate-950 p-1 flex items-center justify-center border border-slate-800 flex-shrink-0 relative">
+          <img src="/images/assets/${item.file}" class="w-9 h-9 object-contain drop-shadow" onerror="this.src='/images/assets/giant_gauntlet.png'">
+          ${isSelected ? '<span class="absolute -top-1 -right-1 px-1 rounded text-[7px] font-black bg-amber-400 text-slate-950"><%= t("lab.selectedBadge") %></span>' : ''}
+        </div>
+        <div class="min-w-0 flex-1">
+          <h5 class="text-xs font-bold text-white truncate">${item.name}</h5>
+          <span class="text-[10px] text-fuchsia-400 font-mono font-bold block">${item.bonusDps} DPS • ${item.bonusHp} HP</span>
+          <span class="text-[9px] text-slate-400 truncate block">${item.note}</span>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    updateSynergyBox();
+  }
+
+  function updateSynergyBox() {
+    const heroObj = labData[currentLabHero];
+    const picked = heroObj.items.filter(i => selectedItems.includes(i.name));
+    
+    let totalDps = 0;
+    let totalHp = 0;
+    picked.forEach(p => {
+      totalDps += parseInt(p.bonusDps.replace('+', '')) || 0;
+      totalHp += parseInt(p.bonusHp.replace('+', '').replace(',', '')) || 0;
+    });
+
+    document.getElementById('labStatDps').innerText = `+${totalDps} DPS`;
+    document.getElementById('labStatHp').innerText = `+${totalHp.toLocaleString()} HP`;
+    document.getElementById('labStatAbility').innerText = picked.map(p => p.note).join(' + ');
+
+    if (totalDps >= 250) {
+      document.getElementById('labSynergyRating').innerText = '⭐⭐⭐⭐⭐ 100/100 (META)';
+      document.getElementById('labSynergyTitle').innerText = 'E-Spor Meta Dizilimi';
+      document.getElementById('labSynergyDesc').innerText = 'Dünya şampiyonası seviyesinde maksimum hasar ve hızlı merkez eritme sinerjisi.';
+    } else {
+      document.getElementById('labSynergyRating').innerText = '⭐⭐⭐⭐ 92/100 (GÜÇLÜ)';
+      document.getElementById('labSynergyTitle').innerText = 'Dengeli Hayatta Kalma Kombosu';
+      document.getElementById('labSynergyDesc').innerText = 'Uzun süreli saldırılarda yüksek dayanıklılık ve kesintisiz vuruş avantajı.';
+    }
+  }
+
+  // 3. Complete Town Hall 1 through 18 Evolution Data
+  const thData = <%- JSON.stringify(townHallData) %>;
+
+  function updateThEvolution(level) {
+    const lvl = parseInt(level) || 18;
+    const data = thData[lvl] || thData[18];
+
+    const thName = (data.name && data.name[currentLang]) ? data.name[currentLang] : (data.name?.tr || `Belediye Binası ${lvl}`);
+    const thWeapon = (data.weapon && data.weapon[currentLang]) ? data.weapon[currentLang] : (data.weapon?.tr || data.weapon);
+    const thWalls = (data.walls && data.walls[currentLang]) ? data.walls[currentLang] : (data.walls?.tr || data.walls);
+    const thHeroes = (data.heroes && data.heroes[currentLang]) ? data.heroes[currentLang] : (data.heroes?.tr || data.heroes);
+    const thSpell = (data.spell && data.spell[currentLang]) ? data.spell[currentLang] : (data.spell?.tr || data.spell);
+    const thDef = (data.def && data.def[currentLang]) ? data.def[currentLang] : (data.def?.tr || data.def);
+    const thDesc = (data.description && data.description[currentLang]) ? data.description[currentLang] : (data.description?.tr || '');
+
+    document.getElementById('thLevelDisplay').innerText = `<%= t("evolution.level") %> ${lvl} ${lvl === 18 ? '(<%= t("evolution.maxLevel") %>)' : ''}`;
+    document.getElementById('thEvolutionImg').src = data.image || `/images/assets/town_hall_${lvl}.png`;
+    document.getElementById('thEvolutionName').innerText = thName;
+    document.getElementById('thEvolutionWeapon').innerText = thWeapon;
+    document.getElementById('thWallsText').innerText = thWalls;
+    document.getElementById('thHeroLvlText').innerText = thHeroes;
+    document.getElementById('thSpellText').innerText = thSpell;
+    document.getElementById('thDefText').innerText = thDef;
+    if (document.getElementById('thEvolutionDesc')) {
+      document.getElementById('thEvolutionDesc').innerText = thDesc;
+    }
+    if (window.clashAudio) window.clashAudio.playHover();
+  }
+
+  // Initialize on load
+  document.addEventListener('DOMContentLoaded', () => {
+    selectLabHero('bk');
+    updateThEvolution(18);
+  });
+</script>
+
+<%- include('partials/footer') %>
