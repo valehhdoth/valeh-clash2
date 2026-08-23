@@ -1,0 +1,515 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+
+<main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-8">
+
+  <!-- User Account Banner -->
+  <div class="glass-card rounded-3xl p-6 sm:p-8 border border-amber-500/20 shadow-2xl relative overflow-hidden">
+    <div class="absolute -top-24 -right-24 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+      <div class="flex items-center space-x-4">
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 via-amber-500 to-amber-700 p-0.5 shadow-xl flex-shrink-0 flex items-center justify-center">
+          <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center text-2xl">
+            👑
+          </div>
+        </div>
+        <div>
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/10 text-[10px] font-bold text-amber-400 border border-amber-500/30 uppercase tracking-widest mb-1">
+            Köy Gelişim & İlerleme Merkezi
+          </div>
+          <h1 class="heading-font text-3xl font-extrabold text-white">Hoş Geldin, <%= user.username %>!</h1>
+          <p class="text-xs text-slate-400 mt-0.5">Köyünün binalarını, kahramanlarını, birliklerini ve lig gelişimini takip et.</p>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-3 flex-wrap">
+        <div class="px-4 py-2 rounded-2xl bg-slate-900 border border-slate-800 text-xs text-slate-300">
+          Bağlı Köyler: <span class="text-amber-400 font-bold font-mono"><%= (user.linkedVillages || []).length %></span>
+        </div>
+        <a href="/logout" class="px-4 py-2 rounded-2xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs font-bold transition flex items-center gap-1.5 shadow">
+          <i data-lucide="log-out" class="w-4 h-4"></i> Çıkış
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success / Alert Notifications -->
+  <% if (msg) { %>
+    <div class="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-bold flex items-center justify-between shadow-lg">
+      <div class="flex items-center space-x-2.5">
+        <i data-lucide="check-circle" class="w-5 h-5 text-emerald-400"></i>
+        <span>
+          <% if (msg === 'welcome') { %>Hoş geldiniz! Hesabınız başarıyla oluşturuldu. Şimdi köyünüzü bağlayabilirsiniz.<% } %>
+          <% if (msg === 'village_linked') { %>Köyünüz başarıyla hesabınıza bağlandı ve tüm bina/asker/lig verileri kaydedildi!<% } %>
+          <% if (msg === 'village_unlinked') { %>Köy bağlantısı kaldırıldı.<% } %>
+          <% if (msg === 'snapshot_saved') { %>Tüm binalar, kahramanlar, büyüler ve lig istatistikleri başarıyla güncellendi!<% } %>
+        </span>
+      </div>
+      <button onclick="this.parentElement.remove()" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
+    </div>
+  <% } %>
+
+  <% if (error) { %>
+    <div class="p-4 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs font-bold flex items-center justify-between shadow-lg">
+      <div class="flex items-center space-x-2.5">
+        <i data-lucide="alert-circle" class="w-5 h-5 text-rose-400"></i>
+        <span><%= error %></span>
+      </div>
+      <button onclick="this.parentElement.remove()" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
+    </div>
+  <% } %>
+
+  <!-- Linked Villages Navigation Tabs (Multi-Account Switcher) -->
+  <% if (user.linkedVillages && user.linkedVillages.length > 0) { %>
+    <div class="flex items-center gap-2 overflow-x-auto pb-2">
+      <% user.linkedVillages.forEach(function(v) { %>
+        <% const isSelected = (selectedTag === v.tag); %>
+        <a href="/my-account?tag=<%= encodeURIComponent(v.tag) %>" class="px-4 py-2.5 rounded-2xl text-xs font-bold transition flex items-center gap-2 flex-shrink-0 shadow <%= isSelected ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-extrabold shadow-amber-500/20' : 'glass-card text-slate-300 hover:text-white border border-slate-800' %>">
+          <img src="<%= getTownHallImage(v.townHallLevel || 18) %>" class="w-5 h-5 object-contain" alt="TH">
+          <span><%= v.name || v.tag %></span>
+          <span class="font-mono text-[10px] <%= isSelected ? 'text-slate-950 opacity-80' : 'text-amber-400' %>"><%= v.tag %></span>
+        </a>
+      <% }); %>
+      <button onclick="document.getElementById('linkVillageModal').classList.remove('hidden')" class="px-3.5 py-2.5 rounded-2xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-bold text-amber-400 transition flex items-center gap-1.5 flex-shrink-0 shadow">
+        <i data-lucide="plus" class="w-4 h-4"></i> Yeni Köy Ekle
+      </button>
+    </div>
+  <% } %>
+
+  <!-- If NO Village Linked Yet -->
+  <% if (!user.linkedVillages || user.linkedVillages.length === 0) { %>
+    <div class="glass-card rounded-3xl p-8 sm:p-12 border border-slate-800 text-center space-y-6 max-w-xl mx-auto shadow-2xl">
+      <div class="w-20 h-20 rounded-3xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mx-auto text-4xl shadow-inner">
+        🏰
+      </div>
+      <div>
+        <h2 class="heading-font text-2xl font-black text-white">Henüz Bir Köy Bağlamadınız</h2>
+        <p class="text-xs text-slate-400 max-w-md mx-auto mt-1 leading-relaxed">
+          Clash of Clans oyuncu etiketinizi (#TAG) girerek köyünüzü hesabınıza bağlayın. Belediye Binası seviyenizi, binalarınızı, kahramanlarınızı, büyülerinizi ve savaş liginizi kaydedip gelişimini takip edelim.
+        </p>
+      </div>
+
+      <form action="/my-account/link-tag" method="POST" class="space-y-3">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+            <i data-lucide="hash" class="w-4 h-4"></i>
+          </div>
+          <input 
+            type="text" 
+            name="playerTag" 
+            placeholder="Örn: #9PRQL200 veya #2PP8RGLV" 
+            required 
+            class="tag-input w-full pl-10 pr-4 py-3.5 rounded-2xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 shadow-inner"
+          >
+        </div>
+        <button 
+          type="submit" 
+          class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 font-extrabold text-slate-950 text-sm shadow-lg shadow-amber-500/20 transition flex items-center justify-center gap-2"
+        >
+          <i data-lucide="link" class="w-4 h-4"></i>
+          <span>Köyümü Hesabıma Bağla</span>
+        </button>
+      </form>
+    </div>
+  <% } else if (liveVillage) { %>
+
+    <!-- ========================================================================= -->
+    <!-- 1. MAIN VILLAGE HUD & TH18 PROGRESSION CARD -->
+    <!-- ========================================================================= -->
+    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl relative overflow-hidden">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        
+        <!-- Village & Clan Identifiers -->
+        <div class="flex items-center space-x-5">
+          <div class="relative flex-shrink-0">
+            <img src="<%= getTownHallImage(liveVillage.townHallLevel || 18) %>" class="w-24 h-24 object-contain drop-shadow-2xl hover:scale-105 transition" alt="TH">
+            <span class="absolute -bottom-2 -right-1 px-2.5 py-0.5 rounded-full bg-amber-500 font-black text-xs text-slate-950 shadow border-2 border-slate-900">
+              TH <%= liveVillage.townHallLevel %>
+            </span>
+          </div>
+
+          <div>
+            <div class="flex items-center gap-2.5 flex-wrap">
+              <h2 class="heading-font text-2xl sm:text-3xl font-black text-white"><%= liveVillage.name %></h2>
+              <span class="font-mono text-xs text-amber-400 font-bold px-2.5 py-0.5 rounded-lg bg-slate-900 border border-slate-800"><%= liveVillage.tag %></span>
+            </div>
+
+            <!-- Town Hall Weapon & Clan Info -->
+            <div class="flex items-center gap-3 text-xs text-slate-300 mt-1.5 flex-wrap">
+              <% if (liveVillage.townHallWeaponLevel) { %>
+                <span class="px-2.5 py-0.5 rounded-md bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold flex items-center gap-1">
+                  ⚡ Giga Silah Lvl <%= liveVillage.townHallWeaponLevel %>
+                </span>
+              <% } %>
+
+              <% if (liveVillage.clan) { %>
+                <a href="/clan/<%= encodeURIComponent(liveVillage.clan.tag) %>" class="flex items-center gap-1.5 text-indigo-400 hover:underline font-bold">
+                  <i data-lucide="shield" class="w-3.5 h-3.5"></i>
+                  <span><%= liveVillage.clan.name %> (<%= liveVillage.role === 'leader' ? 'Lider' : (liveVillage.role === 'coLeader' ? 'Yardımcı Lider' : (liveVillage.role === 'admin' ? 'Büyük' : 'Üye')) %>)</span>
+                </a>
+              <% } else { %>
+                <span class="text-slate-500">Klansız</span>
+              <% } %>
+              <span>•</span>
+              <span>XP: <strong class="text-white"><%= liveVillage.expLevel %></strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Overall TH18 Completion Score & Actions -->
+        <div class="flex flex-col sm:flex-row items-center gap-4">
+          
+          <!-- TH18 Progress Meter -->
+          <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 text-center min-w-[160px]">
+            <div class="text-[10px] uppercase font-bold text-slate-400 tracking-wider mb-1">Maksimum TH18 Skoru</div>
+            <div class="heading-font text-2xl font-black text-amber-400 font-mono">
+              %<%= (history.latest && history.latest.completionPercentage) || 75 %>
+            </div>
+            <div class="w-full h-2 bg-slate-950 rounded-full overflow-hidden mt-1.5 border border-slate-800">
+              <div class="h-full bg-gradient-to-r from-amber-500 to-amber-600 rounded-full" style="width: <%= (history.latest && history.latest.completionPercentage) || 75 %>%"></div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex items-center gap-2 flex-wrap sm:flex-col lg:flex-row">
+            <form action="/my-account/snapshot" method="POST">
+              <input type="hidden" name="playerTag" value="<%= liveVillage.tag %>">
+              <button type="submit" class="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-slate-950 font-extrabold text-xs shadow-lg transition flex items-center gap-1.5">
+                <i data-lucide="camera" class="w-4 h-4"></i> Gelişimi Şimdi Kaydet
+              </button>
+            </form>
+
+            <a href="/player/<%= encodeURIComponent(liveVillage.tag) %>" target="_blank" class="px-3.5 py-2.5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-amber-400 border border-slate-700 font-bold text-xs shadow transition flex items-center gap-1.5">
+              <i data-lucide="external-link" class="w-4 h-4"></i> Profil
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- 2. PROGRESSION DIFF KPI CARDS (BİNALAR, KUPALAR, LİGLER, SAVAŞLAR) -->
+    <!-- ========================================================================= -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      
+      <!-- Town Hall & Buildings -->
+      <div class="glass-card p-5 rounded-3xl border border-slate-800 flex flex-col justify-between">
+        <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+          <span>Belediye & Binalar</span>
+          <i data-lucide="home" class="w-4 h-4 text-amber-400"></i>
+        </div>
+        <div>
+          <div class="heading-font text-3xl font-bold text-white font-mono flex items-center gap-2">
+            TH <%= liveVillage.townHallLevel %>
+            <% if (history.diffs && history.diffs.thDiff > 0) { %>
+              <span class="text-xs font-bold px-2 py-0.5 rounded-full font-mono bg-emerald-500/20 text-emerald-400">
+                +<%= history.diffs.thDiff %> Seviye
+              </span>
+            <% } %>
+          </div>
+          <p class="text-[11px] text-slate-400 mt-1">
+            Silah: Lvl <%= liveVillage.townHallWeaponLevel || 1 %>
+            <% if (liveVillage.builderHallLevel) { %>
+              • İÜ: BH <%= liveVillage.builderHallLevel %>
+            <% } %>
+          </p>
+        </div>
+      </div>
+
+      <!-- Savaş Ligi & Kupalar -->
+      <div class="glass-card p-5 rounded-3xl border border-slate-800 flex flex-col justify-between">
+        <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+          <span>Kupa & Savaş Ligi</span>
+          <i data-lucide="trophy" class="w-4 h-4 text-amber-400"></i>
+        </div>
+        <div>
+          <div class="heading-font text-3xl font-bold text-white font-mono flex items-center gap-2">
+            <%= (liveVillage.trophies || 0).toLocaleString() %>
+            <% if (history.diffs && history.diffs.trophiesDiff !== 0) { %>
+              <span class="text-xs font-bold px-2 py-0.5 rounded-full font-mono <%= history.diffs.trophiesDiff > 0 ? 'bg-emerald-500/20 text-emerald-400' : 'bg-rose-500/20 text-rose-400' %>">
+                <%= history.diffs.trophiesDiff > 0 ? '+' : '' %><%= history.diffs.trophiesDiff %>
+              </span>
+            <% } %>
+          </div>
+          <p class="text-[11px] text-amber-400 font-bold mt-1 truncate">
+            🏆 <%= liveVillage.league ? liveVillage.league.name : 'Lig Yok' %>
+          </p>
+        </div>
+      </div>
+
+      <!-- Savaş İstatistikleri -->
+      <div class="glass-card p-5 rounded-3xl border border-slate-800 flex flex-col justify-between">
+        <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+          <span>Savaş Yıldızları</span>
+          <i data-lucide="star" class="w-4 h-4 text-amber-400"></i>
+        </div>
+        <div>
+          <div class="heading-font text-3xl font-bold text-amber-400 font-mono flex items-center gap-2">
+            ⭐ <%= (liveVillage.warStars || 0).toLocaleString() %>
+            <% if (history.diffs && history.diffs.warStarsDiff > 0) { %>
+              <span class="text-xs font-bold px-2 py-0.5 rounded-full font-mono bg-emerald-500/20 text-emerald-400">
+                +<%= history.diffs.warStarsDiff %>
+              </span>
+            <% } %>
+          </div>
+          <p class="text-[11px] text-slate-400 mt-1">
+            ⚔️ <%= liveVillage.attackWins || 0 %> Galibiyet / 🛡️ <%= liveVillage.defenseWins || 0 %>
+          </p>
+        </div>
+      </div>
+
+      <!-- Klan Başkenti -->
+      <div class="glass-card p-5 rounded-3xl border border-slate-800 flex flex-col justify-between">
+        <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+          <span>Klan Başkenti Katkısı</span>
+          <i data-lucide="coins" class="w-4 h-4 text-amber-400"></i>
+        </div>
+        <div>
+          <div class="heading-font text-3xl font-bold text-amber-400 font-mono flex items-center gap-2">
+            🪙 <%= ((liveVillage.clanCapitalContributions || 0) / 1000).toFixed(0) %>k
+            <% if (history.diffs && history.diffs.capitalDiff > 0) { %>
+              <span class="text-xs font-bold px-2 py-0.5 rounded-full font-mono bg-emerald-500/20 text-emerald-400">
+                +<%= (history.diffs.capitalDiff / 1000).toFixed(0) %>k
+              </span>
+            <% } %>
+          </div>
+          <p class="text-[11px] text-slate-500 mt-1">Toplam altın katkısı</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- 3. HEROES & HERO EQUIPMENT PROGRESSION -->
+    <!-- ========================================================================= -->
+    <% if (liveVillage.heroes && liveVillage.heroes.length > 0) { %>
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl space-y-6">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+          <div>
+            <h3 class="heading-font text-xl font-bold text-white flex items-center gap-2">
+              <i data-lucide="crown" class="w-5 h-5 text-amber-400"></i> Kahraman & Ekipman Seviyeleri ve Gelişimi
+            </h3>
+            <p class="text-xs text-slate-400 mt-0.5">Her kahramanın mevcut seviyesi, maksimum kapasitesi ve son kayıttan bu yana artışı</p>
+          </div>
+          <span class="text-xs font-bold text-amber-400 px-3 py-1 rounded-xl bg-slate-900 border border-slate-800">
+            <%= liveVillage.heroes.length %> Kahraman
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <% liveVillage.heroes.forEach(function(hero) { %>
+            <% 
+              const heroDiff = (history.diffs && history.diffs.heroDiffs && history.diffs.heroDiffs[hero.name]) || 0;
+              const percent = Math.min(100, Math.round((hero.level / (hero.maxLevel || 1)) * 100));
+              const equipped = getHeroEquippedItems(hero, liveVillage.heroEquipment);
+            %>
+            <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex flex-col justify-between gap-3">
+              <div class="flex items-start space-x-3.5">
+                <img src="<%= getHeroImage(hero.name) %>" class="w-14 h-14 object-contain bg-slate-950 p-1 rounded-xl border border-slate-700 flex-shrink-0" alt="<%= hero.name %>">
+                <div class="flex-grow min-w-0">
+                  <div class="flex items-center justify-between">
+                    <h4 class="font-bold text-white text-sm truncate"><%= getEntityName(hero.name) %></h4>
+                    <span class="text-xs font-mono font-bold text-amber-400">
+                      Lvl <%= hero.level %>/<%= hero.maxLevel %>
+                    </span>
+                  </div>
+                  <!-- Progress Bar -->
+                  <div class="w-full h-2 bg-slate-950 rounded-full overflow-hidden mt-1.5 border border-slate-800">
+                    <div class="h-full bg-gradient-to-r from-amber-500 to-amber-600 rounded-full" style="width: <%= percent %>%"></div>
+                  </div>
+                  <div class="flex items-center justify-between text-[10px] text-slate-400 mt-1">
+                    <span>%<%= percent %> Max</span>
+                    <% if (heroDiff > 0) { %>
+                      <span class="text-emerald-400 font-bold bg-emerald-500/10 px-1.5 py-0.2 rounded">+<%= heroDiff %> Seviye</span>
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Equipped Equipment in Hero Card -->
+              <% if (equipped && equipped.length > 0) { %>
+                <div class="pt-2 border-t border-slate-800/80 grid grid-cols-2 gap-2">
+                  <% equipped.forEach(function(eq) { %>
+                    <div class="bg-slate-950/80 p-1.5 rounded-xl border border-slate-800/80 flex items-center space-x-2">
+                      <img src="<%= getEquipmentImage(eq.name) %>" class="w-6 h-6 object-contain" alt="<%= eq.name %>">
+                      <div class="min-w-0 flex-1">
+                        <div class="text-[11px] font-bold text-white truncate"><%= getEntityName(eq.name) %></div>
+                        <span class="text-[9px] text-amber-400 font-mono font-bold">Lvl <%= eq.level %>/<%= eq.maxLevel %></span>
+                      </div>
+                    </div>
+                  <% }); %>
+                </div>
+              <% } %>
+
+            </div>
+          <% }); %>
+        </div>
+      </div>
+    <% } %>
+
+    <!-- ========================================================================= -->
+    <!-- 4. TROOPS & SPELLS LEVEL PROGRESSION MATRIX -->
+    <!-- ========================================================================= -->
+    <% if (liveVillage.troops && liveVillage.troops.length > 0) { %>
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+          <div>
+            <h3 class="heading-font text-xl font-bold text-white flex items-center gap-2">
+              <i data-lucide="swords" class="w-5 h-5 text-cyan-400"></i> Birlik & Büyü Seviyeleri (<%= liveVillage.troops.length + (liveVillage.spells ? liveVillage.spells.length : 0) %>)
+            </h3>
+            <p class="text-xs text-slate-400 mt-0.5">Köyünüzdeki tüm asker ve büyülerin güncel seviyeleri</p>
+          </div>
+          <span class="text-xs font-mono text-slate-400">Canlı Oyun Verisi</span>
+        </div>
+
+        <!-- Troops Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2.5">
+          <% liveVillage.troops.forEach(function(troop) { %>
+            <% const trDiff = (history.diffs && history.diffs.troopDiffs && history.diffs.troopDiffs[troop.name]) || 0; %>
+            <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-center flex flex-col items-center justify-between relative">
+              <% if (trDiff > 0) { %>
+                <span class="absolute -top-1 -right-1 bg-emerald-500 text-slate-950 font-black text-[9px] px-1.5 py-0.2 rounded-full shadow">+<%= trDiff %></span>
+              <% } %>
+              <div class="w-10 h-10 rounded-lg bg-slate-950 p-0.5 flex items-center justify-center mb-1">
+                <img src="<%= getTroopImage(troop.name) %>" class="w-9 h-9 object-contain" alt="<%= troop.name %>">
+              </div>
+              <div class="text-[11px] font-bold text-white truncate w-full" title="<%= getEntityName(troop.name) %>"><%= getEntityName(troop.name) %></div>
+              <span class="text-[10px] font-mono font-bold mt-0.5 <%= troop.level >= troop.maxLevel ? 'text-amber-400' : 'text-slate-400' %>">
+                Lvl <%= troop.level %>/<%= troop.maxLevel %>
+              </span>
+            </div>
+          <% }); %>
+        </div>
+
+        <!-- Spells Grid -->
+        <% if (liveVillage.spells && liveVillage.spells.length > 0) { %>
+          <div class="pt-4 border-t border-slate-800">
+            <h4 class="text-xs font-bold text-fuchsia-400 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+              <i data-lucide="sparkles" class="w-4 h-4"></i> Büyü Seviyeleri
+            </h4>
+            <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2.5">
+              <% liveVillage.spells.forEach(function(spell) { %>
+                <% const spDiff = (history.diffs && history.diffs.spellDiffs && history.diffs.spellDiffs[spell.name]) || 0; %>
+                <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-center flex flex-col items-center justify-between relative">
+                  <% if (spDiff > 0) { %>
+                    <span class="absolute -top-1 -right-1 bg-emerald-500 text-slate-950 font-black text-[9px] px-1.5 py-0.2 rounded-full shadow">+<%= spDiff %></span>
+                  <% } %>
+                  <div class="w-10 h-10 rounded-lg bg-slate-950 p-0.5 flex items-center justify-center mb-1">
+                    <img src="<%= getSpellImage(spell.name) %>" class="w-9 h-9 object-contain" alt="<%= spell.name %>">
+                  </div>
+                  <div class="text-[11px] font-bold text-white truncate w-full" title="<%= getEntityName(spell.name) %>"><%= getEntityName(spell.name) %></div>
+                  <span class="text-[10px] font-mono font-bold mt-0.5 <%= spell.level >= spell.maxLevel ? 'text-amber-400' : 'text-slate-400' %>">
+                    Lvl <%= spell.level %>/<%= spell.maxLevel %>
+                  </span>
+                </div>
+              <% }); %>
+            </div>
+          </div>
+        <% } %>
+
+      </div>
+    <% } %>
+
+    <!-- ========================================================================= -->
+    <!-- 5. COMPREHENSIVE PROGRESSION TIMELINE (ZAMAN ÇİZELGESİ) -->
+    <!-- ========================================================================= -->
+    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl space-y-6">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+        <div>
+          <h3 class="heading-font text-xl font-bold text-white flex items-center gap-2">
+            <i data-lucide="history" class="w-5 h-5 text-cyan-400"></i> Köy İlerleme & Seviye Zaman Çizelgesi
+          </h3>
+          <p class="text-xs text-slate-400 mt-0.5">Her kayıttaki Belediye Binası, kupa, savaş ligi, kahraman ve büyü seviyeleriniz</p>
+        </div>
+        <span class="text-xs font-mono font-bold text-slate-400 px-3 py-1 rounded-xl bg-slate-900 border border-slate-800">
+          Toplam <%= (history.snapshots || []).length %> Kayıt
+        </span>
+      </div>
+
+      <% if (history.snapshots && history.snapshots.length > 0) { %>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs font-mono text-slate-300">
+            <thead class="text-slate-500 uppercase bg-slate-900/80 border-b border-slate-800">
+              <tr>
+                <th class="px-4 py-3">Tarih & Saat</th>
+                <th class="px-4 py-3">Belediye & Silah</th>
+                <th class="px-4 py-3">Savaş Ligi</th>
+                <th class="px-4 py-3">Kupa (Trophies)</th>
+                <th class="px-4 py-3">Savaş Yıldızı</th>
+                <th class="px-4 py-3">TH18 Max İlerleme</th>
+                <th class="px-4 py-3 text-right">Klan Katkısı</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/60">
+              <% history.snapshots.forEach(function(snp, index) { %>
+                <tr class="hover:bg-slate-800/30 transition">
+                  <td class="px-4 py-3 font-semibold text-slate-300 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full <%= index === 0 ? 'bg-emerald-400 animate-ping' : 'bg-slate-600' %>"></span>
+                    <span><%= snp.dateFormatted %></span>
+                    <% if (index === 0) { %>
+                      <span class="px-1.5 py-0.2 rounded text-[9px] bg-emerald-500/20 text-emerald-400 font-bold uppercase">En Son</span>
+                    <% } %>
+                  </td>
+                  <td class="px-4 py-3 text-white font-bold">
+                    🏛️ TH <%= snp.townHallLevel %> <% if (snp.townHallWeaponLevel) { %><span class="text-[10px] text-amber-400">(Silah Lvl <%= snp.townHallWeaponLevel %>)</span><% } %>
+                  </td>
+                  <td class="px-4 py-3 text-indigo-300 font-bold">
+                    🏆 <%= snp.league ? snp.league.name : 'Lig Yok' %>
+                  </td>
+                  <td class="px-4 py-3 text-amber-400 font-bold">
+                    🏆 <%= (snp.trophies || 0).toLocaleString() %>
+                  </td>
+                  <td class="px-4 py-3 text-slate-300">
+                    ⭐ <%= snp.warStars %>
+                  </td>
+                  <td class="px-4 py-3">
+                    <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">
+                      %<%= snp.completionPercentage || 70 %>
+                    </span>
+                  </td>
+                  <td class="px-4 py-3 text-right text-amber-500 font-bold">
+                    🪙 <%= (snp.clanCapitalContributions || 0).toLocaleString() %>
+                  </td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      <% } else { %>
+        <div class="text-center py-8 text-slate-500 text-xs">Henüz kaydedilmiş bir gelişim kaydı yok. "Gelişimi Şimdi Kaydet" butonuna basarak ilk kaydınızı oluşturun.</div>
+      <% } %>
+
+    </div>
+
+  <% } %>
+
+  <!-- Modal: Link Another Village Modal -->
+  <div id="linkVillageModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-md w-full border border-slate-700 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+        <h3 class="heading-font text-xl font-bold text-white">Yeni Köy Bağla</h3>
+        <button onclick="document.getElementById('linkVillageModal').classList.add('hidden')" class="text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <p class="text-xs text-slate-400">Yan hesabınızın veya başka bir köyünüzün oyuncu etiketini (#TAG) girin.</p>
+      
+      <form action="/my-account/link-tag" method="POST" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-400 mb-1">Oyuncu Etiketi (#TAG)</label>
+          <input type="text" name="playerTag" placeholder="#TAG" required class="tag-input w-full px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white font-mono text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+        </div>
+        <div class="flex items-center justify-end space-x-2">
+          <button type="button" onclick="document.getElementById('linkVillageModal').classList.add('hidden')" class="px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 font-bold text-xs">İptal</button>
+          <button type="submit" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 font-extrabold text-slate-950 text-xs shadow">Köyü Bağla</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</main>
+
+<%- include('../partials/footer') %>
