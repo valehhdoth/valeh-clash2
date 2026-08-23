@@ -1,0 +1,273 @@
+/* =========================================================
+   Clash of Clans Portal - Premium Gaming Design System
+   ========================================================= */
+
+/* -- Fonts ------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
+/* -- CSS Variables ----------------------------------------- */
+:root {
+  --gold: #f59e0b;
+  --gold-light: #fbbf24;
+  --gold-dim: rgba(245, 158, 11, 0.15);
+  --elixir: #d946ef;
+  --dark-elixir: #06b6d4;
+  --bg: #070a12;
+  --card: rgba(15, 23, 42, 0.72);
+  --border: rgba(255, 255, 255, 0.07);
+}
+
+/* -- Base -------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(ellipse at 0% 0%, rgba(245, 158, 11, 0.12) 0px, transparent 55%),
+    radial-gradient(ellipse at 100% 0%, rgba(217, 70, 239, 0.08) 0px, transparent 55%),
+    radial-gradient(ellipse at 50% 100%, rgba(6, 182, 212, 0.07) 0px, transparent 55%);
+  background-attachment: fixed;
+  color: #e2e8f0;
+  min-height: 100vh;
+}
+
+/* -- Typography -------------------------------------------- */
+.heading-font {
+  font-family: 'Rajdhani', sans-serif;
+  letter-spacing: 0.03em;
+}
+
+/* -- Glassmorphism Cards ----------------------------------- */
+.glass-card {
+  background: var(--card);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.4),
+    0 10px 40px -15px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card-hover:hover {
+  transform: translateY(-3px);
+  border-color: rgba(245, 158, 11, 0.35);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.4),
+    0 20px 50px -15px rgba(245, 158, 11, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* -- Navigation -------------------------------------------- */
+.glass-nav {
+  background: rgba(7, 10, 18, 0.9);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 1px 0 rgba(245, 158, 11, 0.05);
+}
+
+/* -- Text Gradients ---------------------------------------- */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-elixir-gradient {
+  background: linear-gradient(135deg, #f5d0fe 0%, #d946ef 50%, #9333ea 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-cyan-gradient {
+  background: linear-gradient(135deg, #cffafe 0%, #06b6d4 50%, #0369a1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* -- Custom Scrollbar -------------------------------------- */
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-track { background: #070a12; }
+::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #334155; }
+
+/* -- Animations -------------------------------------------- */
+@keyframes pulseGold {
+  0%, 100% { box-shadow: 0 0 10px rgba(245, 158, 11, 0.3); }
+  50%       { box-shadow: 0 0 22px rgba(245, 158, 11, 0.6); }
+}
+
+@keyframes pulseRed {
+  0%, 100% { box-shadow: 0 0 10px rgba(239, 68, 68, 0.3); }
+  50%       { box-shadow: 0 0 22px rgba(239, 68, 68, 0.65); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fadeInUp 0.5s ease both;
+}
+
+.war-active-glow {
+  animation: pulseRed 2.5s infinite ease-in-out;
+}
+
+/* -- Progress Bars ----------------------------------------- */
+.progress-gold {
+  background: linear-gradient(90deg, #d97706, #f59e0b, #fcd34d);
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+.progress-elixir {
+  background: linear-gradient(90deg, #9333ea, #d946ef, #f0abfc);
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+.progress-blue {
+  background: linear-gradient(90deg, #1d4ed8, #3b82f6, #93c5fd);
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+/* -- Town Hall Badges ------------------------------------- */
+.badge-th17 {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(4, 120, 87, 0.3));
+  border: 1px solid rgba(52, 211, 153, 0.45);
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.2);
+}
+
+.badge-level {
+  background: linear-gradient(135deg, #2563eb, #1e3a8a);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+}
+
+/* -- Hero Cards ------------------------------------------- */
+.hero-card {
+  position: relative;
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.9) 0%, rgba(7, 10, 18, 0.95) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.08), transparent 70%);
+  pointer-events: none;
+}
+
+.hero-card:hover {
+  transform: translateY(-5px) scale(1.01);
+  border-color: rgba(245, 158, 11, 0.4);
+  box-shadow: 0 20px 50px -10px rgba(245, 158, 11, 0.2);
+}
+
+/* -- Equipment / Troop Cards ------------------------------ */
+.item-card {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+  transition: all 0.25s ease;
+}
+
+.item-card:hover {
+  border-color: rgba(245, 158, 11, 0.35);
+  background: rgba(245, 158, 11, 0.04);
+  transform: scale(1.04);
+}
+
+/* -- Tables ----------------------------------------------- */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+tbody tr:first-child td { padding-top: 0.75rem; }
+tbody tr:last-child td { padding-bottom: 0.75rem; }
+
+/* -- Form Inputs ------------------------------------------ */
+input[type="text"],
+input[type="search"],
+select,
+textarea {
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus,
+select:focus {
+  outline: none;
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15) !important;
+}
+
+/* -- Clan Badge Glow -------------------------------------- */
+.clan-badge-glow {
+  filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
+  transition: filter 0.3s;
+}
+
+.clan-badge-glow:hover {
+  filter: drop-shadow(0 0 16px rgba(245, 158, 11, 0.8));
+}
+
+/* -- Tag Input -------------------------------------------- */
+.tag-input {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.03em;
+}
+
+/* -- Utility ---------------------------------------------- */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* -- Particle Background (subtle dots) -------------------- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 25% 35%, rgba(255, 255, 255, 0.04), transparent),
+    radial-gradient(1px 1px at 75% 65%, rgba(255, 255, 255, 0.03), transparent),
+    radial-gradient(1px 1px at 50% 50%, rgba(245, 158, 11, 0.025), transparent);
+  pointer-events: none;
+  z-index: -1;
+}
