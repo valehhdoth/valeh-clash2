@@ -1,0 +1,32 @@
+{
+  "name": "clash-of-clans-portal",
+  "version": "2.0.0",
+  "description": "Modern Clash of Clans Web Portal & Live Tracker (TH1-TH18, 3-Language i18n, Proxy Integrated)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "clash-of-clans",
+    "coc",
+    "supercell",
+    "nodejs",
+    "express",
+    "ejs",
+    "tailwind",
+    "th18",
+    "i18n"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.19.0",
+    "https-proxy-agent": "^7.0.6"
+  }
+}
