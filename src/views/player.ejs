@@ -1,0 +1,389 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+
+  <!-- Verification Result Alert (if submitted) -->
+  <% if (typeof verifyResult !== 'undefined' && verifyResult) { %>
+    <div class="mb-6 p-4 rounded-2xl border <%= verifyResult.status === 'ok' ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300' : 'bg-rose-500/10 border-rose-500/30 text-rose-300' %> flex items-center justify-between shadow-lg">
+      <div class="flex items-center space-x-3">
+        <i data-lucide="<%= verifyResult.status === 'ok' ? 'check-circle' : 'alert-triangle' %>" class="w-6 h-6"></i>
+        <div>
+          <h4 class="font-bold text-sm"><%= t('player.verificationReport') %></h4>
+          <p class="text-xs mt-0.5"><%= verifyResult.status === 'ok' ? t('player.verificationSuccess') : (`${t('player.verificationFailed')}: ` + (verifyResult.message || 'Invalid or expired token.')) %></p>
+        </div>
+      </div>
+      <span class="text-xs font-mono font-bold uppercase px-2.5 py-1 rounded bg-slate-900/80"><%= verifyResult.status %></span>
+    </div>
+  <% } %>
+
+  <!-- Player Hero Banner Header -->
+  <div class="glass-card rounded-3xl p-6 sm:p-8 mb-8 border border-slate-800 relative overflow-hidden shadow-2xl">
+    <div class="absolute -top-24 -right-24 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-fuchsia-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative z-10">
+      
+      <!-- Player Info & Avatar -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+        
+        <!-- Town Hall Art Box -->
+        <div class="relative group">
+          <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-2 border-amber-500/40 p-2 flex items-center justify-center shadow-xl shadow-amber-500/10 relative overflow-hidden">
+            <img 
+              src="<%= getTownHallImage(player.townHallLevel) %>" 
+              alt="Town Hall <%= player.townHallLevel %>" 
+              class="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md group-hover:scale-110 transition duration-300"
+              onerror="this.src='/images/assets/town_hall_18.png'"
+            >
+          </div>
+          <!-- Level Badge -->
+          <div class="absolute -bottom-2 -right-2 px-2.5 py-0.5 rounded-full badge-level text-white font-mono text-xs font-bold shadow-md border border-white/20">
+            XP <%= player.expLevel %>
+          </div>
+        </div>
+
+        <!-- Name & Badges -->
+        <div class="space-y-2">
+          <div class="flex flex-wrap items-center gap-3">
+            <h1 class="heading-font text-3xl sm:text-4xl font-black text-white tracking-wide"><%= player.name %></h1>
+            <button onclick="copyToClipboard('<%= player.tag %>', this)" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-xs font-mono font-bold text-amber-300 border border-slate-700 shadow transition" title="<%= t('player.copyTag') %>">
+              <span><%= player.tag %></span>
+              <i data-lucide="copy" class="w-3.5 h-3.5 text-slate-400"></i>
+            </button>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2 text-xs">
+            <span class="px-3 py-1 rounded-xl badge-th17 text-emerald-300 font-bold flex items-center gap-1.5 shadow">
+              <img src="<%= getTownHallImage(player.townHallLevel) %>" class="w-4 h-4 object-contain" onerror="this.src='/images/assets/town_hall_18.png'">
+              <span>BB <%= player.townHallLevel %></span>
+              <% if (player.townHallWeaponLevel) { %><span>(★<%= player.townHallWeaponLevel %>)</span><% } %>
+            </span>
+            <% if (player.builderHallLevel) { %>
+              <span class="px-3 py-1 rounded-xl bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-bold flex items-center gap-1.5 shadow">
+                <img src="<%= getBuilderHallImage(player.builderHallLevel) %>" class="w-4 h-4 object-contain" onerror="this.src='/images/assets/builder_hall10.png'">
+                <span>İB <%= player.builderHallLevel %></span>
+              </span>
+            <% } %>
+            <% if (player.role) { %>
+              <span class="px-3 py-1 rounded-xl bg-slate-800 text-slate-300 font-semibold capitalize border border-slate-700">
+                <%= t('player.role') %>: <%= player.role === 'coLeader' ? t('player.roles.coLeader') : (player.role === 'leader' ? t('player.roles.leader') : (player.role === 'admin' ? t('player.roles.admin') : t('player.roles.member'))) %>
+              </span>
+            <% } %>
+            <% if (player.warPreference) { %>
+              <span class="px-3 py-1 rounded-xl text-xs font-bold <%= player.warPreference === 'in' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' : 'bg-rose-500/20 text-rose-300 border border-rose-500/40' %>">
+                <%= t('player.warPref') %>: <%= player.warPreference === 'in' ? t('player.warPrefIn') : t('player.warPrefOut') %>
+              </span>
+            <% } %>
+          </div>
+
+          <!-- Player Labels -->
+          <% if (player.labels && player.labels.length > 0) { %>
+            <div class="flex flex-wrap items-center gap-2 pt-1">
+              <% player.labels.forEach(function(l) { %>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-900/80 text-xs text-slate-300 border border-slate-800 shadow-sm">
+                  <% if (l.iconUrls) { %><img src="<%= l.iconUrls.small %>" class="w-4 h-4 object-contain"><% } %>
+                  <span><%= l.name %></span>
+                </span>
+              <% }); %>
+            </div>
+          <% } %>
+        </div>
+
+      </div>
+
+      <!-- Right Actions: Clan Banner + Verify Token Button -->
+      <div class="flex flex-col sm:flex-row lg:flex-col gap-3">
+        <% if (player.clan) { %>
+        <a href="/clan/<%= encodeURIComponent(player.clan.tag) %>" class="glass-card glass-card-hover p-4 rounded-2xl border border-slate-800 flex items-center space-x-4">
+          <div class="w-12 h-12 rounded-xl bg-slate-900 p-1 flex items-center justify-center border border-slate-700 flex-shrink-0">
+            <% if (player.clan.badgeUrls) { %>
+              <img src="<%= player.clan.badgeUrls.small %>" alt="<%= player.clan.name %>" class="w-10 h-10 object-contain">
+            <% } else { %>
+              <i data-lucide="shield" class="w-8 h-8 text-amber-400"></i>
+            <% } %>
+          </div>
+          <div>
+            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider"><%= t('leaderboard.clan') %></div>
+            <h4 class="font-extrabold text-white text-sm"><%= player.clan.name %></h4>
+            <span class="text-xs text-amber-400 font-mono font-bold"><%= t('war.clanLevel') %> <%= player.clan.clanLevel %></span>
+          </div>
+        </a>
+        <% } %>
+
+        <button onclick="document.getElementById('verifyModal').classList.remove('hidden')" class="px-4 py-2.5 rounded-2xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-300 text-xs font-bold transition flex items-center justify-center gap-2 shadow">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          <span><%= t('player.verifyButton') %></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Key Trophies & Battle Stats Grid -->
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+    <div class="glass-card p-4 rounded-2xl border border-slate-800 text-center">
+      <div class="text-[11px] text-slate-400 font-medium mb-1"><%= t('leaderboard.trophies') %></div>
+      <div class="heading-font text-2xl font-bold text-amber-400 font-mono">🏆 <%= (player.trophies || 0).toLocaleString() %></div>
+      <div class="text-[10px] text-slate-500 mt-0.5">En İyi: <%= (player.bestTrophies || player.trophies || 0).toLocaleString() %></div>
+    </div>
+
+    <div class="glass-card p-4 rounded-2xl border border-slate-800 text-center">
+      <div class="text-[11px] text-slate-400 font-medium mb-1"><%= t('player.builderBase') %></div>
+      <div class="heading-font text-2xl font-bold text-indigo-400 font-mono">🔨 <%= (player.builderBaseTrophies || 0).toLocaleString() %></div>
+      <div class="text-[10px] text-slate-500 mt-0.5">En İyi: <%= (player.bestBuilderBaseTrophies || 0).toLocaleString() %></div>
+    </div>
+
+    <div class="glass-card p-4 rounded-2xl border border-slate-800 text-center">
+      <div class="text-[11px] text-slate-400 font-medium mb-1"><%= t('player.warStars') %></div>
+      <div class="heading-font text-2xl font-bold text-amber-300 font-mono">⭐ <%= (player.warStars || 0).toLocaleString() %></div>
+      <div class="text-[10px] text-slate-500 mt-0.5">Savaş Kazançları</div>
+    </div>
+
+    <div class="glass-card p-4 rounded-2xl border border-slate-800 text-center">
+      <div class="text-[11px] text-slate-400 font-medium mb-1"><%= t('player.donations') %></div>
+      <div class="heading-font text-2xl font-bold text-emerald-400 font-mono">🎁 <%= (player.donations || 0).toLocaleString() %></div>
+      <div class="text-[10px] text-slate-500 mt-0.5"><%= t('player.received') %>: <%= (player.donationsReceived || 0).toLocaleString() %></div>
+    </div>
+
+    <div class="glass-card p-4 rounded-2xl border border-slate-800 text-center">
+      <div class="text-[11px] text-slate-400 font-medium mb-1"><%= t('war.attacks') %> / Savunma</div>
+      <div class="heading-font text-xl font-bold text-slate-200 font-mono">⚔️ <%= player.attackWins || 0 %> / 🛡️ <%= player.defenseWins || 0 %></div>
+      <div class="text-[10px] text-slate-500 mt-0.5">Bu Sezon</div>
+    </div>
+
+    <div class="glass-card p-4 rounded-2xl border border-slate-800 text-center">
+      <div class="text-[11px] text-slate-400 font-medium mb-1"><%= t('player.capitalGold') %></div>
+      <div class="heading-font text-xl font-bold text-amber-500 font-mono">🪙 <%= (player.clanCapitalContributions || 0).toLocaleString() %></div>
+      <div class="text-[10px] text-slate-500 mt-0.5">Klan Başkenti</div>
+    </div>
+  </div>
+
+  <!-- Legend Statistics (if available) -->
+  <% if (player.legendStatistics) { %>
+  <div class="glass-card rounded-3xl p-6 sm:p-8 mb-8 border border-amber-500/20 shadow-xl">
+    <div class="flex items-center space-x-3 mb-4">
+      <i data-lucide="trophy" class="w-6 h-6 text-amber-400"></i>
+      <h3 class="heading-font text-xl font-extrabold text-white"><%= t('player.legendStats') %></h3>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800">
+        <div class="text-xs text-slate-400 mb-1"><%= t('player.legendTrophies') %></div>
+        <div class="heading-font text-2xl font-bold text-amber-400 font-mono">🏆 <%= (player.legendStatistics.legendTrophies || 0).toLocaleString() %></div>
+      </div>
+      <% if (player.legendStatistics.bestSeason) { %>
+      <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800">
+        <div class="text-xs text-slate-400 mb-1"><%= t('player.bestSeason') %> (<%= player.legendStatistics.bestSeason.season %>)</div>
+        <div class="heading-font text-2xl font-bold text-emerald-400 font-mono">🏆 <%= player.legendStatistics.bestSeason.trophies %> <span class="text-xs text-slate-400">#<%= player.legendStatistics.bestSeason.rank %></span></div>
+      </div>
+      <% } %>
+      <% if (player.legendStatistics.currentSeason) { %>
+      <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800">
+        <div class="text-xs text-slate-400 mb-1"><%= t('player.currentSeason') %></div>
+        <div class="heading-font text-2xl font-bold text-cyan-400 font-mono">🏆 <%= player.legendStatistics.currentSeason.trophies %> <span class="text-xs text-slate-400">#<%= player.legendStatistics.currentSeason.rank %></span></div>
+      </div>
+      <% } %>
+    </div>
+  </div>
+  <% } %>
+
+  <!-- ========================================================================= -->
+  <!-- HEROES & EQUIPMENT SHOWCASE -->
+  <!-- ========================================================================= -->
+  <% if (player.heroes && player.heroes.length > 0) { %>
+  <div class="mb-10">
+    <div class="flex items-center space-x-2.5 mb-4">
+      <i data-lucide="crown" class="w-5 h-5 text-amber-400"></i>
+      <h3 class="heading-font text-2xl font-extrabold text-white"><%= t('player.heroesAndEquip') %></h3>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <% player.heroes.forEach(function(hero) { %>
+        <% const equipped = getHeroEquippedItems(hero, player.heroEquipment); %>
+        <div class="hero-card p-5 rounded-3xl border border-slate-800 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <div>
+                <h4 class="font-extrabold text-white text-base"><%= getEntityName(hero.name) %></h4>
+                <span class="text-[11px] text-slate-400 capitalize font-mono"><%= hero.village === 'builderBase' ? 'İnşaatçı Üssü' : 'Ana Köy' %></span>
+              </div>
+              <span class="px-3 py-1 rounded-xl text-xs font-mono font-bold <%= hero.level >= hero.maxLevel ? 'bg-amber-400/20 text-amber-300 border border-amber-400/40' : 'bg-slate-800 text-slate-300 border border-slate-700' %>">
+                Lvl <%= hero.level %> / <%= hero.maxLevel %>
+              </span>
+            </div>
+
+            <!-- Hero Image Frame -->
+            <div class="h-36 flex items-center justify-center my-2 relative">
+              <img 
+                src="<%= getHeroImage(hero.name) %>" 
+                alt="<%= getEntityName(hero.name) %>" 
+                class="max-h-32 max-w-full object-contain drop-shadow-xl hover:scale-105 transition"
+                onerror="this.src='/images/assets/barbarian_king_info.png'"
+              >
+            </div>
+          </div>
+
+          <!-- Hero Equipped Items Section -->
+          <% if (equipped && equipped.length > 0) { %>
+          <div class="pt-3 border-t border-slate-800/80">
+            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-2">Kuşanılan Ekipmanlar:</div>
+            <div class="grid grid-cols-2 gap-2">
+              <% equipped.forEach(function(eq) { %>
+                <div class="bg-slate-950/80 p-2 rounded-xl border border-slate-800/80 flex items-center space-x-2">
+                  <div class="w-8 h-8 rounded-lg bg-slate-900 p-0.5 flex items-center justify-center flex-shrink-0">
+                    <img src="<%= getEquipmentImage(eq.name) %>" alt="<%= getEntityName(eq.name) %>" class="w-6 h-6 object-contain" onerror="this.src='/images/assets/giant_gauntlet.png'">
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <div class="text-xs font-bold text-white truncate"><%= getEntityName(eq.name) %></div>
+                    <span class="text-[10px] text-amber-400 font-mono font-bold">Lvl <%= eq.level %>/<%= eq.maxLevel %></span>
+                  </div>
+                </div>
+              <% }); %>
+            </div>
+          </div>
+          <% } %>
+
+        </div>
+      <% }); %>
+    </div>
+  </div>
+  <% } %>
+
+  <!-- ========================================================================= -->
+  <!-- ARMY TROOPS & SPELLS SECTION -->
+  <!-- ========================================================================= -->
+  <% if (player.troops && player.troops.length > 0) { %>
+  <div class="mb-10">
+    <div class="flex items-center space-x-2.5 mb-4">
+      <i data-lucide="swords" class="w-5 h-5 text-amber-400"></i>
+      <h3 class="heading-font text-2xl font-extrabold text-white"><%= t('player.armyAndTroops') %> (<%= player.troops.length %>)</h3>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
+      <% player.troops.forEach(function(troop) { %>
+        <div class="item-card p-3 rounded-2xl text-center flex flex-col items-center justify-between">
+          <div class="w-14 h-14 rounded-xl bg-slate-950 p-1 flex items-center justify-center mb-1">
+            <img 
+              src="<%= getTroopImage(troop.name) %>" 
+              alt="<%= getEntityName(troop.name) %>" 
+              class="w-12 h-12 object-contain"
+              onerror="this.src='/images/assets/barbarian_info.png'"
+            >
+          </div>
+          <h5 class="text-xs font-bold text-white leading-tight truncate w-full" title="<%= getEntityName(troop.name) %>"><%= getEntityName(troop.name) %></h5>
+          <span class="text-[10px] font-mono font-bold mt-1 <%= troop.level >= troop.maxLevel ? 'text-amber-400' : 'text-slate-400' %>">
+            Lvl <%= troop.level %>/<%= troop.maxLevel %>
+          </span>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+  <% } %>
+
+  <!-- ========================================================================= -->
+  <!-- SPELLS SECTION -->
+  <!-- ========================================================================= -->
+  <% if (player.spells && player.spells.length > 0) { %>
+  <div class="mb-10">
+    <div class="flex items-center space-x-2.5 mb-4">
+      <i data-lucide="sparkles" class="w-5 h-5 text-fuchsia-400"></i>
+      <h3 class="heading-font text-2xl font-extrabold text-white"><%= t('player.siegeAndSpells') %> (<%= player.spells.length %>)</h3>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
+      <% player.spells.forEach(function(spell) { %>
+        <div class="item-card p-3 rounded-2xl text-center flex flex-col items-center justify-between">
+          <div class="w-14 h-14 rounded-xl bg-slate-950 p-1 flex items-center justify-center mb-1">
+            <img 
+              src="<%= getSpellImage(spell.name) %>" 
+              alt="<%= getEntityName(spell.name) %>" 
+              class="w-12 h-12 object-contain"
+              onerror="this.src='/images/assets/lightning_spell_info.png'"
+            >
+          </div>
+          <h5 class="text-xs font-bold text-white leading-tight truncate w-full" title="<%= getEntityName(spell.name) %>"><%= getEntityName(spell.name) %></h5>
+          <span class="text-[10px] font-mono font-bold mt-1 <%= spell.level >= spell.maxLevel ? 'text-amber-400' : 'text-slate-400' %>">
+            Lvl <%= spell.level %>/<%= spell.maxLevel %>
+          </span>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+  <% } %>
+
+  <!-- ========================================================================= -->
+  <!-- ACHIEVEMENTS SECTION -->
+  <!-- ========================================================================= -->
+  <% if (player.achievements && player.achievements.length > 0) { %>
+  <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl">
+    <div class="flex items-center space-x-2.5 mb-6">
+      <i data-lucide="award" class="w-6 h-6 text-amber-400"></i>
+      <h3 class="heading-font text-2xl font-extrabold text-white"><%= t('player.achievements') %></h3>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <% player.achievements.forEach(function(ach) { %>
+        <div class="bg-slate-900/70 p-4 rounded-2xl border border-slate-800 flex items-start space-x-3.5">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 flex-shrink-0 font-bold text-sm">
+            ⭐ <%= ach.stars %>
+          </div>
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between">
+              <h4 class="font-bold text-white text-sm"><%= ach.name %></h4>
+              <span class="text-xs text-amber-400 font-mono font-bold"><%= (ach.value || 0).toLocaleString() %> / <%= (ach.target || 0).toLocaleString() %></span>
+            </div>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed"><%= ach.info %></p>
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-950 rounded-full h-1.5 mt-2.5 overflow-hidden">
+              <% const pct = Math.min(100, Math.round((ach.value / (ach.target || 1)) * 100)); %>
+              <div class="progress-gold h-full rounded-full" style="width: <%= pct %>%"></div>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+  <% } %>
+
+</main>
+
+<!-- Verification Modal Dialog -->
+<div id="verifyModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+  <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-md w-full border border-amber-500/30 shadow-2xl relative">
+    <button onclick="document.getElementById('verifyModal').classList.add('hidden')" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+      <i data-lucide="x" class="w-5 h-5"></i>
+    </button>
+    <div class="flex items-center space-x-3 mb-4">
+      <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+        <i data-lucide="shield-check" class="w-5 h-5"></i>
+      </div>
+      <h3 class="heading-font text-xl font-extrabold text-white"><%= t('player.verifyButton') %></h3>
+    </div>
+    <p class="text-xs text-slate-300 mb-4 leading-relaxed">
+      Clash of Clans oyun içi ayarlarından oluşturduğunuz <strong>API Token</strong> kodunu girerek bu hesabın gerçek sahibi olduğunuzu kanıtlayın.
+    </p>
+    <form action="/player/<%= encodeURIComponent(player.tag) %>/verify" method="POST" class="space-y-4">
+      <div>
+        <label class="block text-xs font-semibold text-slate-300 uppercase mb-1.5">Supercell API Token</label>
+        <input 
+          type="text" 
+          name="token" 
+          placeholder="Örn: 123456" 
+          required 
+          class="w-full px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-white font-mono text-sm focus:outline-none focus:ring-2 focus:ring-amber-500"
+        >
+      </div>
+      <div class="flex items-center justify-end space-x-2 pt-2">
+        <button type="button" onclick="document.getElementById('verifyModal').classList.add('hidden')" class="px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 text-xs font-bold hover:bg-slate-700 transition">
+          İptal
+        </button>
+        <button type="submit" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 font-bold text-slate-950 text-xs shadow-lg shadow-amber-500/20 transition">
+          Doğrula
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
